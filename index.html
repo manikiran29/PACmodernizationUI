@@ -175,21 +175,19 @@ button{cursor:pointer}
 .crumbs{font-size:11.5px;font-weight:600;color:var(--muted);display:flex;gap:7px;align-items:center;margin-bottom:10px}
 .crumbs i{font-style:normal;color:#B9C2CB}
 .crumbs b{color:var(--rust);font-weight:800}
-.masters-float{width:242px;flex:none;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 16px 36px #25374626;padding:12px 10px;display:flex;flex-direction:column;gap:2px;position:sticky;top:24px}
-.float-cap{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#93A1AD;padding:4px 10px 9px;flex:none}
-.float-tab{display:flex;align-items:center;gap:10px;width:100%;padding:9px 12px;border:0;border-radius:9px;background:none;color:#4A5A68;font-size:12.8px;font-weight:600;text-align:left;transition:.15s}
-.float-tab svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.masters-float{width:238px;flex:none;display:flex;flex-direction:column;gap:10px;position:sticky;top:24px}
+.float-cap{font-size:8.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding-left:4px;margin-bottom:2px}
+.float-tab{display:flex;align-items:center;gap:11px;width:100%;padding:13px 15px;background:#fff;border:1px solid var(--line);border-radius:11px;box-shadow:0 5px 16px #2437460C;font-size:12px;font-weight:700;color:#4E5B66;text-align:left;transition:.15s}
+.float-tab svg{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .float-tab span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.tab-cnt{margin-left:auto;font-style:normal;font-size:10px;font-weight:800;color:#8A97A3;background:#EEF1F3;border-radius:20px;padding:2px 7px;flex:none}
-.float-tab:hover{background:#F1F3F5;color:#39434D}
-.float-tab.active{background:var(--soft);color:var(--rust)}
-.float-tab.active .tab-cnt{background:#fff;color:var(--rust)}
+.float-tab:hover{border-color:#E9B48F;color:var(--rust);transform:translateX(-3px)}
+.float-tab.active{background:var(--brand-grad);border-color:transparent;color:#fff;box-shadow:0 8px 20px #9D2E2B3D}
+.float-tab.active:hover{color:#fff;transform:none}
 .float-tab:focus{outline:none}
 .float-tab:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
 .content-card{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:20px 24px;display:flex;flex-direction:column;gap:13px;min-height:520px}
-.card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex:none}
+.card-head{display:flex;align-items:center;justify-content:space-between;gap:16px;flex:none}
 .card-head h2{margin:0;font-size:17px;font-weight:800;color:var(--ink)}
-.card-head p{margin:4px 0 0;font-size:12.5px;color:var(--muted);line-height:1.55}
 .btn-new{background:var(--brand-grad);color:#fff;border:0;border-radius:9px;padding:9px 16px;font-size:12.5px;font-weight:800;box-shadow:0 5px 14px #9D2E2B47;flex:none}
 .btn-new:hover{filter:brightness(1.05)}
 .m-table{border:1px solid var(--line);border-radius:11px;overflow:hidden;font-size:12.5px;flex:none}
@@ -392,20 +390,20 @@ button{cursor:pointer}
     <div class="page-body">
       <aside class="masters-float">
         <span class="float-cap">Master sections</span>
-        <button class="float-tab active" data-master="group" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8.2" r="3.2"/><path d="M3.6 19.4c.8-3.3 3-5.1 5.4-5.1s4.6 1.8 5.4 5.1"/><circle cx="16.8" cy="9.4" r="2.5"/><path d="M16.2 14.6c2.2.4 3.7 1.9 4.2 4.3"/></svg><span>Group</span><i class="tab-cnt">12</i></button>
-        <button class="float-tab" data-master="parameter" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5h9M17.5 7.5H20M4 16.5h3M11.5 16.5H20"/><circle cx="15" cy="7.5" r="2.3"/><circle cx="9" cy="16.5" r="2.3"/></svg><span>Parameter</span><i class="tab-cnt">8</i></button>
-        <button class="float-tab" data-master="ldap" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="6.5" rx="1.6"/><rect x="3" y="13.5" width="18" height="6.5" rx="1.6"/><path d="M7 7.2h.01M7 16.8h.01"/></svg><span>LDAP (Support) Group</span><i class="tab-cnt">5</i></button>
-        <button class="float-tab" data-master="attendees" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9.5" cy="8.2" r="3.3"/><path d="M4 19.6c.8-3.4 3-5.2 5.5-5.2s4.7 1.8 5.5 5.2"/><path d="M18.5 6.5v6M15.5 9.5h6"/></svg><span>Attendees/Invitee</span><i class="tab-cnt">24</i></button>
-        <button class="float-tab" data-master="holiday" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M8 3v4M16 3v4M3.5 10.5h17"/><path d="M7.5 14.5h3M13.5 14.5h3M7.5 17.5h3"/></svg><span>Holiday</span><i class="tab-cnt">18</i></button>
-        <button class="float-tab" data-master="reason" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.5a2 2 0 0 1-2 2H8.5l-5 4.5v-14a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z"/></svg><span>Reason</span><i class="tab-cnt">9</i></button>
-        <button class="float-tab" data-master="venue" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21c-4.4-3.8-6.6-7.2-6.6-10.2a6.6 6.6 0 0 1 13.2 0c0 3-2.2 6.4-6.6 10.2z"/><circle cx="12" cy="10.6" r="2.4"/></svg><span>Venue</span><i class="tab-cnt">6</i></button>
-        <button class="float-tab" data-master="member" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.9-3.8 3.6-5.7 7-5.7s6.1 1.9 7 5.7"/></svg><span>Member</span><i class="tab-cnt">132</i></button>
+        <button class="float-tab active" data-master="group" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8.2" r="3.2"/><path d="M3.6 19.4c.8-3.3 3-5.1 5.4-5.1s4.6 1.8 5.4 5.1"/><circle cx="16.8" cy="9.4" r="2.5"/><path d="M16.2 14.6c2.2.4 3.7 1.9 4.2 4.3"/></svg><span>Group</span></button>
+        <button class="float-tab" data-master="parameter" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5h9M17.5 7.5H20M4 16.5h3M11.5 16.5H20"/><circle cx="15" cy="7.5" r="2.3"/><circle cx="9" cy="16.5" r="2.3"/></svg><span>Parameter</span></button>
+        <button class="float-tab" data-master="ldap" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="6.5" rx="1.6"/><rect x="3" y="13.5" width="18" height="6.5" rx="1.6"/><path d="M7 7.2h.01M7 16.8h.01"/></svg><span>LDAP (Support) Group</span></button>
+        <button class="float-tab" data-master="attendees" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9.5" cy="8.2" r="3.3"/><path d="M4 19.6c.8-3.4 3-5.2 5.5-5.2s4.7 1.8 5.5 5.2"/><path d="M18.5 6.5v6M15.5 9.5h6"/></svg><span>Attendees/Invitee</span></button>
+        <button class="float-tab" data-master="holiday" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M8 3v4M16 3v4M3.5 10.5h17"/><path d="M7.5 14.5h3M13.5 14.5h3M7.5 17.5h3"/></svg><span>Holiday</span></button>
+        <button class="float-tab" data-master="reason" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.5a2 2 0 0 1-2 2H8.5l-5 4.5v-14a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z"/></svg><span>Reason</span></button>
+        <button class="float-tab" data-master="venue" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21c-4.4-3.8-6.6-7.2-6.6-10.2a6.6 6.6 0 0 1 13.2 0c0 3-2.2 6.4-6.6 10.2z"/><circle cx="12" cy="10.6" r="2.4"/></svg><span>Venue</span></button>
+        <button class="float-tab" data-master="member" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.9-3.8 3.6-5.7 7-5.7s6.1 1.9 7 5.7"/></svg><span>Member</span></button>
       </aside>
       <div class="page-main">
         <div class="crumbs" id="mCrumb"></div>
         <div class="content-card">
           <div class="card-head">
-            <div><h2 id="mTitle"></h2><p id="mDesc"></p></div>
+            <div><h2 id="mTitle"></h2></div>
             <button class="btn-new" id="mNew" type="button">+ New Group</button>
           </div>
           <div id="mBody"></div>
@@ -517,14 +515,14 @@ function setStep(n){
   if(n>=3){p2.classList.remove('on');p2.classList.add('done');p2.querySelector('.n').textContent='✓'}
 }
 const mastersInfo={
-  group:{label:'Group',desc:'Create and maintain groups that raise and track loan proposals in PAC.',table:true},
-  parameter:{label:'Parameter',desc:'Maintain system parameters that govern PAC workflows.'},
-  ldap:{label:'LDAP (Support) Group',desc:'Manage LDAP support groups for access and role mapping.'},
-  attendees:{label:'Attendees/Invitee',desc:'Maintain attendees and invitees for committee meetings.'},
-  holiday:{label:'Holiday',desc:'Define holidays that affect meeting scheduling and lock dates.'},
-  reason:{label:'Reason',desc:'Maintain standard reasons used across meeting actions.'},
-  venue:{label:'Venue',desc:'Manage venues available for committee meetings.'},
-  member:{label:'Member',desc:'Maintain member records and their committee roles.'}
+  group:{label:'Group',table:true},
+  parameter:{label:'Parameter'},
+  ldap:{label:'LDAP (Support) Group'},
+  attendees:{label:'Attendees/Invitee'},
+  holiday:{label:'Holiday'},
+  reason:{label:'Reason'},
+  venue:{label:'Venue'},
+  member:{label:'Member'}
 };
 const groupTable=`<div class="m-table">
   <div class="m-tr m-th"><span>Group ID</span><span>Group Name</span><span>Region</span><span>Status</span><span>Members</span></div>
@@ -539,7 +537,6 @@ function selectMaster(ft){
   const info=mastersInfo[ft.dataset.master];
   document.getElementById('mCrumb').innerHTML='Masters <i>&#8250;</i> <b>'+info.label+'</b>';
   document.getElementById('mTitle').textContent=info.label;
-  document.getElementById('mDesc').textContent=info.desc;
   document.getElementById('mNew').textContent='+ New '+info.label;
   document.getElementById('mBody').innerHTML=info.table?groupTable:
     '<div class="m-empty empty-state"><span class="empty-ic">'+ft.querySelector('svg').outerHTML+'</span><b>No records to display</b><p>Records maintained under this master will appear here.</p></div>';
