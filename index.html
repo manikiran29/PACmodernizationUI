@@ -1,0 +1,1030 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PAC — Process Approval Committee</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800&display=swap');
+
+:root{
+  --maroon:#9D2E2B;
+  --orange:#EA771D;
+  --rust:#B44720;
+  --brand-grad:linear-gradient(90deg,#9D2E2B,#EA771D);
+  --brand-grad-diag:linear-gradient(145deg,#9D2E2B 0%,#B44720 52%,#EA771D 104%);
+  --soft:#FBEFE2;
+  --green:#16834A;
+  --ink:#273746;
+  --muted:#71808D;
+  --line:#E3E8EC;
+  --bg:#F2F4F6;
+  --shadow:0 10px 30px #2437460c;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Mulish,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+button,input{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+.topline{height:5px;background:var(--brand-grad)}
+
+.auth-screen{min-height:calc(100vh - 5px);display:grid;place-items:center;padding:22px}
+.auth-frame{position:relative;width:min(1240px,100%);height:min(760px,calc(100vh - 60px));min-height:560px;display:grid;grid-template-columns:55% 45%;background:#fff;border:1px solid #E2E6E9;box-shadow:0 20px 70px #25374618;border-radius:10px;overflow:hidden}
+
+.auth-brand-panel{position:relative;overflow:hidden;background:var(--brand-grad-diag);color:#fff;padding:36px 52px;display:flex;flex-direction:column}
+.brand-lockup{display:flex;align-items:center;gap:11px;z-index:1}
+.logo-chip{width:38px;height:38px;border-radius:9px;background:#fff;display:grid;place-items:center;font-style:italic;font-weight:800;font-size:21px;color:var(--rust);position:relative;flex:none}
+.logo-chip b{position:absolute;top:-4px;right:-4px;width:12px;height:12px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#EA771D,#9D2E2B);box-shadow:0 1px 4px #00000038}
+.logo-word{font-weight:800;font-style:italic;font-size:18px;letter-spacing:.02em}
+.auth-intro{position:relative;z-index:1;margin-top:clamp(40px,12vh,130px);max-width:520px}
+.auth-intro h1{font-size:clamp(32px,3.4vw,46px);line-height:1.12;letter-spacing:-.04em;margin:0 0 16px;font-weight:700}
+.auth-intro p{font-size:15.5px;line-height:1.65;max-width:460px;color:#fff;opacity:.94;margin:0}
+.auth-footer{position:relative;z-index:1;margin-top:auto;font-size:13px;line-height:1.7;opacity:.95}
+.auth-footer b{text-decoration:underline;text-underline-offset:3px;font-weight:800}
+.mandala{position:absolute;color:#fff;pointer-events:none}
+.mandala.left{width:430px;height:430px;left:-150px;bottom:-170px;opacity:.22}
+.mandala.ghost-orange{color:var(--orange);opacity:.07;width:300px;height:300px;top:-90px;right:-70px;position:absolute;pointer-events:none}
+
+.auth-right{position:relative;overflow-y:auto;overflow-x:hidden;display:flex;padding:30px clamp(20px,3.4vw,52px);background:#fff}
+.auth-content{position:relative;z-index:1;width:min(400px,100%);margin:auto}
+.auth-content h2{font-size:26px;letter-spacing:-.035em;margin:0 0 7px;font-weight:700}
+.auth-desc{font-size:12px;line-height:1.6;color:var(--muted);margin:0 0 16px}
+
+.field-title{font-size:11px;font-weight:800;margin-bottom:10px;display:block}
+.channel-list{display:grid;gap:10px}
+.channel-option{width:100%;display:flex;align-items:center;gap:12px;padding:13px;border:1px solid var(--line);border-radius:8px;background:#fff;text-align:left;transition:.15s}
+.channel-option:hover{border-color:#D7A58F}
+.channel-option.selected{border:1.5px solid var(--green);background:#F5FAF6;box-shadow:0 0 0 2px #16834A0b}
+.channel-option:disabled{cursor:default}
+.channel-option:disabled:not(.selected){opacity:.6}
+.channel-option:focus{outline:none}
+.channel-option:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+.channel-icon{width:36px;height:36px;border-radius:8px;background:var(--soft);color:var(--rust);display:grid;place-items:center;flex:none}
+.channel-icon svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.channel-text{flex:1}
+.channel-text b{font-size:12px;display:block}
+.channel-text small{font-size:10px;color:var(--muted);display:block;margin-top:4px;line-height:1.45}
+.radio{width:17px;height:17px;border:1px solid #B9C2C9;border-radius:50%;position:relative;flex:none}
+.selected .radio{border:5px solid var(--green)}
+
+.otp-panel{margin-top:17px;padding-top:17px;border-top:1px solid var(--line);animation:rise .22s ease-out}
+@keyframes rise{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+.sent{display:flex;gap:9px;align-items:flex-start;background:#EFF8F1;color:#236D3E;padding:10px;border-radius:7px;font-size:10px;line-height:1.5}
+.sent-mark{width:20px;height:20px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-size:11px;flex:none}
+.otp-row{display:flex;gap:8px;margin-top:13px}
+.otp-box{width:46px;height:54px;text-align:center;font-size:20px;font-weight:800;border:1px solid #D8DFE5;border-radius:7px;outline:none;color:var(--ink);background:#fff;padding:0}
+.otp-box:focus{border-color:var(--orange);box-shadow:0 0 0 3px #EA771D1A}
+.otp-meta{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:10px;font-size:10px;color:var(--muted)}
+.link-btn{border:0;background:none;color:var(--rust);font-size:10px;font-weight:800;padding:0}
+.link-btn:disabled{color:#AAB2B9;cursor:not-allowed}
+.error{color:#B42318;font-size:10px;min-height:16px;margin-top:6px;font-weight:700}
+
+.btn-primary{width:100%;background:var(--brand-grad);color:#fff;border:0;border-radius:7px;padding:13px;font-size:12.5px;font-weight:800;letter-spacing:.02em;margin-top:16px;box-shadow:0 6px 16px #9D2E2B33}
+.btn-primary:hover{filter:brightness(1.05)}
+.legal{font-size:9px;line-height:1.5;color:#98A1A9;text-align:center;margin-top:20px}
+.legal b{color:var(--rust)}
+
+.success{text-align:center;padding-top:6px}
+.success-mark{width:54px;height:54px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;margin:4px auto 14px;font-size:24px;box-shadow:0 0 0 8px #16834A14}
+.success h2{margin-bottom:8px}
+.success p{font-size:11.5px;line-height:1.7;color:var(--muted);margin:0}
+.redirect{display:flex;align-items:center;justify-content:center;gap:8px;font-size:10px;color:var(--green);font-weight:800;margin-top:10px}
+.spin{width:12px;height:12px;border:2px solid #CDE8D6;border-top-color:var(--green);border-radius:50%;animation:rot .8s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+
+.steps{display:flex;gap:7px;margin-bottom:15px}
+.step-pill{font-size:9px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:5px 11px;border-radius:20px;background:#F0F2F4;color:#87929C;display:inline-flex;align-items:center;gap:7px}
+.step-pill .n{width:14px;height:14px;border-radius:50%;background:#DDE3E8;color:#87929C;display:grid;place-items:center;font-size:8px;flex:none}
+.step-pill.on{background:var(--soft);color:var(--maroon)}
+.step-pill.on .n{background:var(--orange);color:#fff}
+.step-pill.done{background:#EAF6EE;color:var(--green)}
+.step-pill.done .n{background:var(--green);color:#fff}
+.stmt-card{border:1px solid var(--line);border-radius:9px;background:#fff;overflow:hidden}
+.stmt-head{display:flex;align-items:center;gap:9px;padding:11px 14px;border-bottom:1px solid var(--line);background:#FBFCFD}
+.stmt-head .ic{width:30px;height:30px;border-radius:8px;background:var(--soft);color:var(--rust);display:grid;place-items:center;flex:none}
+.stmt-head b{font-size:12px;flex:1}
+.stmt-tag{font-size:8.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;background:#FCEDEC;color:#A33224;border-radius:12px;padding:3px 8px;white-space:nowrap}
+.stmt-text{padding:12px 14px;font-size:10.5px;line-height:1.7;color:#52606D}
+.stmt-text p{margin:0}
+.stmt-summary{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.stmt-card.open .stmt-summary{display:none}
+.stmt-body{display:none}
+.stmt-card.open .stmt-body{display:block}
+.stmt-togglebar{padding:0 14px 11px}
+.stmt-notices{background:#FCEDEC;border:1px solid #F3C9C4;border-radius:7px;padding:10px 13px;margin-top:12px}
+.stmt-notices h4{margin:0 0 7px;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#A33224}
+.stmt-notices ul{margin:0;padding:0}
+.stmt-notices li{font-size:9.5px;line-height:1.6;color:#A33224;margin:0 0 6px 15px}
+.stmt-notices li:last-child{margin-bottom:0}
+.accept-row{display:flex;align-items:center;gap:10px;padding:12px 14px;border-top:1px solid var(--line);background:#FBFCFD}
+.accept-row label{font-size:11px;font-weight:800;cursor:pointer;flex:1}
+.chk{position:relative;width:18px;height:18px;flex:none}
+.chk input{position:absolute;inset:0;opacity:0;cursor:pointer;margin:0}
+.chk .box{width:18px;height:18px;border:1.5px solid #B9C2C9;border-radius:5px;background:#fff;display:grid;place-items:center;color:#fff;font-size:11px;transition:.15s;pointer-events:none}
+.chk input:checked+.box{background:var(--green);border-color:var(--green)}
+.decline{color:#98A1A9}
+.decline:hover{color:var(--rust)}
+.denied{background:#FCEDEC;border:1px solid #F3C9C4;border-radius:8px;padding:12px 14px;font-size:10.5px;color:#A33224;line-height:1.6;margin-top:14px}
+
+.app-screen{height:100vh;display:flex;flex-direction:column;overflow:hidden;background:var(--bg)}
+.app-topbar{height:62px;flex:none;background:var(--brand-grad);display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:relative;z-index:40;box-shadow:0 2px 10px #0000001F}
+.topbar-brand{display:flex;align-items:center;gap:15px;color:#fff;min-width:0}
+.icici-mark{font-size:31px;font-weight:800;font-style:italic;line-height:.9;letter-spacing:-.02em}
+.icici-word{font-size:19px;font-weight:800;font-style:italic;letter-spacing:.015em;white-space:nowrap}
+.brand-div{width:1px;height:30px;background:#FFFFFF45;flex:none}
+.app-tag{min-width:0}
+.app-tag b{display:block;font-size:15px;font-weight:800;letter-spacing:.04em;line-height:1.1}
+.app-tag small{display:block;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#FFFFFFC0;margin-top:3px;white-space:nowrap}
+.topbar-user{display:flex;align-items:center;gap:11px;background:#FFFFFF14;border:1px solid #FFFFFF2E;border-radius:10px;padding:6px 13px 6px 7px;color:#fff;transition:.15s;flex:none}
+.topbar-user:hover{background:#FFFFFF22}
+.avatar{width:34px;height:34px;border-radius:50%;background:#fff;color:#9D2E2B;display:grid;place-items:center;font-weight:800;font-size:12.5px;flex:none}
+.user-meta{text-align:left}
+.user-meta b{display:block;font-size:12.5px;font-weight:800;line-height:1.2;white-space:nowrap}
+.user-meta small{display:block;font-size:9.5px;font-weight:600;color:#FFFFFFC8;margin-top:2px;white-space:nowrap;letter-spacing:.02em}
+.chev{width:13px;height:13px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;transition:.2s;flex:none}
+.topbar-user.open .chev{transform:rotate(180deg)}
+.user-menu{position:absolute;top:70px;right:24px;width:266px;background:#fff;border:1px solid var(--line);border-radius:11px;box-shadow:0 20px 50px #1E2A3426;padding:7px;display:none;z-index:60}
+.user-menu.open{display:block;animation:rise .18s ease-out}
+.um-head{display:flex;gap:11px;align-items:center;padding:11px 12px;border-bottom:1px solid var(--line);margin-bottom:6px}
+.um-head .avatar{background:var(--soft);color:var(--rust);width:38px;height:38px;font-size:13px}
+.um-head b{display:block;font-size:13px}
+.um-head small{display:block;font-size:10.5px;color:var(--muted);margin-top:3px;line-height:1.45}
+.um-item{width:100%;display:flex;align-items:center;gap:10px;padding:10px 12px;border:0;background:none;border-radius:8px;font-size:12px;font-weight:700;color:var(--ink);text-align:left}
+.um-item svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.um-item:hover{background:#F4F6F8}
+.um-item.signout{color:#B42318}
+.um-item.signout:hover{background:#FCEDEC}
+.app-body{flex:1;display:flex;min-height:0}
+.app-sidebar{width:98px;flex:none;background:#fff;border-right:1px solid var(--line);display:flex;flex-direction:column;align-items:center;gap:3px;padding:14px 0;overflow-y:auto}
+.nav-tab{width:82px;flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:12px 4px;border:0;background:none;border-radius:10px;color:#5E6C79;transition:.15s}
+.nav-tab svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.nav-tab span{font-size:10px;font-weight:700;line-height:1.3;text-align:center;letter-spacing:.01em}
+.nav-tab:hover{background:#F3F5F7;color:#39434D}
+.nav-tab.active{background:var(--soft);color:var(--maroon)}
+.nav-tab:focus{outline:none}
+.nav-tab:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+.app-main{flex:1;min-width:0;overflow:auto}
+
+.page-wrap{display:flex;flex-direction:column;gap:12px;padding:18px 28px 28px}
+.page-head-row{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex:none}
+.page-head-row h1{margin:0;font-size:21px;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+.page-body{display:flex;gap:16px;align-items:flex-start}
+.page-main{flex:1;min-width:0}
+.crumbs{font-size:11.5px;font-weight:600;color:var(--muted);display:flex;gap:7px;align-items:center;margin-bottom:10px}
+.crumbs i{font-style:normal;color:#B9C2CB}
+.crumbs b{color:var(--rust);font-weight:800}
+.masters-float{width:238px;flex:none;display:flex;flex-direction:column;gap:10px;position:sticky;top:18px}
+.rail-scroll{display:flex;flex-direction:column;gap:10px;max-height:calc(100vh - 120px);overflow-y:auto;padding:0 15px 16px 4px;margin:0 -15px 0 -4px;scrollbar-width:thin}
+.float-tab{display:flex;align-items:center;gap:11px;width:100%;padding:13px 15px;background:#fff;border:1px solid var(--line);border-radius:11px;box-shadow:0 5px 16px #2437460C;font-size:12px;font-weight:700;color:#4E5B66;text-align:left;transition:.15s}
+.float-tab svg{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.float-tab span{overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow-wrap:anywhere;line-height:1.3}
+.float-tab:hover{border-color:#E9B48F;color:var(--rust);transform:translateX(-3px)}
+.float-tab.active{background:var(--brand-grad);border-color:transparent;color:#fff;box-shadow:0 8px 20px #9D2E2B3D}
+.float-tab.active:hover{color:#fff;transform:none}
+.float-tab:focus{outline:none}
+.float-tab:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+.content-card{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:20px 24px;display:flex;flex-direction:column;gap:13px;min-height:520px}
+.card-head{display:flex;align-items:center;justify-content:space-between;gap:16px;flex:none}
+.card-head h2{margin:0;font-size:17px;font-weight:800;color:var(--ink)}
+.btn-new{background:var(--brand-grad);color:#fff;border:0;border-radius:9px;padding:9px 16px;font-size:12.5px;font-weight:800;box-shadow:0 5px 14px #9D2E2B47;flex:none}
+.btn-new:hover{filter:brightness(1.05)}
+.crud{display:flex;flex-direction:column;gap:13px}
+.add-panel{border:1px solid var(--line);border-radius:11px;background:#FBFCFD;padding:14px 16px;display:flex;flex-direction:column;gap:12px;transition:.2s;flex:none}
+.add-panel.editing{border-color:#E9B48F;background:var(--soft)}
+.add-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.add-head>b{font-size:12.5px;font-weight:800;color:var(--ink)}
+.edit-tag{font-size:10.5px;font-weight:800;color:var(--rust);background:#fff;border:1px solid #E9B48F;border-radius:12px;padding:3px 10px;animation:rise .18s ease-out}
+.f-err{margin-left:auto;color:#B42318;font-size:10.5px;font-weight:800;text-align:right}
+.add-fields{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap}
+.add-fields.row-center{align-items:center}
+.f-field{display:flex;flex-direction:column;gap:5px;font-size:10.5px;font-weight:800;color:#5E6C79;flex:1 1 170px;min-width:0}
+.f-field span i{color:#B42318;font-style:normal}
+.f-field input{border:1px solid #D8DFE5;border-radius:7px;padding:9px 11px;font-size:12.5px;font-weight:600;color:var(--ink);outline:none;background:#fff;width:100%}
+.f-field input:focus{border-color:var(--orange);box-shadow:0 0 0 3px #EA771D1A}
+.f-field input::placeholder{color:#AAB4BC;font-weight:500}
+.add-actions{display:flex;gap:8px;margin-left:auto;flex:none}
+.btn-ghost{border:1px solid #D8DFE5;background:#fff;color:#5E6C79;border-radius:9px;padding:9px 14px;font-size:12px;font-weight:800}
+.btn-ghost:hover{border-color:#E9B48F;color:var(--rust)}
+.switch{display:inline-flex;align-items:center;gap:8px;cursor:pointer;user-select:none}
+.switch input{position:absolute;opacity:0;width:0;height:0}
+.sw-track{width:34px;height:19px;border-radius:20px;background:#D5DCE2;position:relative;transition:.15s;flex:none}
+.sw-track::after{content:'';position:absolute;top:2.5px;left:3px;width:14px;height:14px;border-radius:50%;background:#fff;box-shadow:0 1px 3px #00000030;transition:.15s}
+.switch input:checked+.sw-track{background:var(--brand-grad)}
+.switch input:checked+.sw-track::after{left:17px}
+.switch input:focus-visible+.sw-track{outline:2px solid var(--orange);outline-offset:2px}
+.sw-lab{font-size:10.5px;font-weight:800;color:#5E6C79}
+.tbl-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;flex:none}
+.search-box{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:8px 12px;flex:1 1 300px;max-width:400px}
+.search-box:focus-within{border-color:var(--orange);box-shadow:0 0 0 3px #EA771D1A}
+.search-box svg{width:14px;height:14px;stroke:#8A97A3;fill:none;stroke-width:1.8;stroke-linecap:round;flex:none}
+.search-box input{border:0;outline:none;font-size:12px;font-weight:600;flex:1;background:transparent;color:var(--ink);min-width:0}
+.search-box input::placeholder{color:#AAB4BC;font-weight:500}
+.tbl-count{font-size:11px;font-weight:700;color:var(--muted);white-space:nowrap}
+.tbl-wrap{border:1px solid var(--line);border-radius:11px;overflow:auto;background:#fff;flex:none}
+.data-table{width:100%;border-collapse:collapse;font-size:12.5px}
+.data-table th,.data-table td{padding:9px 13px;text-align:left;border-bottom:1px solid var(--line);border-right:1px solid #EEF1F4;vertical-align:middle}
+.data-table th:last-child,.data-table td:last-child{border-right:0}
+.data-table thead th{background:#F7F8FA;font-size:10.5px;font-weight:800;letter-spacing:.05em;color:#7A8794;text-transform:uppercase;white-space:nowrap}
+.data-table thead tr.sub-head th{font-size:9.5px;letter-spacing:.04em;background:#FBFCFD;color:#8A97A3;text-transform:none}
+.data-table tbody tr:hover{background:#FAFBFC}
+.data-table tbody tr:last-child td{border-bottom:0}
+.data-table td b{font-weight:700;color:var(--ink)}
+.data-table th.c-h,.data-table td.c{text-align:center}
+.th-grouped{text-align:center}
+.th-act{width:56px}
+.td-act{text-align:center}
+.yn{font-weight:700;color:var(--ink)}
+.yn.no{color:#98A1A9}
+.em{color:#52606D;font-size:12px;overflow-wrap:anywhere}
+.row-edit{width:28px;height:28px;border:1px solid var(--line);background:#fff;border-radius:7px;color:#5E6C79;display:inline-grid;place-items:center;transition:.13s}
+.row-edit svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.row-edit:hover{border-color:#E9B48F;color:var(--rust);background:var(--soft)}
+.tbl-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;flex:none}
+.pager{display:flex;gap:5px}
+.pg-btn{min-width:29px;height:29px;border:1px solid var(--line);background:#fff;border-radius:7px;font-size:11.5px;font-weight:800;color:#5E6C79;display:grid;place-items:center;padding:0 8px;transition:.13s}
+.pg-btn:hover:not(:disabled):not(.active){border-color:#E9B48F;color:var(--rust)}
+.pg-btn.active{background:var(--brand-grad);border-color:transparent;color:#fff;box-shadow:0 4px 10px #9D2E2B33}
+.pg-btn:disabled{opacity:.4;cursor:default}
+.no-hit{padding:28px;text-align:center}
+.no-hit b{font-size:12.5px;color:var(--ink)}
+.no-hit p{margin:5px 0 0;font-size:11px;color:var(--muted)}
+@keyframes rowflash{from{background:var(--soft)}to{background:#fff}}
+tr.flash{animation:rowflash 1.5s ease-out}
+.m-ok,.m-off{font-size:11px;font-weight:800;border-radius:20px;padding:3px 10px;display:inline-block}
+.m-ok{background:var(--soft);color:var(--rust)}
+.m-off{background:#EEF1F3;color:#77828C}
+.m-empty{padding:64px 20px}
+.empty-state{text-align:center;padding:40px}
+.empty-ic{width:60px;height:60px;border-radius:50%;background:var(--soft);color:var(--rust);display:grid;place-items:center;margin:0 auto 16px}
+.empty-ic svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.empty-state b{display:block;font-size:14px;color:var(--ink)}
+.empty-state p{margin:7px 0 0;font-size:11.5px;color:var(--muted);line-height:1.6}
+.card-note{margin-top:auto;display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:#8A6E4B;background:var(--soft);border:1px dashed #E4C9A4;border-radius:9px;padding:9px 13px;flex:none}
+.card-note svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;flex:none}
+
+@media(max-width:900px){
+  .auth-frame{grid-template-columns:1fr;grid-template-rows:minmax(150px,32%) 1fr;height:auto;min-height:calc(100vh - 40px)}
+  .auth-brand-panel{padding:20px 28px}
+  .auth-intro{margin-top:14px}
+  .auth-intro p{font-size:12.5px}
+  .auth-footer,.mandala{display:none}
+  .otp-box{width:40px;height:48px}
+}
+
+@media(max-width:820px){
+  .app-topbar{padding:0 14px}
+  .app-tag small{display:none}
+  .brand-div{display:none}
+  .user-meta{display:none}
+  .user-menu{right:14px}
+  .app-body{flex-direction:column}
+  .app-sidebar{width:100%;flex-direction:row;justify-content:flex-start;border-right:0;border-bottom:1px solid var(--line);padding:8px;overflow-x:auto;overflow-y:hidden}
+  .page-wrap{padding:20px}
+  .page-body{flex-direction:column-reverse}
+  .masters-float{width:100%;position:static;flex-direction:row;flex-wrap:wrap;align-items:center}
+  .rail-scroll{display:contents}
+  .float-tab{width:auto;flex:1 1 150px}
+}
+</style>
+</head>
+<body>
+<div class="topline" id="topline"></div>
+
+<section class="auth-screen" id="authScreen">
+  <div class="auth-frame">
+
+    <div class="auth-brand-panel">
+      <div class="brand-lockup">
+        <span class="logo-chip">i<b></b></span>
+        <span class="logo-word">ICICI&nbsp;Bank</span>
+      </div>
+      <div class="auth-intro">
+        <h1>Welcome to PAC</h1>
+        <p>Efficiently manage loan proposals through committee scheduling, review, discussion, and approval.</p>
+      </div>
+      <div class="auth-footer">Access your daily-used services in one click at<br><b>Universe on the move</b></div>
+      <svg class="mandala left" viewBox="0 0 240 240" aria-hidden="true">
+        <defs><ellipse id="pt" cx="120" cy="56" rx="17" ry="52" fill="none" stroke="currentColor" stroke-width="1"/></defs>
+        <g fill="none" stroke="currentColor" stroke-width="1"><circle cx="120" cy="120" r="106"/><circle cx="120" cy="120" r="80"/><circle cx="120" cy="120" r="32"/></g>
+        <g><use href="#pt"/><use href="#pt" transform="rotate(30 120 120)"/><use href="#pt" transform="rotate(60 120 120)"/><use href="#pt" transform="rotate(90 120 120)"/><use href="#pt" transform="rotate(120 120 120)"/><use href="#pt" transform="rotate(150 120 120)"/><use href="#pt" transform="rotate(180 120 120)"/><use href="#pt" transform="rotate(210 120 120)"/><use href="#pt" transform="rotate(240 120 120)"/><use href="#pt" transform="rotate(270 120 120)"/><use href="#pt" transform="rotate(300 120 120)"/><use href="#pt" transform="rotate(330 120 120)"/></g>
+      </svg>
+    </div>
+
+    <div class="auth-right">
+      <svg class="mandala ghost-orange" viewBox="0 0 240 240" aria-hidden="true"><use href="#pt"/><use href="#pt" transform="rotate(30 120 120)"/><use href="#pt" transform="rotate(60 120 120)"/><use href="#pt" transform="rotate(90 120 120)"/><use href="#pt" transform="rotate(120 120 120)"/><use href="#pt" transform="rotate(150 120 120)"/><use href="#pt" transform="rotate(180 120 120)"/><use href="#pt" transform="rotate(210 120 120)"/><use href="#pt" transform="rotate(240 120 120)"/><use href="#pt" transform="rotate(270 120 120)"/><use href="#pt" transform="rotate(300 120 120)"/><use href="#pt" transform="rotate(330 120 120)"/></svg>
+
+      <div class="auth-content">
+        <h2>Verify Your Account</h2>
+        <p class="auth-desc">Confirm the confidentiality statement, then verify with a one-time password to continue.</p>
+
+        <div class="steps">
+          <span class="step-pill on" id="pill1"><span class="n">1</span>Confidentiality</span>
+          <span class="step-pill" id="pill2"><span class="n">2</span>OTP verification</span>
+        </div>
+
+        <div class="stmt-card" id="stmtCard">
+          <div class="stmt-head">
+            <span class="ic"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 4 5.5v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10v-6z"/><path d="M9 11.8l2.1 2.1L15.4 9.6"/></svg></span>
+            <b>Confidentiality Statement</b>
+            <span class="stmt-tag">3 notices</span>
+            <button class="link-btn" type="button">FAQs</button>
+          </div>
+          <div class="stmt-text stmt-summary">I understand that by accessing this site, I will be given access to proprietary and confidential information. I acknowledge that all information I will have access to is required to be maintained as strictly confidential as per the requirement of the applicable laws and regulations…</div>
+          <div class="stmt-body">
+            <div class="stmt-text">
+              <p>I understand that by accessing this site, I will be given access to proprietary and confidential information. I acknowledge that all information I will have access to is required to be maintained as strictly confidential as per the requirement of the applicable laws and regulations. I will not reveal any information to any third person and will take steps to prevent any unauthorized access or disclosure of such information to any person unless it has been explicitly authorized by ICICI Bank Limited. I recognize that such information may also have data about the Bank’s past, current or potential customers, unauthorized disclosure of which may cause legal, reputational and financial loss to the Bank and/or to such persons to whom the information pertains.</p>
+              <p style="margin-top:9px">My obligations as above shall continue even after the termination or cessation of my engagement with the Bank. I further acknowledge that a breach of this confidentiality undertaking would be a breach of applicable law.</p>
+              <div class="stmt-notices">
+                <h4>Important notices</h4>
+                <ul>
+                  <li>The lock dates have undergone a change in line with the new PAC operating guidelines (e-circular number 12662). Please plan your activities, accordingly.</li>
+                  <li>Please note that the e-circular will be automatically issued in the e-circular system once the proposal is approved by RMG and SOX. Further, the e-circular number will be automatically updated in the PAC system. Please do not manually issue an e-circular by visiting the e-circular system for the PAC meeting date on or after November 14, 2017.</li>
+                  <li>Kindly ensure that any dissemination of confidential information from the meeting module must be done only in the form of a Seclore protected document. The Seclore protection has to be adopted for sharing documents with internal and external users, auditors, and our subsidiaries on a need to know basis i.e. who are authorised to receive and have a legitimate business need for the information.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="stmt-togglebar"><button class="link-btn" type="button" id="stmtToggle" onclick="toggleStmt()">Expand full statement ▾</button></div>
+          <div class="accept-row">
+            <span class="chk"><input type="checkbox" id="acceptChk" onchange="acceptConf(this.checked)"><span class="box">✓</span></span>
+            <label for="acceptChk">I accept the above Confidentiality Statement</label>
+            <button class="link-btn decline" type="button" onclick="declineConf()">I do not accept</button>
+          </div>
+        </div>
+
+        <div id="denied" class="denied hidden"><b>Access not granted.</b> The application remains unavailable until the confidentiality statement is accepted. &nbsp;<button class="link-btn" type="button" onclick="returnToStmt()">Return</button></div>
+
+        <div id="stateChannel" class="hidden">
+          <span class="field-title">Select OTP channel</span>
+          <div class="channel-list">
+            <button class="channel-option" id="mobileOption" type="button" onclick="selectChannel('mobile')">
+              <span class="channel-icon"><svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg></span>
+              <span class="channel-text"><b>OTP on Mobile (SMS)</b><small>Send to registered mobile &nbsp;+91 ••••• 43210</small></span>
+              <span class="radio"></span>
+            </button>
+            <button class="channel-option" id="emailOption" type="button" onclick="selectChannel('email')">
+              <span class="channel-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg></span>
+              <span class="channel-text"><b>OTP on Email</b><small>Send to registered email &nbsp;abhishek.s••••@icici.com</small></span>
+              <span class="radio"></span>
+            </button>
+          </div>
+        </div>
+
+        <div id="otpPanel" class="otp-panel hidden">
+          <div class="sent" aria-live="polite"><span class="sent-mark">✓</span><span id="sentText"></span></div>
+          <span class="field-title" style="margin-top:15px">Enter 6-digit OTP</span>
+          <div class="otp-row">
+            <input class="otp-box" type="text" inputmode="numeric" maxlength="1" aria-label="OTP digit 1">
+            <input class="otp-box" type="text" inputmode="numeric" maxlength="1" aria-label="OTP digit 2">
+            <input class="otp-box" type="text" inputmode="numeric" maxlength="1" aria-label="OTP digit 3">
+            <input class="otp-box" type="text" inputmode="numeric" maxlength="1" aria-label="OTP digit 4">
+            <input class="otp-box" type="text" inputmode="numeric" maxlength="1" aria-label="OTP digit 5">
+            <input class="otp-box" type="text" inputmode="numeric" maxlength="1" aria-label="OTP digit 6">
+          </div>
+          <div class="otp-meta">
+            <span id="timerText">Remaining Time: 00:54s</span>
+            <span>Didn’t get OTP? <button id="resendButton" class="link-btn" type="button" onclick="resendOtp()" disabled>Resend</button></span>
+          </div>
+          <div class="error" id="otpError" aria-live="polite"></div>
+          <button class="btn-primary" type="button" onclick="verifyOtp()">Submit</button>
+        </div>
+
+        <div id="stateSuccess" class="success hidden">
+          <div class="success-mark">✓</div>
+          <h2>OTP Verified</h2>
+          <p>Redirecting to PAC home…</p>
+          <div class="redirect"><span class="spin"></span> PAC</div>
+        </div>
+
+        <div class="legal">By using PAC, you agree to our<br><b>Terms &amp; Conditions</b> and <b>Privacy Policy</b>.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="screen-home" class="app-screen hidden">
+  <header class="app-topbar">
+    <div class="topbar-brand">
+      <span class="icici-mark">i</span><span class="icici-word">ICICI&nbsp;Bank</span>
+      <span class="brand-div"></span>
+      <div class="app-tag"><b>PAC</b><small>Process Approval Committee</small></div>
+    </div>
+    <button class="topbar-user" id="userTab" type="button" aria-haspopup="true">
+      <span class="avatar">AS</span>
+      <span class="user-meta"><b>Abhijit Saraf</b><small>Admin · INDIA Entity</small></span>
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="user-menu" id="userMenu">
+      <div class="um-head">
+        <span class="avatar">AS</span>
+        <span><b>Abhijit Saraf</b><small>Logged in as Admin · INDIA Entity</small></span>
+      </div>
+      <button class="um-item signout" type="button" onclick="location.reload()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4h4.5v16H15"/><path d="M10 8l-4 4 4 4M6 12h10"/></svg>Sign out</button>
+    </div>
+  </header>
+  <div class="app-body">
+    <nav class="app-sidebar" aria-label="Primary">
+      <button class="nav-tab" type="button" data-tab="masters"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v7c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12v7c0 1.66 3.58 3 8 3s8-1.34 8-3v-7"/></svg><span>Masters</span></button>
+      <button class="nav-tab" type="button" data-tab="ormg"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8.5" y="3" width="7" height="6" rx="1.2"/><rect x="2.5" y="15" width="7" height="6" rx="1.2"/><rect x="14.5" y="15" width="7" height="6" rx="1.2"/><path d="M12 9v3M6 15v-3h12v3"/></svg><span>ORMG</span></button>
+      <button class="nav-tab" type="button" data-tab="admin"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.1"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.08a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h.08a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.08a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span>Admin</span></button>
+      <button class="nav-tab" type="button" data-tab="transaction"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 2.5l4 4-4 4"/><path d="M3 11.5v-2a3 3 0 0 1 3-3h15"/><path d="M7 21.5l-4-4 4-4"/><path d="M21 12.5v2a3 3 0 0 1-3 3H3"/></svg><span>Transaction</span></button>
+      <button class="nav-tab" type="button" data-tab="meetings"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="17" rx="2"/><path d="M8 2.5v4M16 2.5v4M3 9.5h18"/><path d="M8 14h3M8 17.5h5"/></svg><span>Meetings</span></button>
+      <button class="nav-tab" type="button" data-tab="view"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.4-6 9.5-6 9.5 6 9.5 6-3.4 6-9.5 6-9.5-6-9.5-6z"/><circle cx="12" cy="12" r="2.8"/></svg><span>View</span></button>
+      <button class="nav-tab" type="button" data-tab="reports"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 20v-9M11 20V4.5M17.5 20v-6"/><path d="M2.5 20h19"/></svg><span>Reports</span></button>
+    </nav>
+    <main class="app-main" id="appMain"></main>
+  </div>
+</section>
+
+<template id="tpl-masters">
+  <div class="page-wrap">
+    <div class="page-head-row">
+      <h1>Masters</h1>
+    </div>
+    <div class="page-body">
+      <aside class="masters-float">
+        <button class="float-tab active" data-master="group" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8.2" r="3.2"/><path d="M3.6 19.4c.8-3.3 3-5.1 5.4-5.1s4.6 1.8 5.4 5.1"/><circle cx="16.8" cy="9.4" r="2.5"/><path d="M16.2 14.6c2.2.4 3.7 1.9 4.2 4.3"/></svg><span>Group</span></button>
+        <button class="float-tab" data-master="parameter" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5h9M17.5 7.5H20M4 16.5h3M11.5 16.5H20"/><circle cx="15" cy="7.5" r="2.3"/><circle cx="9" cy="16.5" r="2.3"/></svg><span>Parameter</span></button>
+        <button class="float-tab" data-master="ldap" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="6.5" rx="1.6"/><rect x="3" y="13.5" width="18" height="6.5" rx="1.6"/><path d="M7 7.2h.01M7 16.8h.01"/></svg><span>LDAP (Support) Group</span></button>
+        <button class="float-tab" data-master="attendees" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9.5" cy="8.2" r="3.3"/><path d="M4 19.6c.8-3.4 3-5.2 5.5-5.2s4.7 1.8 5.5 5.2"/><path d="M18.5 6.5v6M15.5 9.5h6"/></svg><span>Attendees/Invitee</span></button>
+        <button class="float-tab" data-master="holiday" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M8 3v4M16 3v4M3.5 10.5h17"/><path d="M7.5 14.5h3M13.5 14.5h3M7.5 17.5h3"/></svg><span>Holiday</span></button>
+        <button class="float-tab" data-master="reason" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.5a2 2 0 0 1-2 2H8.5l-5 4.5v-14a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z"/></svg><span>Reason</span></button>
+        <button class="float-tab" data-master="venue" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21c-4.4-3.8-6.6-7.2-6.6-10.2a6.6 6.6 0 0 1 13.2 0c0 3-2.2 6.4-6.6 10.2z"/><circle cx="12" cy="10.6" r="2.4"/></svg><span>Venue</span></button>
+        <button class="float-tab" data-master="member" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.9-3.8 3.6-5.7 7-5.7s6.1 1.9 7 5.7"/></svg><span>Member</span></button>
+        <button class="float-tab" data-master="product" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2 3.4 7.7 12 12.2l8.6-4.5L12 3.2z"/><path d="M3.4 12.4 12 16.9l8.6-4.5"/><path d="M3.4 16.9 12 21.4l8.6-4.5"/></svg><span>Product/Process</span></button>
+        <button class="float-tab" data-master="grouphead" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="7.8" r="3.3"/><path d="M3.9 20c.85-3.8 3.4-5.7 6.1-5.7 1.6 0 3 .55 4.2 1.55"/><path d="M17.8 13.8l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9z"/></svg><span>Group Head</span></button>
+      </aside>
+      <div class="page-main">
+        <div class="crumbs" id="mCrumb"></div>
+        <div class="content-card">
+          <div class="card-head">
+            <div><h2 id="mTitle"></h2></div>
+            <button class="btn-new" id="mNew" type="button">+ New Group</button>
+          </div>
+          <div id="mBody"></div>
+          <div class="card-note"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M12 11.5V16"/></svg><span id="mNote"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="tpl-subtab">
+  <div class="page-wrap">
+    <div class="page-head-row">
+      <h1 id="sHead"></h1>
+    </div>
+    <div class="page-body">
+      <aside class="masters-float">
+        <div class="rail-scroll" id="sRail"></div>
+      </aside>
+      <div class="page-main">
+        <div class="crumbs" id="sCrumb"></div>
+        <div class="content-card">
+          <div class="card-head">
+            <div><h2 id="sTitle"></h2></div>
+            <button class="btn-new hidden" id="sNew" type="button"></button>
+          </div>
+          <div id="sBody"></div>
+          <div class="card-note"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M12 11.5V16"/></svg><span id="sNote"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+let selectedChannel=null,otpSent=false,otpExpired=false,otpTimer=null;
+const boxes=[...document.querySelectorAll('.otp-box')];
+
+function selectChannel(ch){
+  if(otpSent)return;
+  selectedChannel=ch;
+  document.getElementById('mobileOption').classList.toggle('selected',ch==='mobile');
+  document.getElementById('emailOption').classList.toggle('selected',ch==='email');
+  dispatchOtp();
+}
+function dispatchOtp(){
+  otpSent=true;otpExpired=false;
+  document.getElementById('mobileOption').disabled=true;
+  document.getElementById('emailOption').disabled=true;
+  document.getElementById('sentText').textContent=selectedChannel==='mobile'
+    ?'OTP sent to your registered mobile number +91 ••••• 43210 via SMS.'
+    :'OTP sent to your registered email address abhishek.s••••@icici.com.';
+  const panel=document.getElementById('otpPanel');
+  panel.classList.remove('hidden');
+  boxes.forEach(b=>b.value='');
+  document.getElementById('otpError').textContent='';
+  panel.scrollIntoView({block:'nearest'});
+  boxes[0].focus();
+  startTimer();
+}
+function startTimer(){
+  stopTimer();
+  let sec=54;
+  const el=document.getElementById('timerText'),resend=document.getElementById('resendButton');
+  const render=()=>{el.textContent='Remaining Time: 00:'+String(Math.max(sec,0)).padStart(2,'0')+'s'};
+  render();
+  resend.disabled=true;
+  otpTimer=setInterval(()=>{
+    sec--;
+    if(sec<=0){
+      stopTimer();otpExpired=true;
+      el.textContent='OTP expired';
+      resend.disabled=false;
+    }else render();
+  },1000);
+}
+function stopTimer(){if(otpTimer)clearInterval(otpTimer);otpTimer=null}
+function resendOtp(){
+  if(document.getElementById('resendButton').disabled)return;
+  boxes.forEach(b=>b.value='');
+  document.getElementById('otpError').textContent='';
+  otpExpired=false;
+  boxes[0].focus();
+  startTimer();
+}
+boxes.forEach((box,i)=>{
+  box.addEventListener('input',()=>{
+    box.value=box.value.replace(/\D/g,'').slice(-1);
+    if(box.value&&i<boxes.length-1)boxes[i+1].focus();
+  });
+  box.addEventListener('keydown',e=>{
+    if(e.key==='Backspace'&&!box.value&&i>0){boxes[i-1].focus();boxes[i-1].value='';e.preventDefault()}
+    if(e.key==='ArrowLeft'&&i>0)boxes[i-1].focus();
+    if(e.key==='ArrowRight'&&i<boxes.length-1)boxes[i+1].focus();
+  });
+  box.addEventListener('paste',e=>{
+    e.preventDefault();
+    const digits=(e.clipboardData.getData('text').match(/\d/g)||[]).slice(0,6);
+    digits.forEach((d,j)=>{if(boxes[j])boxes[j].value=d});
+    boxes[Math.min(digits.length,5)].focus();
+  });
+});
+function toggleStmt(){
+  const open=document.getElementById('stmtCard').classList.toggle('open');
+  document.getElementById('stmtToggle').textContent=open?'Collapse statement ▴':'Expand full statement ▾';
+}
+function acceptConf(on){
+  const ch=document.getElementById('stateChannel'),op=document.getElementById('otpPanel');
+  document.getElementById('denied').classList.add('hidden');
+  if(on){
+    setStep(2);
+    document.getElementById('stmtCard').classList.remove('open');
+    document.getElementById('stmtToggle').textContent='Expand full statement ▾';
+    const target=otpSent?op:ch;
+    target.classList.remove('hidden');
+    target.scrollIntoView({block:'nearest',behavior:'smooth'});
+  }else{
+    ch.classList.add('hidden');op.classList.add('hidden');
+  }
+}
+function declineConf(){
+  document.getElementById('acceptChk').checked=false;
+  acceptConf(false);
+  document.getElementById('denied').classList.remove('hidden');
+}
+function returnToStmt(){
+  document.getElementById('denied').classList.add('hidden');
+  document.getElementById('acceptChk').focus();
+}
+function setStep(n){
+  const p1=document.getElementById('pill1'),p2=document.getElementById('pill2');
+  if(n>=2){p1.classList.remove('on');p1.classList.add('done');p1.querySelector('.n').textContent='✓';p2.classList.add('on')}
+  if(n>=3){p2.classList.remove('on');p2.classList.add('done');p2.querySelector('.n').textContent='✓'}
+}
+const mastersInfo={
+  group:{label:'Group',page:'group'},
+  parameter:{label:'Parameter',page:'parameter'},
+  ldap:{label:'LDAP (Support) Group',page:'ldap'},
+  attendees:{label:'Attendees/Invitee'},
+  holiday:{label:'Holiday'},
+  reason:{label:'Reason'},
+  venue:{label:'Venue'},
+  member:{label:'Member'},
+  product:{label:'Product/Process'},
+  grouphead:{label:'Group Head'}
+};
+const byId=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const EMAIL_RE=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const EDIT_IC='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 19.5h4L20 8a2.05 2.05 0 0 0-2.9-2.9L5.6 16.6l-1.1 2.9z"/><path d="M13.8 6.7l3 3"/></svg>';
+const groupData=[
+  {name:'Credit Administration Group',dept:'Credit Administration',active:'Y',comp:'Yes',branch:'No',reg:'No'},
+  {name:'Retail Banking Group',dept:'Retail Banking',active:'Y',comp:'Yes',branch:'Yes',reg:'No'},
+  {name:'Corporate Credit Group',dept:'Corporate Banking',active:'Y',comp:'Yes',branch:'No',reg:'Yes'},
+  {name:'Risk & Compliance Group',dept:'Risk Management',active:'Y',comp:'Yes',branch:'Yes',reg:'Yes'},
+  {name:'SME Lending Group',dept:'SME Banking',active:'N',comp:'No',branch:'Yes',reg:'No'},
+  {name:'Treasury Operations Group',dept:'Treasury',active:'Y',comp:'No',branch:'No',reg:'Yes'},
+  {name:'Branch Operations Group',dept:'Branch Banking',active:'Y',comp:'Yes',branch:'Yes',reg:'No'},
+  {name:'Trade Finance Group',dept:'Transaction Banking',active:'Y',comp:'Yes',branch:'No',reg:'Yes'},
+  {name:'Agri Business Group',dept:'Rural & Agri Banking',active:'N',comp:'No',branch:'Yes',reg:'No'},
+  {name:'NRI Services Group',dept:'NRI Banking',active:'Y',comp:'Yes',branch:'No',reg:'No'},
+  {name:'Legal Documentation Group',dept:'Legal',active:'Y',comp:'Yes',branch:'Yes',reg:'Yes'},
+  {name:'Internal Audit Group',dept:'Audit & Assurance',active:'Y',comp:'Yes',branch:'Yes',reg:'Yes'},
+  {name:'Credit Monitoring Group',dept:'Credit Management',active:'Y',comp:'Yes',branch:'Yes',reg:'No'},
+  {name:'Recovery & Resolution Group',dept:'Stressed Assets',active:'N',comp:'No',branch:'Yes',reg:'Yes'},
+  {name:'Payments & Settlements Group',dept:'Digital Banking',active:'Y',comp:'No',branch:'No',reg:'Yes'},
+  {name:'Wealth Management Group',dept:'Private Banking',active:'Y',comp:'Yes',branch:'No',reg:'No'},
+  {name:'Government Business Group',dept:'Government & PSU',active:'N',comp:'No',branch:'Yes',reg:'No'},
+  {name:'Forex Operations Group',dept:'Global Markets',active:'Y',comp:'Yes',branch:'No',reg:'Yes'},
+  {name:'Deposit Operations Group',dept:'Branch Banking',active:'Y',comp:'No',branch:'Yes',reg:'No'},
+  {name:'Loan Processing Group',dept:'Credit Administration',active:'Y',comp:'Yes',branch:'Yes',reg:'Yes'},
+  {name:'Compliance Reporting Group',dept:'Compliance',active:'Y',comp:'Yes',branch:'Yes',reg:'Yes'},
+  {name:'Mortgages Group',dept:'Home Finance',active:'N',comp:'Yes',branch:'No',reg:'No'},
+  {name:'Secured Lending Group',dept:'Retail Banking',active:'Y',comp:'No',branch:'Yes',reg:'Yes'}
+].map((r,i)=>(r.id=i+1,r));
+const paramData=[
+  {name:'PAC_MEETING_FREQUENCY',value:'Monthly',active:'Y'},
+  {name:'MAX_AGENDA_ITEMS',value:'25',active:'Y'},
+  {name:'CIRCULAR_VALIDITY_DAYS',value:'15',active:'Y'},
+  {name:'LOCK_DATE_OFFSET_DAYS',value:'7',active:'Y'},
+  {name:'PROPOSAL_ID_PREFIX',value:'PAC',active:'Y'},
+  {name:'DEFAULT_REMINDER_DAYS',value:'3',active:'N'},
+  {name:'ESCALATION_LEVEL',value:'2',active:'Y'},
+  {name:'OTP_EXPIRY_MINUTES',value:'10',active:'Y'},
+  {name:'MAX_FILE_SIZE_MB',value:'20',active:'Y'},
+  {name:'ALLOWED_FILE_TYPES',value:'PDF, XLSX, DOCX',active:'Y'},
+  {name:'E_CIRCULAR_SYSTEM_URL',value:'https://ecircular.icicibank.com',active:'Y'},
+  {name:'SECLORE_PROTECTION',value:'Enabled',active:'Y'},
+  {name:'QUORUM_PERCENTAGE',value:'60',active:'Y'},
+  {name:'MEETING_START_TIME',value:'10:00 AM',active:'Y'},
+  {name:'MEETING_DURATION_MINS',value:'120',active:'Y'},
+  {name:'RESCHEDULE_NOTICE_DAYS',value:'2',active:'Y'},
+  {name:'ATTENDEE_REMINDER_HRS',value:'24',active:'N'},
+  {name:'AGENDA_FREEZE_DAYS',value:'5',active:'Y'},
+  {name:'RATING_SCALE_MAX',value:'5',active:'Y'},
+  {name:'WORKFLOW_TIMEOUT_HRS',value:'48',active:'Y'},
+  {name:'BULK_UPLOAD_LIMIT',value:'100',active:'N'},
+  {name:'AUDIT_LOG_RETENTION_YRS',value:'7',active:'Y'},
+  {name:'SESSION_TIMEOUT_MINS',value:'30',active:'Y'},
+  {name:'PASSWORD_EXPIRY_DAYS',value:'90',active:'Y'},
+  {name:'PROPOSAL_AMENDMENT_LIMIT',value:'3',active:'N'},
+  {name:'NOTIFY_GROUP_HEAD',value:'Yes',active:'Y'}
+].map((r,i)=>(r.id=i+1,r));
+const ldapData=[
+  {name:'PAC-CREDIT-SUPPORT',display:'PAC Credit Support',email:'pac.credit.support@icicibank.com',head:'george.thomas@icicibank.com',active:'Y',mandatory:'Y'},
+  {name:'PAC-RMG-SUPPORT',display:'PAC RMG Support',email:'pac.rmg.support@icicibank.com',head:'anita.desai@icicibank.com',active:'Y',mandatory:'Y'},
+  {name:'PAC-OPS-SUPPORT',display:'PAC Operations Support',email:'pac.ops.support@icicibank.com',head:'rahul.mehta@icicibank.com',active:'Y',mandatory:'N'},
+  {name:'PAC-RISK-SUPPORT',display:'PAC Risk Support',email:'pac.risk.support@icicibank.com',head:'priya.nair@icicibank.com',active:'Y',mandatory:'Y'},
+  {name:'PAC-LEGAL-SUPPORT',display:'PAC Legal Support',email:'pac.legal.support@icicibank.com',head:'vikram.shah@icicibank.com',active:'Y',mandatory:'N'},
+  {name:'PAC-ADMIN-SUPPORT',display:'PAC Admin Support',email:'pac.admin.support@icicibank.com',head:'sana.khan@icicibank.com',active:'Y',mandatory:'Y'},
+  {name:'PAC-TREASURY-SUPPORT',display:'PAC Treasury Support',email:'pac.treasury.support@icicibank.com',head:'arjun.pillai@icicibank.com',active:'N',mandatory:'N'},
+  {name:'PAC-SME-SUPPORT',display:'PAC SME Support',email:'pac.sme.support@icicibank.com',head:'meera.iyer@icicibank.com',active:'Y',mandatory:'N'},
+  {name:'PAC-AGRI-SUPPORT',display:'PAC Agri Support',email:'pac.agri.support@icicibank.com',head:'rohit.kulkarni@icicibank.com',active:'Y',mandatory:'N'},
+  {name:'PAC-NRI-SUPPORT',display:'PAC NRI Support',email:'pac.nri.support@icicibank.com',head:'divya.menon@icicibank.com',active:'Y',mandatory:'Y'},
+  {name:'PAC-AUDIT-SUPPORT',display:'PAC Audit Support',email:'pac.audit.support@icicibank.com',head:'karan.bhatt@icicibank.com',active:'Y',mandatory:'N'},
+  {name:'PAC-CORP-SUPPORT',display:'PAC Corporate Support',email:'pac.corp.support@icicibank.com',head:'neha.joshi@icicibank.com',active:'N',mandatory:'N'},
+  {name:'PAC-TRADE-SUPPORT',display:'PAC Trade Support',email:'pac.trade.support@icicibank.com',head:'sameer.kapoor@icicibank.com',active:'Y',mandatory:'N'},
+  {name:'PAC-DIGITAL-SUPPORT',display:'PAC Digital Support',email:'pac.digital.support@icicibank.com',head:'aditi.rao@icicibank.com',active:'Y',mandatory:'Y'}
+].map((r,i)=>(r.id=i+1,r));
+let activeCrud=null;
+const PAGES={};
+function initCrud(o){
+  let page=1,editId=null;
+  byId(o.mount).innerHTML=o.html;
+  const tb=byId(o.ids.body),cnt=byId(o.ids.cnt),show=byId(o.ids.show),pager=byId(o.ids.pager),err=byId(o.ids.err),form=byId(o.ids.form),submit=byId(o.ids.submit),cancel=byId(o.ids.cancel),tag=byId(o.ids.tag),search=byId(o.ids.search);
+  const filtered=()=>{const q=search.value.trim().toLowerCase();return q?o.data.filter(r=>o.search(r).toLowerCase().includes(q)):o.data.slice()};
+  function draw(flashId){
+    const list=filtered(),tp=Math.max(1,Math.ceil(list.length/10));
+    if(page>tp)page=tp;
+    const start=(page-1)*10,rows=list.slice(start,start+10);
+    tb.innerHTML=rows.length?rows.map(r=>o.row(r)).join(''):
+      '<tr><td colspan="'+o.cols+'"><div class="no-hit"><b>No matching records</b><p>Adjust the search text and try again.</p></div></td></tr>';
+    cnt.textContent=list.length+(list.length===1?' record':' records');
+    show.textContent=list.length?'Showing '+(start+1)+'\u2013'+Math.min(start+10,list.length)+' of '+list.length:'Showing 0 of 0';
+    let h='<button class="pg-btn" type="button" data-pg="'+(page-1)+'"'+(page===1?' disabled':'')+'>&#8249;</button>';
+    for(let i=1;i<=tp;i++)h+='<button class="pg-btn'+(i===page?' active':'')+'" type="button" data-pg="'+i+'">'+i+'</button>';
+    h+='<button class="pg-btn" type="button" data-pg="'+(page+1)+'"'+(page===tp?' disabled':'')+'>&#8250;</button>';
+    pager.innerHTML=h;
+    pager.querySelectorAll('.pg-btn').forEach(b=>b.addEventListener('click',()=>{page=+b.dataset.pg;draw()}));
+    tb.querySelectorAll('.row-edit').forEach(b=>b.addEventListener('click',()=>startEdit(+b.dataset.id)));
+    if(flashId!=null){const tr=tb.querySelector('tr[data-id="'+flashId+'"]');if(tr){tr.classList.add('flash');setTimeout(()=>tr.classList.remove('flash'),1600)}}
+  }
+  function stopEdit(){editId=null;form.classList.remove('editing');tag.classList.add('hidden');cancel.classList.add('hidden');submit.textContent=o.addLabel;o.clear();err.textContent=''}
+  function startEdit(id){
+    const rec=o.data.find(r=>r.id===id);if(!rec)return;
+    editId=id;o.set(rec);form.classList.add('editing');
+    tag.textContent='Editing \u201C'+o.disp(rec)+'\u201D';tag.classList.remove('hidden');
+    cancel.classList.remove('hidden');submit.textContent=o.updateLabel;err.textContent='';
+    form.scrollIntoView({block:'nearest',behavior:'smooth'});
+    const fi=form.querySelector('input');if(fi)fi.focus();
+  }
+  search.addEventListener('input',()=>{page=1;draw()});
+  cancel.addEventListener('click',stopEdit);
+  form.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.tagName==='INPUT'&&e.target.type!=='checkbox'){e.preventDefault();submit.click()}});
+  submit.addEventListener('click',()=>{
+    const d=o.read(),v=o.validate(d);
+    if(v){err.textContent=v;return}
+    const dup=o.data.find(r=>r.id!==editId&&o.dupKey(r).toLowerCase()===o.dupKey(d).toLowerCase());
+    if(dup){err.textContent=o.dupMsg;return}
+    err.textContent='';
+    if(editId!=null){Object.assign(o.data.find(r=>r.id===editId),d);const fid=editId;stopEdit();draw(fid)}
+    else{if(o.defaults)o.defaults(d);d.id=Math.max(0,...o.data.map(r=>r.id))+1;o.data.unshift(d);page=1;const fid=d.id;stopEdit();draw(fid)}
+  });
+  draw();
+  return {focusNew:()=>{if(editId!=null)stopEdit();form.scrollIntoView({block:'nearest',behavior:'smooth'});const fi=form.querySelector('input');if(fi)fi.focus()}};
+}
+PAGES.group=()=>{
+  activeCrud=initCrud({
+    mount:'mBody',cols:7,data:groupData,
+    addLabel:'Add Group',updateLabel:'Update Group',dupMsg:'A group with this name already exists.',
+    ids:{form:'gpForm',body:'gpBody',cnt:'gpCnt',show:'gpShow',pager:'gpPager',err:'gpErr',submit:'gpSubmit',cancel:'gpCancel',tag:'gpTag',search:'gpSearch'},
+    html:'<div class="crud">'
+      +'<div class="add-panel" id="gpForm">'
+      +'<div class="add-head"><b>Add Group</b><span class="edit-tag hidden" id="gpTag"></span><span class="f-err" id="gpErr" role="alert"></span></div>'
+      +'<div class="add-fields">'
+      +'<label class="f-field"><span>Group Name <i>*</i></span><input id="gpName" type="text" maxlength="60" placeholder="e.g. Credit Administration Group"></label>'
+      +'<label class="f-field"><span>Department Name <i>*</i></span><input id="gpDept" type="text" maxlength="60" placeholder="e.g. Retail Banking"></label>'
+      +'<div class="add-actions"><button class="btn-new" id="gpSubmit" type="button">Add Group</button><button class="btn-ghost hidden" id="gpCancel" type="button">Cancel</button></div>'
+      +'</div></div>'
+      +'<div class="tbl-toolbar">'
+      +'<div class="search-box"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16.2 16.2 21 21"/></svg><input id="gpSearch" type="text" placeholder="Search by group name or department name"></div>'
+      +'<span class="tbl-count" id="gpCnt"></span>'
+      +'</div>'
+      +'<div class="tbl-wrap"><table class="data-table">'
+      +'<thead><tr><th rowspan="2">Group Name</th><th rowspan="2">Department</th><th rowspan="2" class="c-h">Active (Y/N)</th><th colspan="3" class="th-grouped">Allow Multiple Manuals</th><th rowspan="2" class="th-act">Action</th></tr>'
+      +'<tr class="sub-head"><th>Compliance Manual</th><th>Branch Manual</th><th>Regulatory Manual</th></tr></thead>'
+      +'<tbody id="gpBody"></tbody></table></div>'
+      +'<div class="tbl-foot"><span class="tbl-count" id="gpShow"></span><div class="pager" id="gpPager"></div></div>'
+      +'</div>',
+    search:r=>r.name+' '+r.dept,
+    dupKey:r=>r.name,
+    disp:r=>r.name,
+    read:()=>({name:byId('gpName').value,dept:byId('gpDept').value}),
+    defaults:d=>{d.active='Y';d.comp='No';d.branch='No';d.reg='No'},
+    set:g=>{byId('gpName').value=g.name;byId('gpDept').value=g.dept},
+    clear:()=>{byId('gpName').value='';byId('gpDept').value=''},
+    validate:d=>!d.name.trim()?'Enter the group name.':!d.dept.trim()?'Enter the department name.':'',
+    row:g=>'<tr data-id="'+g.id+'">'
+      +'<td><b>'+esc(g.name)+'</b></td><td>'+esc(g.dept)+'</td>'
+      +'<td class="c"><span class="'+(g.active==='Y'?'m-ok':'m-off')+'">'+g.active+'</span></td>'
+      +'<td class="c yn'+(g.comp==='Yes'?'':' no')+'">'+g.comp+'</td>'
+      +'<td class="c yn'+(g.branch==='Yes'?'':' no')+'">'+g.branch+'</td>'
+      +'<td class="c yn'+(g.reg==='Yes'?'':' no')+'">'+g.reg+'</td>'
+      +'<td class="td-act"><button class="row-edit" type="button" data-id="'+g.id+'" aria-label="Edit '+esc(g.name)+'">'+EDIT_IC+'</button></td></tr>'
+  });
+};
+PAGES.parameter=()=>{
+  activeCrud=initCrud({
+    mount:'mBody',cols:4,data:paramData,
+    addLabel:'Add Parameter',updateLabel:'Update Parameter',dupMsg:'A parameter with this name already exists.',
+    ids:{form:'pmForm',body:'pmBody',cnt:'pmCnt',show:'pmShow',pager:'pmPager',err:'pmErr',submit:'pmSubmit',cancel:'pmCancel',tag:'pmTag',search:'pmSearch'},
+    html:'<div class="crud">'
+      +'<div class="add-panel" id="pmForm">'
+      +'<div class="add-head"><b>Add Parameter</b><span class="edit-tag hidden" id="pmTag"></span><span class="f-err" id="pmErr" role="alert"></span></div>'
+      +'<div class="add-fields">'
+      +'<label class="f-field"><span>Parameter Name <i>*</i></span><input id="pmName" type="text" maxlength="60" placeholder="e.g. MAX_AGENDA_ITEMS"></label>'
+      +'<label class="f-field"><span>Parameter Value <i>*</i></span><input id="pmValue" type="text" maxlength="120" placeholder="e.g. 25"></label>'
+      +'<div class="add-actions"><button class="btn-new" id="pmSubmit" type="button">Add Parameter</button><button class="btn-ghost hidden" id="pmCancel" type="button">Cancel</button></div>'
+      +'</div></div>'
+      +'<div class="tbl-toolbar">'
+      +'<div class="search-box"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16.2 16.2 21 21"/></svg><input id="pmSearch" type="text" placeholder="Search by parameter value"></div>'
+      +'<span class="tbl-count" id="pmCnt"></span>'
+      +'</div>'
+      +'<div class="tbl-wrap"><table class="data-table">'
+      +'<thead><tr><th>Parameter Name</th><th>Parameter Value</th><th class="c-h">Active (Y/N)</th><th class="th-act">Action</th></tr></thead>'
+      +'<tbody id="pmBody"></tbody></table></div>'
+      +'<div class="tbl-foot"><span class="tbl-count" id="pmShow"></span><div class="pager" id="pmPager"></div></div>'
+      +'</div>',
+    search:r=>r.value,
+    dupKey:r=>r.name,
+    disp:r=>r.name,
+    read:()=>({name:byId('pmName').value,value:byId('pmValue').value}),
+    defaults:d=>{d.active='Y'},
+    set:p=>{byId('pmName').value=p.name;byId('pmValue').value=p.value},
+    clear:()=>{byId('pmName').value='';byId('pmValue').value=''},
+    validate:d=>!d.name.trim()?'Enter the parameter name.':!d.value.trim()?'Enter the parameter value.':'',
+    row:p=>'<tr data-id="'+p.id+'">'
+      +'<td><b>'+esc(p.name)+'</b></td><td>'+esc(p.value)+'</td>'
+      +'<td class="c"><span class="'+(p.active==='Y'?'m-ok':'m-off')+'">'+p.active+'</span></td>'
+      +'<td class="td-act"><button class="row-edit" type="button" data-id="'+p.id+'" aria-label="Edit '+esc(p.name)+'">'+EDIT_IC+'</button></td></tr>'
+  });
+};
+PAGES.ldap=()=>{
+  activeCrud=initCrud({
+    mount:'mBody',cols:7,data:ldapData,
+    addLabel:'Add Support Group',updateLabel:'Update Support Group',dupMsg:'A support group with this name already exists.',
+    ids:{form:'lgForm',body:'lgBody',cnt:'lgCnt',show:'lgShow',pager:'lgPager',err:'lgErr',submit:'lgSubmit',cancel:'lgCancel',tag:'lgTag',search:'lgSearch'},
+    html:'<div class="crud">'
+      +'<div class="add-panel" id="lgForm">'
+      +'<div class="add-head"><b>Add Support Group</b><span class="edit-tag hidden" id="lgTag"></span><span class="f-err" id="lgErr" role="alert"></span></div>'
+      +'<div class="add-fields">'
+      +'<label class="f-field"><span>Group Name <i>*</i></span><input id="lgName" type="text" maxlength="60" placeholder="e.g. PAC-CREDIT-SUPPORT"></label>'
+      +'<label class="f-field"><span>Display Name <i>*</i></span><input id="lgDisp" type="text" maxlength="60" placeholder="e.g. PAC Credit Support"></label>'
+      +'<label class="f-field"><span>Email ID <i>*</i></span><input id="lgEmail" type="text" maxlength="80" placeholder="e.g. pac.credit.support@icicibank.com"></label>'
+      +'<label class="f-field"><span>Group Head Email ID <i>*</i></span><input id="lgHead" type="text" maxlength="80" placeholder="e.g. group.head@icicibank.com"></label>'
+      +'</div>'
+      +'<div class="add-fields row-center">'
+      +'<label class="switch"><input type="checkbox" id="lgActive" checked><span class="sw-track"></span><span class="sw-lab">Active</span></label>'
+      +'<label class="switch"><input type="checkbox" id="lgMand"><span class="sw-track"></span><span class="sw-lab">Mandatory</span></label>'
+      +'<div class="add-actions"><button class="btn-new" id="lgSubmit" type="button">Add Support Group</button><button class="btn-ghost hidden" id="lgCancel" type="button">Cancel</button></div>'
+      +'</div></div>'
+      +'<div class="tbl-toolbar">'
+      +'<div class="search-box"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16.2 16.2 21 21"/></svg><input id="lgSearch" type="text" placeholder="Search by group name, display name or email ID"></div>'
+      +'<span class="tbl-count" id="lgCnt"></span>'
+      +'</div>'
+      +'<div class="tbl-wrap"><table class="data-table">'
+      +'<thead><tr><th>Group Name</th><th>Display Name</th><th>Email ID</th><th>Group Head Email ID</th><th class="c-h">Active (Y/N)</th><th class="c-h">Mandatory (Y/N)</th><th class="th-act">Action</th></tr></thead>'
+      +'<tbody id="lgBody"></tbody></table></div>'
+      +'<div class="tbl-foot"><span class="tbl-count" id="lgShow"></span><div class="pager" id="lgPager"></div></div>'
+      +'</div>',
+    search:r=>r.name+' '+r.display+' '+r.email,
+    dupKey:r=>r.name,
+    disp:r=>r.name,
+    read:()=>({name:byId('lgName').value,display:byId('lgDisp').value,email:byId('lgEmail').value,head:byId('lgHead').value,active:byId('lgActive').checked?'Y':'N',mandatory:byId('lgMand').checked?'Y':'N'}),
+    set:g=>{byId('lgName').value=g.name;byId('lgDisp').value=g.display;byId('lgEmail').value=g.email;byId('lgHead').value=g.head;byId('lgActive').checked=g.active==='Y';byId('lgMand').checked=g.mandatory==='Y'},
+    clear:()=>{byId('lgName').value='';byId('lgDisp').value='';byId('lgEmail').value='';byId('lgHead').value='';byId('lgActive').checked=true;byId('lgMand').checked=false},
+    validate:d=>!d.name.trim()?'Enter the group name.':!d.display.trim()?'Enter the display name.':!d.email.trim()?'Enter the email ID.':!EMAIL_RE.test(d.email.trim())?'Enter a valid email ID.':!d.head.trim()?'Enter the group head email ID.':!EMAIL_RE.test(d.head.trim())?'Enter a valid group head email ID.':'',
+    row:g=>'<tr data-id="'+g.id+'">'
+      +'<td><b>'+esc(g.name)+'</b></td><td>'+esc(g.display)+'</td>'
+      +'<td class="em">'+esc(g.email)+'</td><td class="em">'+esc(g.head)+'</td>'
+      +'<td class="c"><span class="'+(g.active==='Y'?'m-ok':'m-off')+'">'+g.active+'</span></td>'
+      +'<td class="c"><span class="'+(g.mandatory==='Y'?'m-ok':'m-off')+'">'+g.mandatory+'</span></td>'
+      +'<td class="td-act"><button class="row-edit" type="button" data-id="'+g.id+'" aria-label="Edit '+esc(g.name)+'">'+EDIT_IC+'</button></td></tr>'
+  });
+};
+const MASTER_NOTE='Up to 10 records display per page \u2014 use the page numbers below the table to view the remaining records.';
+function selectMaster(ft){
+  const main=document.getElementById('appMain');
+  main.scrollTop=0;
+  main.querySelectorAll('.float-tab').forEach(t=>t.classList.toggle('active',t===ft));
+  const info=mastersInfo[ft.dataset.master];
+  document.getElementById('mCrumb').innerHTML='Masters <i>&#8250;</i> <b>'+info.label+'</b>';
+  document.getElementById('mTitle').textContent=info.label;
+  const nb=document.getElementById('mNew');
+  if(info.page){
+    nb.textContent='+ New '+info.label;
+    nb.classList.remove('hidden');
+    PAGES[info.page]();
+    nb.onclick=()=>activeCrud&&activeCrud.focusNew();
+    document.getElementById('mNote').textContent=MASTER_NOTE;
+  }else{
+    activeCrud=null;
+    nb.classList.add('hidden');
+    nb.textContent='';
+    document.getElementById('mBody').innerHTML='<div class="m-empty empty-state"><span class="empty-ic">'+ft.querySelector('svg').outerHTML+'</span><b>No records to display</b><p>Records maintained under this master will appear here.</p></div>';
+    document.getElementById('mNote').textContent='Placeholder preview \u2014 the '+info.label+' screen will be designed next.';
+  }
+}
+function openMasters(){
+  const main=document.getElementById('appMain');
+  main.innerHTML=document.getElementById('tpl-masters').innerHTML;
+  main.querySelectorAll('.float-tab').forEach(ft=>ft.addEventListener('click',()=>selectMaster(ft)));
+  selectMaster(main.querySelector('.float-tab'));
+  main.scrollTop=0;
+}
+const ICONS={
+  shielduser:'<path d="M12 3l7 2.8v5.4c0 4.6-3 7.9-7 9.8-4-1.9-7-5.2-7-9.8V5.8z"/><circle cx="12" cy="10" r="2.2"/><path d="M8.6 16.6c.7-1.9 1.9-2.8 3.4-2.8s2.7.9 3.4 2.8"/>',
+  chart:'<path d="M4 20h16"/><path d="M7 20v-6M12 20V6M17 20v-9"/>',
+  grid:'<rect x="3.5" y="3.5" width="7.5" height="7.5" rx="1.5"/><rect x="13" y="3.5" width="7.5" height="7.5" rx="1.5"/><rect x="3.5" y="13" width="7.5" height="7.5" rx="1.5"/><rect x="13" y="13" width="7.5" height="7.5" rx="1.5"/>',
+  idcard:'<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.6" cy="11" r="2"/><path d="M5.6 16.2c.6-1.5 1.7-2.3 3-2.3s2.4.8 3 2.3"/><path d="M14.5 9.5H18M14.5 13H18"/>',
+  folderplus:'<path d="M3.5 7.2c0-1 .8-1.7 1.7-1.7h4l2 2.3h7.6c1 0 1.7.8 1.7 1.7v8.3c0 1-.8 1.7-1.7 1.7H5.2c-1 0-1.7-.8-1.7-1.7z"/><path d="M12 11.2v5M9.5 13.7h5"/>',
+  calx:'<rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M8 3v4M16 3v4M3.5 10.5h17"/><path d="M10 13.8l4 4M14 13.8l-4 4"/>',
+  filepen:'<path d="M13.5 3.5H7c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V9z"/><path d="M13.5 3.5V9H19"/><path d="M9.2 16.3l4.6-4.6 1.8 1.8-4.6 4.6H9.2z"/>',
+  swap:'<path d="M4 8.5h13.5l-3-3M20 15.5H6.5l3 3"/>',
+  lock:'<rect x="5" y="10.5" width="14" height="9.5" rx="2"/><path d="M8 10.5V7.7a4 4 0 0 1 8 0v2.8"/><path d="M12 14.4v2"/>',
+  upload:'<path d="M4 15.5v2.5c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-2.5"/><path d="M12 15V4M8 8l4-4 4 4"/>',
+  network:'<circle cx="6" cy="6.5" r="2.5"/><circle cx="18" cy="6.5" r="2.5"/><circle cx="12" cy="17.5" r="2.5"/><path d="M7.7 8.6l3 6.4M16.3 8.6l-3 6.4"/>',
+  download:'<path d="M4 15.5v2.5c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-2.5"/><path d="M12 4v11M8 11l4 4 4-4"/>',
+  fileplus:'<path d="M13.5 3.5H7c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V9z"/><path d="M13.5 3.5V9H19"/><path d="M12 12v5M9.5 14.5h5"/>',
+  validate:'<path d="M12 3l7 2.8v5.4c0 4.6-3 7.9-7 9.8-4-1.9-7-5.2-7-9.8V5.8z"/><path d="M9 11.8l2.1 2.1 3.9-4.2"/>',
+  chat:'<path d="M20.5 14.5a2 2 0 0 1-2 2H8.5l-5 4.5v-14a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z"/><path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01"/>',
+  table:'<rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M9.5 9.5v10"/>',
+  filetext:'<path d="M13.5 3.5H7c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V9z"/><path d="M13.5 3.5V9H19"/><path d="M9 13h6M9 16.5h4"/>',
+  checkcircle:'<circle cx="12" cy="12" r="8.5"/><path d="M8.5 12.3l2.4 2.4 4.6-5"/>',
+  mail:'<rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4.5 7.5l7.5 5.5 7.5-5.5"/>',
+  archive:'<rect x="3.5" y="4" width="17" height="4.5" rx="1.2"/><path d="M5.5 8.5V18c0 1.1.9 2 2 2h9c1.1 0 2-.9 2-2V8.5"/><path d="M10 12.5h4"/>',
+  alert:'<path d="M12 4.5L3 19.5h18z"/><path d="M12 10v4M12 16.8h.01"/>',
+  list:'<path d="M8.5 6.5H20M8.5 12H20M8.5 17.5H20"/><circle cx="4.6" cy="6.5" r="1"/><circle cx="4.6" cy="12" r="1"/><circle cx="4.6" cy="17.5" r="1"/>',
+  target:'<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/>',
+  award:'<circle cx="12" cy="9" r="5"/><path d="M9.5 13.5L8 21l4-2.2L16 21l-1.5-7.5"/>',
+  clipboard:'<path d="M9 4.5H7c-1.1 0-2 .9-2 2V19c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V6.5c0-1.1-.9-2-2-2h-2"/><rect x="9" y="3" width="6" height="3.5" rx="1"/><path d="M9.5 13.2l1.9 1.9 3.6-3.9"/>',
+  usercheck:'<circle cx="10" cy="8" r="3.3"/><path d="M4 19.8c.85-3.7 3.4-5.6 6-5.6 1.7 0 3.2.7 4.4 2"/><path d="M15.5 17.3l1.8 1.8 3.2-3.4"/>',
+  hash:'<path d="M9.5 4L8 20M16 4l-1.5 16M4.5 9h16M3.5 15h16"/>',
+  cycle:'<path d="M20 11.5a8 8 0 0 0-14-4.7M4 12.5a8 8 0 0 0 14 4.7"/><path d="M6 3.2v3.6h3.6M18 20.8v-3.6h-3.6"/>',
+  undo:'<path d="M4 9.5h10a5 5 0 0 1 0 10H9.5"/><path d="M7.5 5.5l-4 4 4 4"/>',
+  checksquare:'<rect x="4" y="4" width="16" height="16" rx="2.5"/><path d="M8.5 12.2l2.6 2.6 5-5.4"/>',
+  calplus:'<rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M8 3v4M16 3v4M3.5 10.5h17"/><path d="M12 13.2v5M9.5 15.7h5"/>',
+  calpen:'<rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M8 3v4M16 3v4M3.5 10.5h17"/><path d="M13.5 17.2l4.2-4.2 1.5 1.5-4.2 4.2h-1.5z"/>',
+  clock:'<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>',
+  thumb:'<path d="M7 11.5v8.5"/><path d="M7 12.5l3.4-6.8c.9 0 2 .9 2 2V11h4.8c1.1 0 1.9 1 1.7 2.1l-1 4.9c-.2.9-1 1.5-1.9 1.5H7"/>',
+  calslash:'<rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M8 3v4M16 3v4M3.5 10.5h17"/><path d="M5.5 20.5L19 7"/>'
+};
+const SECTIONS={
+  ormg:{title:'ORMG',subs:[
+    {id:'ormg-admin',label:'ORMG Admin',icon:'shielduser',action:'+ New User'},
+    {id:'ormg-reports',label:'ORMG Reports',icon:'chart',action:'Export'},
+    {id:'ormg-dashboard',label:'ORMG Dashboard',icon:'grid',action:null},
+    {id:'user-profile',label:'User Profile',icon:'idcard',action:'Edit Profile'}
+  ]},
+  admin:{title:'Admin',subs:[
+    {id:'create-directory',label:'Create Directory',icon:'folderplus',action:'+ New Directory'},
+    {id:'delete-meeting-date',label:'Delete Meeting Date',icon:'calx',action:'Delete Date'},
+    {id:'edit-delete-proposal',label:'Edit/Delete Proposal',icon:'filepen',action:'Search'},
+    {id:'shift-proposal',label:'Shift Proposal',icon:'swap',action:'Shift'},
+    {id:'change-lock-dates',label:'Change Lock Dates',icon:'lock',action:'Update'},
+    {id:'mapping-upload',label:'Mapping Upload',icon:'upload',action:'Upload'},
+    {id:'proposal-role-mapping-edit',label:'Proposal Role Mapping Edit',icon:'network',action:'Edit Mapping'},
+    {id:'rbi-download',label:'RBI Download',icon:'download',action:'Download'}
+  ]},
+  transaction:{title:'Transaction',subs:[
+    {id:'create-proposal',label:'Create Proposal',icon:'fileplus',action:'Create'},
+    {id:'validate-proposal',label:'Validate Proposal',icon:'validate',action:'Validate'},
+    {id:'file-upload',label:'File Upload',icon:'upload',action:'Upload'},
+    {id:'discussion-box',label:'Discussion Box',icon:'chat',action:'Post'},
+    {id:'group-summary-agenda',label:'Group Summary of Agenda',icon:'table',action:'Export'},
+    {id:'group-summary-agenda-ro',label:'Group Summary of Agenda (RO)',icon:'table',action:'Export'},
+    {id:'final-note-ecircular',label:'Final Note/E-Circular Details',icon:'filetext',action:'Save'},
+    {id:'proposal-approval',label:'Proposal Approval',icon:'checkcircle',action:'Approve'},
+    {id:'ecircular-details',label:'E-Circular Details',icon:'mail',action:'Generate'},
+    {id:'proposal-closure',label:'Proposal Closure',icon:'archive',action:'Close Proposal'},
+    {id:'op-risk-rating',label:'Operational Risk Rating',icon:'alert',action:'Save Rating'},
+    {id:'proposal-role-listing',label:'Proposal Role Listing',icon:'list',action:'+ Add Role'},
+    {id:'control-group-selection',label:'Control Group Selection',icon:'target',action:'Select'},
+    {id:'icofr-approval',label:'ICOFR Approval',icon:'award',action:'Approve'},
+    {id:'actionable-tracker',label:'Actionable Tracker',icon:'clipboard',action:'Export'},
+    {id:'actionable-approver',label:'Actionable Approver',icon:'usercheck',action:'Assign'},
+    {id:'generate-ecircular-number',label:'Generate E-Circular Number',icon:'hash',action:'Generate'},
+    {id:'workflow-pac-updation',label:'Workflow PAC Members Updation',icon:'cycle',action:'Update'},
+    {id:'override-evaluation',label:'Override the Evaluation',icon:'undo',action:'Override'},
+    {id:'workflow-decision',label:'Workflow Decision',icon:'checksquare',action:'Submit'}
+  ]},
+  meetings:{title:'Meetings',subs:[
+    {id:'create-meeting',label:'Create Meeting',icon:'calplus',action:'Create'},
+    {id:'edit-meeting',label:'Edit Meeting',icon:'calpen',action:'Update'},
+    {id:'reschedule-cancel',label:'Re-schedule/Cancel',icon:'clock',action:'Re-schedule'},
+    {id:'approvals',label:'Approvals',icon:'thumb',action:'Approve'},
+    {id:'block-meeting-date',label:'Block Meeting Date',icon:'calslash',action:'Block Date'}
+  ]}
+};
+let currentSection=null;
+function openSection(key){
+  const sec=SECTIONS[key];currentSection=key;activeCrud=null;
+  const main=document.getElementById('appMain');
+  main.innerHTML=document.getElementById('tpl-subtab').innerHTML;
+  document.getElementById('sHead').textContent=sec.title;
+  const rail=document.getElementById('sRail');
+  sec.subs.forEach((s,i)=>{
+    const btn=document.createElement('button');
+    btn.type='button';btn.className='float-tab'+(i?'':' active');btn.dataset.sub=s.id;
+    btn.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true">'+ICONS[s.icon]+'</svg><span>'+s.label+'</span>';
+    btn.addEventListener('click',()=>selectSub(btn));
+    rail.appendChild(btn);
+  });
+  selectSub(rail.querySelector('.float-tab'));
+  main.scrollTop=0;
+}
+function selectSub(ft){
+  const sec=SECTIONS[currentSection];
+  const sub=sec.subs.find(s=>s.id===ft.dataset.sub);
+  ft.parentElement.querySelectorAll('.float-tab').forEach(t=>t.classList.toggle('active',t===ft));
+  document.getElementById('sCrumb').innerHTML=sec.title+' <i>&#8250;</i> <b>'+sub.label+'</b>';
+  document.getElementById('sTitle').textContent=sub.label;
+  const nb=document.getElementById('sNew');
+  nb.textContent=sub.action||'';nb.classList.toggle('hidden',!sub.action);
+  document.getElementById('sBody').innerHTML='<div class="m-empty empty-state"><span class="empty-ic"><svg viewBox="0 0 24 24" aria-hidden="true">'+ICONS[sub.icon]+'</svg></span><b>Design in progress</b><p>The detailed layout for the '+sub.label+' screen will be added in the next design cycle.</p></div>';
+  document.getElementById('sNote').textContent='Placeholder preview \u2014 use the sub tabs on the left to explore the '+sec.title+' module.';
+}
+document.querySelectorAll('.nav-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    const main=document.getElementById('appMain');
+    if(tab.dataset.tab==='masters')openMasters();
+    else if(SECTIONS[tab.dataset.tab])openSection(tab.dataset.tab);
+    else{activeCrud=null;main.innerHTML=''}
+  });
+});
+const userTab=document.getElementById('userTab'),userMenu=document.getElementById('userMenu');
+userTab.addEventListener('click',e=>{
+  e.stopPropagation();
+  userMenu.classList.toggle('open');
+  userTab.classList.toggle('open');
+});
+document.addEventListener('click',()=>{userMenu.classList.remove('open');userTab.classList.remove('open')});
+function verifyOtp(){
+  const code=boxes.map(b=>b.value).join('');
+  const err=document.getElementById('otpError');
+  if(!/^\d{6}$/.test(code)){err.textContent='Enter the valid six-digit OTP.';boxes.find(b=>!b.value)?.focus();return}
+  if(otpExpired){err.textContent='This OTP has expired. Please request a new one.';return}
+  stopTimer();
+  err.textContent='';
+  document.getElementById('stateChannel').classList.add('hidden');
+  document.getElementById('otpPanel').classList.add('hidden');
+  document.getElementById('stateSuccess').classList.remove('hidden');
+  setStep(3);
+  setTimeout(()=>{
+    const home=document.getElementById('screen-home');
+    if(home){
+      document.getElementById('stateSuccess').classList.add('hidden');
+      document.getElementById('authScreen').classList.add('hidden');
+      document.getElementById('topline').classList.add('hidden');
+      home.classList.remove('hidden');
+    }
+  },2200);
+}
+</script>
+</body>
+</html>
