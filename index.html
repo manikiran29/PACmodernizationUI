@@ -287,6 +287,63 @@ tr.flash{animation:rowflash 1.5s ease-out}
 .card-note{margin-top:auto;display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:#8A6E4B;background:var(--soft);border:1px dashed #E4C9A4;border-radius:9px;padding:9px 13px;flex:none}
 .card-note svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;flex:none}
 
+.de-strip{display:flex;align-items:center;gap:13px;border:1px solid #BFDCc8;background:#F2FAF5;border-radius:11px;padding:13px 16px;flex:none}
+.de-strip svg{width:21px;height:21px;flex:none;fill:none;stroke:var(--green);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.de-strip b{font-size:12.5px;color:var(--ink);display:block}
+.de-strip small{font-size:11px;font-weight:600;color:#5E7A66;display:block;margin-top:2px}
+.de-strip .btn-ghost{margin-left:auto;flex:none}
+.de-done .empty-state{padding:34px 20px}
+.de-intro .btn-new{margin-top:18px}
+.de-intro p{line-height:1.7}
+
+.modal-ov{position:fixed;inset:0;background:#172430AD;display:grid;place-items:center;z-index:95;padding:24px;animation:fade .18s ease-out}
+.modal{width:min(588px,100%);max-height:calc(100vh - 48px);display:flex;flex-direction:column;background:#fff;border-radius:16px;box-shadow:0 30px 80px #101C2766;overflow:hidden;animation:rise .2s ease-out}
+.modal-top{height:5px;background:var(--brand-grad);flex:none}
+.modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:20px 26px 0;flex:none}
+.modal-head h3{margin:0;font-size:16.5px;font-weight:800;letter-spacing:-.01em;color:var(--ink)}
+.modal-sub{font-size:11px;font-weight:700;color:var(--muted);margin-top:4px}
+.modal-x{width:30px;height:30px;flex:none;border:1px solid var(--line);background:#fff;border-radius:8px;display:grid;place-items:center;color:#5E6C79;transition:.13s}
+.modal-x:hover{border-color:#E9B48F;color:var(--rust);background:var(--soft)}
+.modal-x svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.modal-body{padding:18px 26px 6px;overflow-y:auto}
+.modal-foot{display:flex;align-items:center;gap:10px;padding:14px 26px 22px;flex:none}
+.modal-foot .f-err{margin-left:0;flex:1}
+.m-step{font-size:9.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--rust);background:var(--soft);border-radius:12px;padding:3px 10px;display:inline-block;margin-bottom:12px}
+.de-q{font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.55;margin:2px 0 14px}
+.opt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.opt-card{display:flex;align-items:center;gap:11px;border:1.5px solid var(--line);border-radius:11px;padding:13px 15px;background:#fff;text-align:left;font-size:13px;font-weight:800;color:#4E5B66;transition:.15s;width:100%}
+.opt-card:hover{border-color:#E9B48F;color:var(--rust)}
+.opt-card .radio{width:18px;height:18px;border-radius:50%;border:1.5px solid #C6CFD7;flex:none;display:grid;place-items:center;transition:.15s}
+.opt-card .radio::after{content:'';width:8px;height:8px;border-radius:50%;background:var(--brand-grad);transform:scale(0);transition:.15s}
+.opt-card.on{border-color:var(--rust);background:var(--soft);color:var(--ink);box-shadow:0 0 0 2px #9D2E2B14}
+.opt-card.on .radio{border-color:var(--rust)}
+.opt-card.on .radio::after{transform:scale(1)}
+.opt-card.miss{border-color:#E5484D;background:#FDF1F0;animation:shake .3s ease-out}
+.opt-card.miss .radio{border-color:#E5484D}
+.side-head{font-size:13px;font-weight:800;color:var(--ink);margin:2px 0 10px}
+.chk-list{display:flex;flex-direction:column;gap:9px}
+.chk-row{display:flex;gap:11px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:11px 13px;background:#fff;cursor:pointer;transition:.15s}
+.chk-row:hover{border-color:#E9B48F}
+.chk-row .cbx{width:18px;height:18px;border:1.5px solid #C6CFD7;border-radius:5px;background:#fff;flex:none;display:grid;place-items:center;margin-top:1px;transition:.15s}
+.chk-row .cbx svg{width:11px;height:11px;fill:none;stroke:#fff;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;opacity:0;transition:.15s}
+.chk-row .cbx input{position:absolute;opacity:0;width:0;height:0}
+.chk-row .cbx input:focus-visible~svg{outline:2px solid var(--orange);outline-offset:2px}
+.chk-row span.txt{font-size:12px;font-weight:600;color:#4E5B66;line-height:1.55}
+.chk-row.on{border-color:#E9B48F;background:#FFFBF6}
+.chk-row.on .cbx{background:var(--brand-grad);border-color:transparent}
+.chk-row.on .cbx svg{opacity:1}
+.chk-row.miss{border-color:#E5484D;background:#FDF1F0;animation:shake .3s ease-out}
+.chk-row.miss .cbx{border-color:#E5484D}
+.de-note{display:flex;gap:9px;align-items:flex-start;background:var(--soft);border:1px dashed #E4C9A4;border-radius:9px;padding:10px 13px;margin-top:12px}
+.de-note svg{width:14px;height:14px;fill:none;stroke:#8A6E4B;stroke-width:1.8;stroke-linecap:round;flex:none;margin-top:1px}
+.de-note span{font-size:11.5px;font-weight:700;color:#8A6E4B;line-height:1.55}
+.de-note b{font-weight:800}
+.chk-final{border-left:3px solid var(--rust);margin-top:12px}
+.m-err{color:#B42318;font-size:11px;font-weight:800;display:flex;align-items:center;gap:6px}
+.m-err svg{width:14px;height:14px;fill:none;stroke:#B42318;stroke-width:1.8;stroke-linecap:round;flex:none}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+
 @media(max-width:900px){
   .auth-frame{grid-template-columns:1fr;grid-template-rows:minmax(150px,32%) 1fr;height:auto;min-height:calc(100vh - 40px)}
   .auth-brand-panel{padding:20px 28px}
@@ -481,7 +538,6 @@ tr.flash{animation:rowflash 1.5s ease-out}
         <button class="float-tab" data-master="reason" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.5a2 2 0 0 1-2 2H8.5l-5 4.5v-14a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z"/></svg><span>Reason</span></button>
         <button class="float-tab" data-master="venue" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21c-4.4-3.8-6.6-7.2-6.6-10.2a6.6 6.6 0 0 1 13.2 0c0 3-2.2 6.4-6.6 10.2z"/><circle cx="12" cy="10.6" r="2.4"/></svg><span>Venue</span></button>
         <button class="float-tab" data-master="product" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2 3.4 7.7 12 12.2l8.6-4.5L12 3.2z"/><path d="M3.4 12.4 12 16.9l8.6-4.5"/><path d="M3.4 16.9 12 21.4l8.6-4.5"/></svg><span>Product/Process</span></button>
-        <button class="float-tab" data-master="grouphead" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="7.8" r="3.3"/><path d="M3.9 20c.85-3.8 3.4-5.7 6.1-5.7 1.6 0 3 .55 4.2 1.55"/><path d="M17.8 13.8l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9z"/></svg><span>Group Head</span></button>
       </aside>
       <div class="page-main">
         <div class="crumbs" id="mCrumb"></div>
@@ -520,6 +576,46 @@ tr.flash{animation:rowflash 1.5s ease-out}
     </div>
   </div>
 </template>
+
+<div class="modal-ov hidden" id="deModal" role="dialog" aria-modal="true" aria-labelledby="deTitle">
+  <div class="modal">
+    <div class="modal-top"></div>
+    <div class="modal-head">
+      <div>
+        <h3 id="deTitle">Privacy Declaration</h3>
+        <div class="modal-sub">Mandatory check before opening the proposal data entry form</div>
+      </div>
+      <button class="modal-x" id="deX" type="button" aria-label="Close privacy declaration"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <div id="deStep1">
+        <span class="m-step">Step 1 of 2 &middot; Customer Information Check</span>
+        <p class="de-q">Does the proposal process/product deal with any customer information?</p>
+        <div class="opt-row">
+          <button class="opt-card" id="deYes" type="button"><span class="radio"></span>Yes</button>
+          <button class="opt-card" id="deNo" type="button"><span class="radio"></span>No</button>
+        </div>
+      </div>
+      <div id="deStep2" class="hidden">
+        <span class="m-step">Step 2 of 2 &middot; Privacy Checks</span>
+        <div class="side-head">I confirm:</div>
+        <div class="chk-list">
+          <label class="chk-row" id="deCk1"><span class="cbx"><input type="checkbox" id="deChk1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></span><span class="txt">The proposal, process or product involves the collection, storage or transmission of customer information.</span></label>
+          <label class="chk-row" id="deCk2"><span class="cbx"><input type="checkbox" id="deChk2"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></span><span class="txt">All customer data used in this proposal is sourced through approved channels with the required customer consent in place.</span></label>
+          <label class="chk-row" id="deCk3"><span class="cbx"><input type="checkbox" id="deChk3"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></span><span class="txt">Access to customer data is restricted to authorised personnel strictly on a need-to-know basis.</span></label>
+          <label class="chk-row" id="deCk4"><span class="cbx"><input type="checkbox" id="deChk4"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></span><span class="txt">Customer data will be retained only for the period permitted under the Bank&rsquo;s data retention policy.</span></label>
+        </div>
+        <div class="de-note"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M12 11.5V16"/></svg><span><b>Note:</b> Customer data includes any derived data of the customer.</span></div>
+        <label class="chk-row chk-final" id="deCkF"><span class="cbx"><input type="checkbox" id="deChkF"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></span><span class="txt"><b>I confirm that the product/process meets the above requirements and is in line with the privacy Standard of the Bank.</b></span></label>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <span class="m-err hidden" id="deErr" role="alert"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5L3 19.5h18z"/><path d="M12 10v4M12 16.8h.01"/></svg><span id="deErrTx"></span></span>
+      <button class="btn-ghost hidden" id="deBack" type="button">Back</button>
+      <button class="btn-new" id="deGo" type="button">Continue</button>
+    </div>
+  </div>
+</div>
 
 <script>
 let selectedChannel=null,otpSent=false,otpExpired=false,otpTimer=null;
@@ -628,8 +724,7 @@ const mastersInfo={
   holiday:{label:'Holiday',page:'holiday'},
   reason:{label:'Reason',page:'reason'},
   venue:{label:'Venue',page:'venue'},
-  product:{label:'Product/Process'},
-  grouphead:{label:'Group Head'}
+  product:{label:'Product/Process',page:'product'}
 };
 const byId=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -736,6 +831,22 @@ const reasonData=[
   {name:'Regulatory Requirement',active:'Y'},
   {name:'Process Simplification',active:'Y'},
   {name:'Stakeholder Request',active:'Y'}
+].map((r,i)=>(r.id=i+1,r));
+const productData=[
+  {name:'Savings Account Opening Process',active:'Y'},
+  {name:'Current Account Opening Process',active:'Y'},
+  {name:'Fixed Deposit Booking Process',active:'Y'},
+  {name:'Retail Loan Origination Process',active:'Y'},
+  {name:'Home Loan Approval Process',active:'Y'},
+  {name:'Credit Card Issuance Process',active:'Y'},
+  {name:'Trade Finance Transaction Process',active:'Y'},
+  {name:'Digital Banking Onboarding Process',active:'Y'},
+  {name:'Merchant Acquiring Product',active:'Y'},
+  {name:'Wealth Portfolio Advisory Product',active:'Y'},
+  {name:'Agri Gold Loan Product',active:'Y'},
+  {name:'NRI Remittance Process',active:'Y'},
+  {name:'Overdraft Against Deposits Process',active:'N'},
+  {name:'Corporate Salary Product',active:'Y'}
 ].map((r,i)=>(r.id=i+1,r));
 const venueData=[
   {name:'ICICI Towers - BKC, Mumbai',active:'Y'},
@@ -1096,6 +1207,44 @@ PAGES.venue=()=>{
       +'<td class="td-act"><button class="row-edit" type="button" data-id="'+r.id+'" aria-label="Edit '+esc(r.name)+'">'+EDIT_IC+'</button></td></tr>'
   });
 };
+PAGES.product=()=>{
+  activeCrud=initCrud({
+    mount:'mBody',cols:3,data:productData,
+    addLabel:'Add Product/Process',updateLabel:'Update Product/Process',dupMsg:'A product/process with this name already exists.',
+    ids:{form:'pdForm',body:'pdBody',cnt:'pdCnt',show:'pdShow',pager:'pdPager',err:'pdErr',submit:'pdSubmit',cancel:'pdCancel',tag:'pdTag',search:'pdSearch',head:'pdHead',extra:'pdExtra'},
+    html:'<div class="crud">'
+      +'<div class="add-panel" id="pdForm">'
+      +'<div class="add-head hidden" id="pdHead"><span class="edit-tag hidden" id="pdTag"></span><span class="f-err" id="pdErr" role="alert"></span></div>'
+      +'<div class="add-fields">'
+      +'<label class="f-field"><span>Product/Process Name <i>*</i></span><input id="pdName" type="text" maxlength="100" placeholder="e.g. Savings Account Opening Process"></label>'
+      +'<div class="add-actions"><button class="btn-new" id="pdSubmit" type="button">Add Product/Process</button><button class="btn-ghost hidden" id="pdCancel" type="button">Cancel</button></div>'
+      +'</div>'
+      +'<div class="add-fields row-center hidden" id="pdExtra">'
+      +'<label class="switch"><input type="checkbox" id="pdActive" checked><span class="sw-track"></span><span class="sw-lab">Active (Y/N)</span></label>'
+      +'</div></div>'
+      +'<div class="tbl-toolbar">'
+      +'<div class="search-box"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16.2 16.2 21 21"/></svg><input id="pdSearch" type="text" placeholder="Search by product/process name"></div>'
+      +'<span class="tbl-count" id="pdCnt"></span>'
+      +'</div>'
+      +'<div class="tbl-wrap"><table class="data-table">'
+      +'<thead><tr><th>Product/Process Name</th><th class="c-h">Active (Y/N)</th><th class="th-act">Action</th></tr></thead>'
+      +'<tbody id="pdBody"></tbody></table></div>'
+      +'<div class="tbl-foot"><span class="tbl-count" id="pdShow"></span><div class="pager" id="pdPager"></div></div>'
+      +'</div>',
+    search:r=>r.name,
+    dupKey:r=>r.name,
+    disp:r=>r.name,
+    read:()=>({name:byId('pdName').value,active:byId('pdActive').checked?'Y':'N'}),
+    defaults:d=>{d.active='Y'},
+    set:r=>{byId('pdName').value=r.name;byId('pdActive').checked=r.active==='Y'},
+    clear:()=>{byId('pdName').value='';byId('pdActive').checked=true},
+    validate:d=>!d.name.trim()?'Enter the product/process name.':'',
+    row:r=>'<tr data-id="'+r.id+'">'
+      +'<td><b>'+esc(r.name)+'</b></td>'
+      +'<td class="c"><span class="'+(r.active==='Y'?'m-ok':'m-off')+'">'+r.active+'</span></td>'
+      +'<td class="td-act"><button class="row-edit" type="button" data-id="'+r.id+'" aria-label="Edit '+esc(r.name)+'">'+EDIT_IC+'</button></td></tr>'
+  });
+};
 const MASTER_NOTE='Up to 10 records display per page \u2014 use the page numbers below the table to view the remaining records.';
 function selectMaster(ft){
   const main=document.getElementById('appMain');
@@ -1134,6 +1283,7 @@ const ICONS={
   network:'<circle cx="6" cy="6.5" r="2.5"/><circle cx="18" cy="6.5" r="2.5"/><circle cx="12" cy="17.5" r="2.5"/><path d="M7.7 8.6l3 6.4M16.3 8.6l-3 6.4"/>',
   download:'<path d="M4 15.5v2.5c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-2.5"/><path d="M12 4v11M8 11l4 4 4-4"/>',
   fileplus:'<path d="M13.5 3.5H7c-1.1 0-2 .9-2 2v13c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V9z"/><path d="M13.5 3.5V9H19"/><path d="M12 12v5M9.5 14.5h5"/>',
+  form:'<rect x="4" y="3.5" width="16" height="17" rx="2"/><path d="M8 8h.01M11.2 8H16M8 12h.01M11.2 12H16M8 16h.01M11.2 16h4"/>',
   validate:'<path d="M12 3l7 2.8v5.4c0 4.6-3 7.9-7 9.8-4-1.9-7-5.2-7-9.8V5.8z"/><path d="M9 11.8l2.1 2.1 3.9-4.2"/>',
   chat:'<path d="M20.5 14.5a2 2 0 0 1-2 2H8.5l-5 4.5v-14a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z"/><path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01"/>',
   table:'<rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M9.5 9.5v10"/>',
@@ -1175,6 +1325,7 @@ const SECTIONS={
     {id:'rbi-download',label:'RBI Download',icon:'download',action:'Download'}
   ]},
   transaction:{title:'Transaction',subs:[
+    {id:'data-entry',label:'Data Entry',icon:'form',action:null},
     {id:'create-proposal',label:'Create Proposal',icon:'fileplus',action:'Create'},
     {id:'validate-proposal',label:'Validate Proposal',icon:'validate',action:'Validate'},
     {id:'file-upload',label:'File Upload',icon:'upload',action:'Upload'},
@@ -1222,6 +1373,7 @@ function openSection(key){
   main.scrollTop=0;
 }
 function selectSub(ft){
+  closeDe();
   const sec=SECTIONS[currentSection];
   const sub=sec.subs.find(s=>s.id===ft.dataset.sub);
   ft.parentElement.querySelectorAll('.float-tab').forEach(t=>t.classList.toggle('active',t===ft));
@@ -1229,11 +1381,87 @@ function selectSub(ft){
   document.getElementById('sTitle').textContent=sub.label;
   const nb=document.getElementById('sNew');
   nb.textContent=sub.action||'';nb.classList.toggle('hidden',!sub.action);
+  if(currentSection==='transaction'&&sub.id==='data-entry'){renderDataEntry();return}
   document.getElementById('sBody').innerHTML='<div class="m-empty empty-state"><span class="empty-ic"><svg viewBox="0 0 24 24" aria-hidden="true">'+ICONS[sub.icon]+'</svg></span><b>Design in progress</b><p>The detailed layout for the '+sub.label+' screen will be added in the next design cycle.</p></div>';
   document.getElementById('sNote').textContent='Placeholder preview \u2014 use the sub tabs on the left to explore the '+sec.title+' module.';
 }
+let deAns=null,deT=null;
+function openDe(){
+  deAns=null;
+  byId('deStep1').classList.remove('hidden');
+  byId('deStep2').classList.add('hidden');
+  byId('deBack').classList.add('hidden');
+  byId('deYes').classList.remove('on','miss');byId('deNo').classList.remove('on','miss');
+  ['deChk1','deChk2','deChk3','deChk4','deChkF'].forEach(i=>{byId(i).checked=false});
+  ['deCk1','deCk2','deCk3','deCk4','deCkF'].forEach(i=>byId(i).classList.remove('miss','on'));
+  byId('deErr').classList.add('hidden');
+  byId('deModal').classList.remove('hidden');
+  byId('deYes').focus();
+}
+function closeDe(){byId('deModal').classList.add('hidden')}
+function deShowErr(t){byId('deErrTx').textContent=t;byId('deErr').classList.remove('hidden')}
+function deFinish(ans){
+  const body=byId('sBody');
+  const extra=ans==='Yes'?
+    'The 4 privacy checks and the privacy standard confirmation were recorded.':
+    'No privacy checks were applicable for this declaration.';
+  body.innerHTML='<div class="de-done">'
+    +'<div class="de-strip"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12.3l2.4 2.4 4.6-5"/></svg>'
+    +'<div><b>Privacy declaration completed</b><small>Customer information: '+ans+' \u2014 '+extra+'</small></div>'
+    +'<button class="btn-ghost" id="deRestart" type="button">New Declaration</button></div>'
+    +'<div class="m-empty empty-state"><span class="empty-ic"><svg viewBox="0 0 24 24" aria-hidden="true">'+ICONS.form+'</svg></span><b>Proposal Data Entry Form</b><p>You are now clear to capture the proposal details. The detailed layout of this screen will be added in the next design cycle.</p></div></div>';
+  byId('sNote').textContent='Privacy gate cleared \u2014 the proposal data entry form opens from here. Use \u201CNew Declaration\u201D to run the declaration again for a fresh proposal.';
+  byId('deRestart').addEventListener('click',()=>renderDataEntry());
+}
+function renderDataEntry(){
+  const body=byId('sBody');
+  body.innerHTML='<div class="m-empty empty-state de-intro"><span class="empty-ic"><svg viewBox="0 0 24 24" aria-hidden="true">'+ICONS.form+'</svg></span><b>Start a new proposal</b><p>Every new proposal begins with a short privacy declaration.<br>The data entry form opens once the declaration is completed.</p><button class="btn-new" id="deBegin" type="button">Begin Privacy Declaration</button></div>';
+  byId('sNote').textContent='The privacy declaration popup opens automatically when you open Data Entry.';
+  const begin=byId('deBegin');
+  begin.addEventListener('click',openDe);
+  clearTimeout(deT);
+  deT=setTimeout(()=>{if(begin.isConnected)openDe()},300);
+}
+byId('deYes').addEventListener('click',()=>{deAns='Yes';byId('deYes').classList.add('on');byId('deNo').classList.remove('on','miss');byId('deYes').classList.remove('miss');byId('deErr').classList.add('hidden')});
+byId('deNo').addEventListener('click',()=>{deAns='No';byId('deNo').classList.add('on');byId('deYes').classList.remove('on','miss');byId('deNo').classList.remove('miss');byId('deErr').classList.add('hidden')});
+['deChk1','deChk2','deChk3','deChk4','deChkF'].forEach(id=>{
+  byId(id).addEventListener('change',e=>{
+    const row=e.target.closest('.chk-row');
+    row.classList.toggle('on',e.target.checked);
+    if(e.target.checked)row.classList.remove('miss');
+    byId('deErr').classList.add('hidden');
+  });
+});
+byId('deBack').addEventListener('click',()=>{
+  byId('deStep2').classList.add('hidden');byId('deStep1').classList.remove('hidden');
+  byId('deBack').classList.add('hidden');byId('deErr').classList.add('hidden');
+});
+byId('deGo').addEventListener('click',()=>{
+  if(deAns==null){
+    byId('deYes').classList.add('miss');byId('deNo').classList.add('miss');
+    deShowErr('Select Yes or No to continue.');return;
+  }
+  if(!byId('deStep1').classList.contains('hidden')){
+    if(deAns==='No'){closeDe();deFinish('No');return}
+    byId('deStep1').classList.add('hidden');byId('deStep2').classList.remove('hidden');
+    byId('deBack').classList.remove('hidden');byId('deErr').classList.add('hidden');
+    return;
+  }
+  const rows=['deCk1','deCk2','deCk3','deCk4','deCkF'],cks=['deChk1','deChk2','deChk3','deChk4','deChkF'];
+  let missed=false;
+  rows.forEach((r,i)=>{
+    const ok=byId(cks[i]).checked;
+    byId(r).classList.toggle('miss',!ok);
+    if(!ok)missed=true;
+  });
+  if(missed){deShowErr('Please confirm all the highlighted statements to continue.');return}
+  closeDe();deFinish('Yes');
+});
+byId('deX').addEventListener('click',closeDe);
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!byId('deModal').classList.contains('hidden'))closeDe()});
 document.querySelectorAll('.nav-tab').forEach(tab=>{
   tab.addEventListener('click',()=>{
+    closeDe();
     document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
     tab.classList.add('active');
     const main=document.getElementById('appMain');
