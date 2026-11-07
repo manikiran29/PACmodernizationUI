@@ -29,24 +29,32 @@ button{cursor:pointer}
 .topline{height:5px;background:var(--brand-grad)}
 
 .auth-screen{min-height:calc(100vh - 5px);display:grid;place-items:center;padding:22px}
-.auth-frame{position:relative;width:min(1240px,100%);height:min(760px,calc(100vh - 60px));min-height:560px;display:grid;grid-template-columns:55% 45%;background:#fff;border:1px solid #E2E6E9;box-shadow:0 20px 70px #25374618;border-radius:10px;overflow:hidden}
+.auth-frame{position:relative;width:min(1240px,100%);height:min(760px,calc(100vh - 60px));min-height:560px;display:grid;grid-template-columns:55% 45%;background:#fff;border:1px solid #E2E6E9;box-shadow:0 20px 70px #25374618;border-radius:10px;overflow:hidden;animation:frameIn .55s cubic-bezier(.2,.7,.3,1) both}
+@keyframes frameIn{from{opacity:0;transform:translateY(14px) scale(.988)}}
 
 .auth-brand-panel{position:relative;overflow:hidden;background:var(--brand-grad-diag);color:#fff;padding:36px 52px;display:flex;flex-direction:column}
 .brand-lockup{display:flex;align-items:center;gap:11px;z-index:1}
 .logo-chip{width:38px;height:38px;border-radius:9px;background:#fff;display:grid;place-items:center;font-style:italic;font-weight:800;font-size:21px;color:var(--rust);position:relative;flex:none}
 .logo-chip b{position:absolute;top:-4px;right:-4px;width:12px;height:12px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#EA771D,#9D2E2B);box-shadow:0 1px 4px #00000038}
 .logo-word{font-weight:800;font-style:italic;font-size:18px;letter-spacing:.02em}
-.auth-intro{position:relative;z-index:1;margin-top:clamp(48px,13vh,120px);max-width:520px}
-.auth-intro h1{font-size:clamp(32px,3.4vw,46px);line-height:1.12;letter-spacing:-.04em;margin:0 0 18px;font-weight:700}
-.auth-intro p.tagline{font-size:17.5px;line-height:1.6;max-width:480px;color:#fff;opacity:.96;margin:0}
+.auth-intro{position:relative;z-index:1;margin-top:auto;margin-bottom:2px;max-width:560px}
+.auth-intro h1{font-size:clamp(30px,3.1vw,42px);line-height:1.14;letter-spacing:-.04em;margin:0 0 14px;font-weight:700}
+.auth-intro p.tagline{font-size:16.5px;line-height:1.6;max-width:470px;color:#fff;opacity:.96;margin:0 0 26px}
+.brand-feats{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
+.brand-feats li{display:flex;gap:13px;align-items:center;background:#FFFFFF14;border:1px solid #FFFFFF26;border-radius:12px;padding:12px 16px 12px 13px;backdrop-filter:blur(3px);transition:.18s}
+.brand-feats li:hover{background:#FFFFFF20;transform:translateX(4px)}
+.bf-ic{width:36px;height:36px;border-radius:9px;background:#fff;color:var(--rust);display:grid;place-items:center;flex:none;box-shadow:0 3px 10px #7A1F1D33}
+.bf-ic svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.brand-feats b{display:block;font-size:13px;letter-spacing:.01em}
+.brand-feats small{display:block;font-size:11px;opacity:.94;margin-top:3px;line-height:1.5}
 .mandala{position:absolute;color:#fff;pointer-events:none}
-.mandala.left{width:430px;height:430px;left:-150px;bottom:-170px;opacity:.22}
+.mandala.left{width:430px;height:430px;left:-150px;bottom:-170px;opacity:.15}
 .mandala.ghost-orange{color:var(--orange);opacity:.07;width:300px;height:300px;top:-90px;right:-70px;position:absolute;pointer-events:none}
 
 .auth-right{position:relative;overflow-y:auto;overflow-x:hidden;display:flex;padding:30px clamp(20px,3.4vw,52px);background:#fff}
-.auth-content{position:relative;z-index:1;width:min(400px,100%);margin:auto}
-.auth-content h2{font-size:26px;letter-spacing:-.035em;margin:0 0 7px;font-weight:700}
-.auth-desc{font-size:12px;line-height:1.6;color:var(--muted);margin:0 0 16px}
+.auth-content{position:relative;z-index:1;width:min(440px,100%);margin:auto}
+.auth-content h2{font-size:27px;letter-spacing:-.035em;margin:0 0 7px;font-weight:700}
+.auth-desc{font-size:12px;line-height:1.6;color:var(--muted);margin:0 0 18px}
 
 .field-title{font-size:11px;font-weight:800;margin-bottom:10px;display:block}
 .channel-list{display:grid;gap:10px}
@@ -72,14 +80,14 @@ button{cursor:pointer}
 .otp-row{display:flex;gap:8px;margin-top:13px}
 .otp-box{width:46px;height:54px;text-align:center;font-size:20px;font-weight:800;border:1px solid #D8DFE5;border-radius:7px;outline:none;color:var(--ink);background:#fff;padding:0}
 .otp-box:focus{border-color:var(--orange);box-shadow:0 0 0 3px #EA771D1A}
+.otp-track{height:3px;background:#EEF1F4;border-radius:3px;margin-top:14px;overflow:hidden}
+.otp-track span{display:block;height:100%;width:100%;background:var(--brand-grad);border-radius:3px;transition:width 1s linear}
 .otp-meta{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:10px;font-size:10px;color:var(--muted)}
 .link-btn{border:0;background:none;color:var(--rust);font-size:10px;font-weight:800;padding:0}
 .link-btn:disabled{color:#AAB2B9;cursor:not-allowed}
 
 .btn-primary{width:100%;background:var(--brand-grad);color:#fff;border:0;border-radius:7px;padding:13px;font-size:12.5px;font-weight:800;letter-spacing:.02em;margin-top:16px;box-shadow:0 6px 16px #9D2E2B33}
 .btn-primary:hover{filter:brightness(1.05)}
-.legal{font-size:9px;line-height:1.5;color:#98A1A9;text-align:center;margin-top:20px}
-.legal b{color:var(--rust)}
 
 .success{text-align:center;padding-top:6px}
 .success-mark{width:54px;height:54px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;margin:4px auto 14px;font-size:24px;box-shadow:0 0 0 8px #16834A14}
@@ -89,44 +97,59 @@ button{cursor:pointer}
 .spin{width:12px;height:12px;border:2px solid #CDE8D6;border-top-color:var(--green);border-radius:50%;animation:rot .8s linear infinite}
 @keyframes rot{to{transform:rotate(360deg)}}
 
-.steps{display:flex;gap:7px;margin-bottom:15px}
-.step-pill{font-size:9px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:5px 11px;border-radius:20px;background:#F0F2F4;color:#87929C;display:inline-flex;align-items:center;gap:7px}
-.step-pill .n{width:14px;height:14px;border-radius:50%;background:#DDE3E8;color:#87929C;display:grid;place-items:center;font-size:8px;flex:none}
-.step-pill.on{background:var(--soft);color:var(--maroon)}
-.step-pill.on .n{background:var(--orange);color:#fff}
-.step-pill.done{background:#EAF6EE;color:var(--green)}
-.step-pill.done .n{background:var(--green);color:#fff}
-.stmt-card{border:1px solid var(--line);border-radius:9px;background:#fff;overflow:hidden}
-.stmt-head{display:flex;align-items:center;gap:9px;padding:11px 14px;border-bottom:1px solid var(--line);background:#FBFCFD;cursor:pointer;user-select:none;transition:background .15s}
-.stmt-head:hover{background:#F4F6F8}
-.stmt-head .ic{width:30px;height:30px;border-radius:8px;background:var(--soft);color:var(--rust);display:grid;place-items:center;flex:none}
-.stmt-head b{font-size:12px;flex:1}
-.stmt-tag{font-size:8.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;background:#FCEDEC;color:#A33224;border-radius:12px;padding:3px 8px;white-space:nowrap}
-.stmt-more{font-size:10px;font-weight:800;color:var(--rust);white-space:nowrap}
-.stmt-chev{width:22px;height:22px;border:1px solid var(--line);border-radius:6px;background:#fff;color:#5E6C79;display:grid;place-items:center;flex:none;transition:transform .18s}
-.stmt-card.open .stmt-chev{transform:rotate(180deg)}
-.stmt-text{padding:12px 14px;font-size:10.5px;line-height:1.7;color:#52606D}
-.stmt-text p{margin:0}
-.stmt-summary{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.stmt-card.open .stmt-summary{display:none}
-.stmt-body{display:none}
-.stmt-card.open .stmt-body{display:block}
-.stmt-notices{background:#FCEDEC;border:1px solid #F3C9C4;border-radius:7px;padding:10px 13px;margin-top:12px}
-.stmt-notices h4{margin:0 0 7px;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#A33224}
-.stmt-notices ul{margin:0;padding:0}
-.stmt-notices li{font-size:9.5px;line-height:1.6;color:#A33224;margin:0 0 6px 15px}
-.stmt-notices li:last-child{margin-bottom:0}
-.accept-row{display:flex;align-items:center;gap:10px;padding:12px 14px;border-top:1px solid var(--line);background:#FBFCFD}
-.accept-row label{font-size:11px;font-weight:800;cursor:pointer;flex:1}
 .chk{position:relative;width:18px;height:18px;flex:none}
 .chk input{position:absolute;inset:0;opacity:0;cursor:pointer;margin:0}
 .chk input:disabled{cursor:not-allowed}
 .chk input:disabled+.box{opacity:.45}
 .chk .box{width:18px;height:18px;border:1.5px solid #B9C2C9;border-radius:5px;background:#fff;display:grid;place-items:center;color:#fff;font-size:11px;transition:.15s;pointer-events:none}
 .chk input:checked+.box{background:var(--green);border-color:var(--green)}
-.decline{color:#98A1A9}
-.decline:hover{color:var(--rust)}
-.denied{background:#FCEDEC;border:1px solid #F3C9C4;border-radius:8px;padding:12px 14px;font-size:10.5px;color:#A33224;line-height:1.6;margin-top:14px}
+.stmt-notices{background:#FCEDEC;border:1px solid #F3C9C4;border-radius:7px;padding:10px 13px;margin-top:12px}
+.stmt-notices h4{margin:0 0 7px;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#A33224}
+.stmt-notices ul{margin:0;padding:0}
+.stmt-notices li{font-size:9.5px;line-height:1.6;color:#A33224;margin:0 0 6px 15px}
+.stmt-notices li:last-child{margin-bottom:0}
+.conf-ov{position:fixed;inset:0;background:#1E2A345C;backdrop-filter:blur(3px);z-index:100;display:grid;place-items:center;padding:26px;animation:fadein .18s ease-out}
+.conf-pop{width:min(640px,100%);max-height:min(700px,92vh);background:#fff;border-radius:14px;box-shadow:0 30px 90px #1E2A345A;display:flex;flex-direction:column;overflow:hidden;animation:pop .24s cubic-bezier(.2,.85,.3,1.15)}
+.conf-top{display:flex;align-items:center;gap:12px;padding:15px 20px;border-bottom:1px solid var(--line);background:#FBFCFD;flex:none}
+.conf-ic{width:38px;height:38px;border-radius:9px;background:var(--soft);color:var(--rust);display:grid;place-items:center;flex:none}
+.conf-ic svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.conf-top b{display:block;font-size:14px;letter-spacing:-.01em}
+.conf-top small{display:block;font-size:10px;color:var(--muted);margin-top:2px}
+.conf-x{margin-left:auto;width:30px;height:30px;border:1px solid var(--line);border-radius:8px;background:#fff;color:#5E6C79;display:grid;place-items:center;cursor:pointer;transition:.15s;flex:none}
+.conf-x:hover{border-color:#E9B48F;color:var(--rust)}
+.conf-x svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round}
+.conf-body{padding:18px 20px 6px;overflow-y:auto;font-size:11.5px;line-height:1.75;color:#52606D}
+.conf-body p{margin:0 0 11px}
+.conf-foot{padding:13px 20px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:10px;background:#FBFCFD;flex:none;margin-top:12px}
+.btn-modal{background:var(--brand-grad);color:#fff;border:0;border-radius:8px;padding:9px 26px;font-size:11.5px;font-weight:800;box-shadow:0 4px 12px #9D2E2B33;cursor:pointer}
+.btn-modal:hover{filter:brightness(1.05)}
+@keyframes fadein{from{opacity:0}}
+@keyframes pop{from{opacity:0;transform:scale(.94) translateY(12px)}}
+.f-wrap{display:flex;align-items:center;gap:9px;border:1px solid #D8DFE5;border-radius:8px;background:#fff;padding:0 12px;transition:.15s}
+.f-wrap:focus-within{border-color:var(--orange);box-shadow:0 0 0 3px #EA771D1A}
+.f-wrap.invalid{border-color:#E5484D!important;background:#FDF1F0!important}
+.f-wrap svg.lead{width:15px;height:15px;fill:none;stroke:#8A959E;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.f-wrap input{border:0!important;box-shadow:none!important;background:transparent!important;padding:11px 0;flex:1;min-width:0}
+.eye{border:0;background:none;padding:4px;margin-right:-4px;color:#8A959E;display:grid;place-items:center;cursor:pointer;flex:none}
+.eye:hover{color:var(--rust)}
+.eye svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.policy-line{font-size:10.5px;line-height:1.65;color:var(--muted);margin:15px 0 0}
+.policy-line .link-btn{font-size:10.5px;text-decoration:underline;text-underline-offset:2px}
+.conf-row{display:flex;gap:10px;align-items:flex-start;margin-top:13px;padding:12px 13px;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFD;transition:.15s;cursor:pointer;animation:rise .25s ease-out}
+.conf-row .txt{font-size:11.5px;font-weight:700;color:#4E5B66;line-height:1.55;padding-top:1px}
+.conf-row:hover{border-color:#E9B48F}
+.conf-row.on{border-color:var(--green);background:#F5FAF6}
+.conf-row.miss{border-color:#E5484D;background:#FDF1F0;animation:shake .3s ease-out}
+.mandala.left{animation:spin 90s linear infinite}
+.mandala.ghost-orange{animation:spin 130s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+#stateSignin>*,#stateOtp>*{animation:fadeUp .45s cubic-bezier(.2,.7,.3,1) both}
+#stateSignin>*:nth-child(2),#stateOtp>*:nth-child(2){animation-delay:.07s}
+#stateSignin>*:nth-child(3),#stateOtp>*:nth-child(3){animation-delay:.14s}
+#stateSignin>*:nth-child(4),#stateOtp>*:nth-child(4){animation-delay:.21s}
+#stateSignin>*:nth-child(5){animation-delay:.28s}
+#stateSignin>*:nth-child(6){animation-delay:.35s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}}
 
 .app-screen{height:100vh;display:flex;flex-direction:column;overflow:hidden;background:var(--bg)}
 .app-topbar{height:62px;flex:none;background:var(--brand-grad);display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:relative;z-index:40;box-shadow:0 2px 10px #0000001F}
@@ -326,6 +349,20 @@ tr.flash{animation:rowflash 1.5s ease-out}
 .de-note{display:flex;gap:9px;align-items:flex-start;background:var(--soft);border:1px dashed #E4C9A4;border-radius:9px;padding:10px 13px;margin-top:12px}
 .de-note svg{width:14px;height:14px;fill:none;stroke:#8A6E4B;stroke-width:1.8;stroke-linecap:round;flex:none;margin-top:1px}
 .de-note span{font-size:11.5px;font-weight:700;color:#8A6E4B;line-height:1.55}
+.de-done{display:flex;flex-direction:column;gap:16px}
+.de-tabs{display:flex;border:1px solid var(--line);border-radius:11px;overflow:hidden;background:#fff;flex:none;box-shadow:0 4px 14px #2437460A}
+.de-tab{flex:1 1 0;padding:12px 8px 14px;border:0;background:#fff;font-size:11px;font-weight:800;color:#5E6C79;line-height:1.35;cursor:pointer;transition:.15s;position:relative;border-right:1px solid var(--line)}
+.de-tab:last-child{border-right:0}
+.de-tab:hover{background:#F7F9FA;color:var(--rust)}
+.de-tab.active{background:var(--soft);color:var(--maroon)}
+.de-tab.active:after{content:'';position:absolute;left:0;right:0;bottom:0;height:2.5px;background:var(--brand-grad)}
+.de-opt-list{display:flex;flex-direction:column;gap:10px;animation:rise .22s ease-out}
+.de-opt{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:14px 16px;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:12.5px;font-weight:700;color:var(--ink);transition:.15s;cursor:pointer}
+.de-opt svg{width:17px;height:17px;fill:none;stroke:var(--rust);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.de-opt span{line-height:1.4}
+.de-opt:hover{border-color:#E9B48F;background:var(--soft);transform:translateX(4px)}
+.de-opt .chev-r{margin-left:auto;color:#B9C2C9;font-size:15px;font-weight:800;transition:.15s;flex:none}
+.de-opt:hover .chev-r{color:var(--rust);transform:translateX(2px)}
 .de-note b{font-weight:800}
 .chk-final{border-left:3px solid var(--rust);margin-top:12px}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
@@ -335,7 +372,9 @@ tr.flash{animation:rowflash 1.5s ease-out}
   .auth-frame{grid-template-columns:1fr;grid-template-rows:minmax(150px,32%) 1fr;height:auto;min-height:calc(100vh - 40px)}
   .auth-brand-panel{padding:20px 28px}
   .auth-intro{margin-top:14px}
-  .auth-intro p.tagline{font-size:14px}
+  .auth-intro h1{font-size:26px;margin-bottom:8px}
+  .auth-intro p.tagline{font-size:14px;margin-bottom:0}
+  .brand-feats{display:none}
   .otp-box{width:40px;height:48px}
 }
 
@@ -367,8 +406,13 @@ tr.flash{animation:rowflash 1.5s ease-out}
         <span class="logo-word">ICICI&nbsp;Bank</span>
       </div>
       <div class="auth-intro">
-        <h1>Welcome to PAC</h1>
+        <h1>Process Approval Committee</h1>
         <p class="tagline">From proposal to approval — one structured workflow for processes, policies and manuals.</p>
+        <ul class="brand-feats">
+          <li><span class="bf-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 2.5h8l4 4v15h-12z"/><path d="M14.5 2.5v4h4"/><path d="M9.5 12h5M9.5 15.5h5"/></svg></span><div><b>PAC Notes end to end</b><small>New process, review, addendum and discontinuation in one workflow.</small></div></li>
+          <li><span class="bf-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 3.5 7.5 12 12l8.5-4.5z"/><path d="M3.5 12.5 12 17l8.5-4.5"/><path d="M3.5 17 12 21.5l8.5-4.5"/></svg></span><div><b>Manuals &amp; guidelines</b><small>Manual, Operating Guidelines and SOP with version control.</small></div></li>
+          <li><span class="bf-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5 4 5.5v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10v-6z"/><path d="M9 11.8l2.1 2.1 4.3-4.3"/></svg></span><div><b>Secure by design</b><small>OTP-verified access and Seclore-protected document sharing.</small></div></li>
+        </ul>
       </div>
       <svg class="mandala left" viewBox="0 0 240 240" aria-hidden="true">
         <defs><ellipse id="pt" cx="120" cy="56" rx="17" ry="52" fill="none" stroke="currentColor" stroke-width="1"/></defs>
@@ -381,91 +425,54 @@ tr.flash{animation:rowflash 1.5s ease-out}
       <svg class="mandala ghost-orange" viewBox="0 0 240 240" aria-hidden="true"><use href="#pt"/><use href="#pt" transform="rotate(30 120 120)"/><use href="#pt" transform="rotate(60 120 120)"/><use href="#pt" transform="rotate(90 120 120)"/><use href="#pt" transform="rotate(120 120 120)"/><use href="#pt" transform="rotate(150 120 120)"/><use href="#pt" transform="rotate(180 120 120)"/><use href="#pt" transform="rotate(210 120 120)"/><use href="#pt" transform="rotate(240 120 120)"/><use href="#pt" transform="rotate(270 120 120)"/><use href="#pt" transform="rotate(300 120 120)"/><use href="#pt" transform="rotate(330 120 120)"/></svg>
 
       <div class="auth-content">
-        <div class="steps">
-          <span class="step-pill on" id="pill1"><span class="n">1</span>Sign in</span>
-          <span class="step-pill" id="pill2"><span class="n">2</span>Confidentiality</span>
-          <span class="step-pill" id="pill3"><span class="n">3</span>OTP verification</span>
-        </div>
-
         <div id="stateSignin">
-          <h2>Sign In</h2>
+          <h2>Sign in to PAC</h2>
+          <p class="auth-desc">Please enter your NT ID and Password</p>
           <div class="si-fields">
-            <label class="f-field"><span>User ID</span><input id="siUser" type="text" autocomplete="username" maxlength="40"></label>
-            <label class="f-field"><span>Password</span><input id="siPass" type="password" autocomplete="current-password" maxlength="40"></label>
+            <label class="f-field"><span>User ID</span><span class="f-wrap"><svg class="lead" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c.9-3.8 3.6-5.8 7-5.8s6.1 2 7 5.8"/></svg><input id="siUser" type="text" autocomplete="username" maxlength="40"></span></label>
+            <label class="f-field"><span>Password</span><span class="f-wrap"><svg class="lead" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="9.5" rx="2"/><path d="M8 10.5V7.7a4 4 0 0 1 8 0v2.8"/><path d="M12 14.4v2"/></svg><input id="siPass" type="password" autocomplete="current-password" maxlength="40"><button class="eye" id="eyeBtn" type="button" aria-label="Show password"><svg viewBox="0 0 24 24" id="eyeIc" aria-hidden="true"><path d="M2.5 12s3.4-6 9.5-6 9.5 6 9.5 6-3.4 6-9.5 6-9.5-6-9.5-6z"/><circle cx="12" cy="12" r="2.8"/></svg></button></span></label>
           </div>
-          <button class="btn-primary" id="siGo" type="button">Next</button>
+          <p class="policy-line">By using PAC, you agree to the <button class="link-btn" type="button" onclick="openConf()">Confidentiality Policy</button> of the application.</p>
+          <label class="conf-row" id="confRow"><span class="chk"><input type="checkbox" id="confChk"><span class="box">✓</span></span><span class="txt">I accept the above confidentiality statement</span></label>
+          <button class="btn-primary" id="siGo" type="button">Get OTP</button>
         </div>
 
-        <div id="stateVerify" class="hidden">
-        <h2>Verify Your Account</h2>
-        <p class="auth-desc">Confirm the confidentiality statement, then verify with a one-time password to continue.</p>
-
-        <div class="stmt-card" id="stmtCard">
-          <div class="stmt-head" id="stmtHead" role="button" tabindex="0" aria-expanded="false" onclick="toggleStmt()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleStmt()}">
-            <span class="ic"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 4 5.5v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10v-6z"/><path d="M9 11.8l2.1 2.1L15.4 9.6"/></svg></span>
-            <b>Confidentiality Statement</b>
-            <span class="stmt-tag">3 notices</span>
-            <button class="link-btn" type="button" onclick="event.stopPropagation()">FAQs</button>
-            <span class="stmt-more" id="stmtMore">Read more</span>
-            <span class="stmt-chev"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></svg></span>
-          </div>
-          <div class="stmt-text stmt-summary">I understand that by accessing this site, I will be given access to proprietary and confidential information. I acknowledge that all information I will have access to is required to be maintained as strictly confidential as per the requirement of the applicable laws and regulations…</div>
-          <div class="stmt-body">
-            <div class="stmt-text">
-              <p>I understand that by accessing this site, I will be given access to proprietary and confidential information. I acknowledge that all information I will have access to is required to be maintained as strictly confidential as per the requirement of the applicable laws and regulations. I will not reveal any information to any third person and will take steps to prevent any unauthorized access or disclosure of such information to any person unless it has been explicitly authorized by ICICI Bank Limited. I recognize that such information may also have data about the Bank’s past, current or potential customers, unauthorized disclosure of which may cause legal, reputational and financial loss to the Bank and/or to such persons to whom the information pertains.</p>
-              <p style="margin-top:9px">My obligations as above shall continue even after the termination or cessation of my engagement with the Bank. I further acknowledge that a breach of this confidentiality undertaking would be a breach of applicable law.</p>
-              <div class="stmt-notices">
-                <h4>Important notices</h4>
-                <ul>
-                  <li>The lock dates have undergone a change in line with the new PAC operating guidelines (e-circular number 12662). Please plan your activities, accordingly.</li>
-                  <li>Please note that the e-circular will be automatically issued in the e-circular system once the proposal is approved by RMG and SOX. Further, the e-circular number will be automatically updated in the PAC system. Please do not manually issue an e-circular by visiting the e-circular system for the PAC meeting date on or after November 14, 2017.</li>
-                  <li>Kindly ensure that any dissemination of confidential information from the meeting module must be done only in the form of a Seclore protected document. The Seclore protection has to be adopted for sharing documents with internal and external users, auditors, and our subsidiaries on a need to know basis i.e. who are authorised to receive and have a legitimate business need for the information.</li>
-                </ul>
-              </div>
+        <div id="stateOtp" class="hidden">
+          <h2>Verify Your Account</h2>
+          <p class="auth-desc">Enter the one-time password sent to your registered contact.</p>
+          <div id="stateChannel">
+            <span class="field-title">OTP channel</span>
+            <div class="channel-list">
+              <button class="channel-option" id="mobileOption" type="button" onclick="selectChannel('mobile')">
+                <span class="channel-icon"><svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg></span>
+                <span class="channel-text"><b>OTP on Mobile (SMS)</b><small>Send to registered mobile &nbsp;+91 ••••• 43210</small></span>
+                <span class="radio"></span>
+              </button>
+              <button class="channel-option" id="emailOption" type="button" onclick="selectChannel('email')">
+                <span class="channel-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg></span>
+                <span class="channel-text"><b>OTP on Email</b><small>Send to registered email &nbsp;abhishek.s••••@icici.com</small></span>
+                <span class="radio"></span>
+              </button>
             </div>
           </div>
-          <div class="accept-row">
-            <span class="chk"><input type="checkbox" id="acceptChk" onchange="acceptConf(this.checked)" disabled><span class="box">✓</span></span>
-            <label for="acceptChk">I accept the above Confidentiality Statement</label>
-            <button class="link-btn decline" type="button" onclick="declineConf()">I do not accept</button>
+          <div id="otpPanel" class="otp-panel">
+            <div class="sent" aria-live="polite"><span class="sent-mark">✓</span><span id="sentText"></span></div>
+            <span class="field-title" style="margin-top:15px">Enter 6-digit OTP</span>
+            <div class="otp-row">
+              <input class="otp-box" type="text" inputmode="numeric" maxlength="1" aria-label="OTP digit 1">
+              <input class="otp-box" type="text" inputmode="numeric" maxlength="1" aria-label="OTP digit 2">
+              <input class="otp-box" type="text" inputmode="numeric" maxlength="1" aria-label="OTP digit 3">
+              <input class="otp-box" type="text" inputmode="numeric" maxlength="1" aria-label="OTP digit 4">
+              <input class="otp-box" type="text" inputmode="numeric" maxlength="1" aria-label="OTP digit 5">
+              <input class="otp-box" type="text" inputmode="numeric" maxlength="1" aria-label="OTP digit 6">
+            </div>
+            <div class="otp-track"><span id="otpBar"></span></div>
+            <div class="otp-meta">
+              <span id="timerText">Remaining Time: 00:54s</span>
+              <span>Didn’t get OTP? <button id="resendButton" class="link-btn" type="button" onclick="resendOtp()" disabled>Resend</button></span>
+            </div>
+            <button class="btn-primary" type="button" onclick="verifyOtp()">Submit</button>
           </div>
-        </div>
-
-        <div id="denied" class="denied hidden"><b>Access not granted.</b> The application remains unavailable until the confidentiality statement is accepted. &nbsp;<button class="link-btn" type="button" onclick="returnToStmt()">Return</button></div>
-
-        <div id="stateChannel" class="hidden">
-          <span class="field-title">Select OTP channel</span>
-          <div class="channel-list">
-            <button class="channel-option" id="mobileOption" type="button" onclick="selectChannel('mobile')">
-              <span class="channel-icon"><svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg></span>
-              <span class="channel-text"><b>OTP on Mobile (SMS)</b><small>Send to registered mobile &nbsp;+91 ••••• 43210</small></span>
-              <span class="radio"></span>
-            </button>
-            <button class="channel-option" id="emailOption" type="button" onclick="selectChannel('email')">
-              <span class="channel-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg></span>
-              <span class="channel-text"><b>OTP on Email</b><small>Send to registered email &nbsp;abhishek.s••••@icici.com</small></span>
-              <span class="radio"></span>
-            </button>
-          </div>
-        </div>
-
-        <div id="otpPanel" class="otp-panel hidden">
-          <div class="sent" aria-live="polite"><span class="sent-mark">✓</span><span id="sentText"></span></div>
-          <span class="field-title" style="margin-top:15px">Enter 6-digit OTP</span>
-          <div class="otp-row">
-            <input class="otp-box" type="text" inputmode="numeric" maxlength="1" aria-label="OTP digit 1">
-            <input class="otp-box" type="text" inputmode="numeric" maxlength="1" aria-label="OTP digit 2">
-            <input class="otp-box" type="text" inputmode="numeric" maxlength="1" aria-label="OTP digit 3">
-            <input class="otp-box" type="text" inputmode="numeric" maxlength="1" aria-label="OTP digit 4">
-            <input class="otp-box" type="text" inputmode="numeric" maxlength="1" aria-label="OTP digit 5">
-            <input class="otp-box" type="text" inputmode="numeric" maxlength="1" aria-label="OTP digit 6">
-          </div>
-          <div class="otp-meta">
-            <span id="timerText">Remaining Time: 00:54s</span>
-            <span>Didn’t get OTP? <button id="resendButton" class="link-btn" type="button" onclick="resendOtp()" disabled>Resend</button></span>
-          </div>
-          <button class="btn-primary" type="button" onclick="verifyOtp()">Submit</button>
-        </div>
         </div>
 
         <div id="stateSuccess" class="success hidden">
@@ -474,13 +481,34 @@ tr.flash{animation:rowflash 1.5s ease-out}
           <p>Redirecting to PAC home…</p>
           <div class="redirect"><span class="spin"></span> PAC</div>
         </div>
-
-        <div class="legal">By using PAC, you agree to our<br><b>Terms &amp; Conditions</b> and <b>Privacy Policy</b>.</div>
       </div>
     </div>
 
   </div>
 </section>
+
+<div class="conf-ov hidden" id="confOv">
+  <div class="conf-pop" role="dialog" aria-modal="true" aria-label="Confidentiality Statement">
+    <div class="conf-top">
+      <span class="conf-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5 4 5.5v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10v-6z"/><path d="M9 11.8l2.1 2.1L15.4 9.6"/></svg></span>
+      <div><b>Confidentiality Statement</b><small>ICICI Bank · Process Approval Committee</small></div>
+      <button class="conf-x" type="button" onclick="closeConf()" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <div class="conf-body">
+      <p>I understand that by accessing this site, I will be given access to proprietary and confidential information. I acknowledge that all information I will have access to is required to be maintained as strictly confidential as per the requirement of the applicable laws and regulations. I will not reveal any information to any third person and will take steps to prevent any unauthorized access or disclosure of such information to any person unless it has been explicitly authorized by ICICI Bank Limited. I recognize that such information may also have data about the Bank’s past, current or potential customers, unauthorized disclosure of which may cause legal, reputational and financial loss to the Bank and/or to such persons to whom the information pertains.</p>
+      <p>My obligations as above shall continue even after the termination or cessation of my engagement with the Bank. I further acknowledge that a breach of this confidentiality undertaking would be a breach of applicable law.</p>
+      <div class="stmt-notices">
+        <h4>Important notices</h4>
+        <ul>
+          <li>The lock dates have undergone a change in line with the new PAC operating guidelines (e-circular number 12662). Please plan your activities, accordingly.</li>
+          <li>Please note that the e-circular will be automatically issued in the e-circular system once the proposal is approved by RMG and SOX. Further, the e-circular number will be automatically updated in the PAC system. Please do not manually issue an e-circular by visiting the e-circular system for the PAC meeting date on or after November 14, 2017.</li>
+          <li>Kindly ensure that any dissemination of confidential information from the meeting module must be done only in the form of a Seclore protected document. The Seclore protection has to be adopted for sharing documents with internal and external users, auditors, and our subsidiaries on a need to know basis i.e. who are authorised to receive and have a legitimate business need for the information.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="conf-foot"><button class="btn-modal" type="button" onclick="closeConf()">Close</button></div>
+  </div>
+</div>
 
 <section id="screen-home" class="app-screen hidden">
   <header class="app-topbar">
@@ -568,35 +596,30 @@ tr.flash{animation:rowflash 1.5s ease-out}
 </template>
 
 <script>
-let selectedChannel=null,otpSent=false,otpExpired=false,otpTimer=null;
+let selectedChannel=null,otpExpired=false,otpTimer=null;
 const boxes=[...document.querySelectorAll('.otp-box')];
 
 function selectChannel(ch){
-  if(otpSent)return;
   selectedChannel=ch;
   document.getElementById('mobileOption').classList.toggle('selected',ch==='mobile');
   document.getElementById('emailOption').classList.toggle('selected',ch==='email');
   dispatchOtp();
 }
 function dispatchOtp(){
-  otpSent=true;otpExpired=false;
-  document.getElementById('mobileOption').disabled=true;
-  document.getElementById('emailOption').disabled=true;
+  otpExpired=false;
   document.getElementById('sentText').textContent=selectedChannel==='mobile'
     ?'OTP sent to your registered mobile number +91 ••••• 43210 via SMS.'
     :'OTP sent to your registered email address abhishek.s••••@icici.com.';
-  const panel=document.getElementById('otpPanel');
-  panel.classList.remove('hidden');
+  document.getElementById('otpPanel').classList.remove('hidden');
   boxes.forEach(b=>{b.value='';b.classList.remove('invalid')});
-  panel.scrollIntoView({block:'nearest'});
   boxes[0].focus();
   startTimer();
 }
 function startTimer(){
   stopTimer();
   let sec=54;
-  const el=document.getElementById('timerText'),resend=document.getElementById('resendButton');
-  const render=()=>{el.textContent='Remaining Time: 00:'+String(Math.max(sec,0)).padStart(2,'0')+'s'};
+  const el=document.getElementById('timerText'),resend=document.getElementById('resendButton'),bar=document.getElementById('otpBar');
+  const render=()=>{el.textContent='Remaining Time: 00:'+String(Math.max(sec,0)).padStart(2,'0')+'s';bar.style.width=(Math.max(sec,0)/54*100)+'%'};
   render();
   resend.disabled=true;
   otpTimer=setInterval(()=>{
@@ -611,10 +634,7 @@ function startTimer(){
 function stopTimer(){if(otpTimer)clearInterval(otpTimer);otpTimer=null}
 function resendOtp(){
   if(document.getElementById('resendButton').disabled)return;
-  boxes.forEach(b=>{b.value='';b.classList.remove('invalid')});
-  otpExpired=false;
-  boxes[0].focus();
-  startTimer();
+  dispatchOtp();
 }
 boxes.forEach((box,i)=>{
   box.addEventListener('input',()=>{
@@ -634,44 +654,11 @@ boxes.forEach((box,i)=>{
     boxes[Math.min(digits.length,5)].focus();
   });
 });
-function toggleStmt(){
-  const open=document.getElementById('stmtCard').classList.toggle('open');
-  document.getElementById('stmtMore').textContent=open?'Read less':'Read more';
-  document.getElementById('stmtHead').setAttribute('aria-expanded',open?'true':'false');
-  if(open)document.getElementById('acceptChk').disabled=false;
-}
-function acceptConf(on){
-  const ch=document.getElementById('stateChannel'),op=document.getElementById('otpPanel');
-  document.getElementById('denied').classList.add('hidden');
-  if(on){
-    setStep(3);
-    document.getElementById('stmtCard').classList.remove('open');
-    document.getElementById('stmtMore').textContent='Read more';
-    document.getElementById('stmtHead').setAttribute('aria-expanded','false');
-    const target=otpSent?op:ch;
-    target.classList.remove('hidden');
-    target.scrollIntoView({block:'nearest',behavior:'smooth'});
-  }else{
-    ch.classList.add('hidden');op.classList.add('hidden');
-  }
-}
-function declineConf(){
-  document.getElementById('acceptChk').checked=false;
-  acceptConf(false);
-  document.getElementById('denied').classList.remove('hidden');
-}
-function returnToStmt(){
-  document.getElementById('denied').classList.add('hidden');
-  document.getElementById('acceptChk').focus();
-}
-function setStep(n){
-  ['pill1','pill2','pill3'].forEach((id,i)=>{
-    const p=document.getElementById(id),num=p.querySelector('.n');
-    if(i+1<n){p.classList.remove('on');p.classList.add('done');num.textContent='✓'}
-    else if(i+1===n){p.classList.remove('done');p.classList.add('on');num.textContent=String(i+1)}
-    else{p.classList.remove('on','done');num.textContent=String(i+1)}
-  });
-}
+const confOv=document.getElementById('confOv'),confChk=document.getElementById('confChk'),confRow=document.getElementById('confRow');
+function openConf(){confOv.classList.remove('hidden')}
+function closeConf(){confOv.classList.add('hidden')}
+confOv.addEventListener('click',e=>{if(e.target===confOv)closeConf()});
+confChk.addEventListener('change',()=>{confRow.classList.toggle('on',confChk.checked);confRow.classList.remove('miss')});
 const mastersInfo={
   group:{label:'Group',page:'group'},
   parameter:{label:'Parameter',page:'parameter'},
@@ -1337,6 +1324,28 @@ function selectSub(ft){
   document.getElementById('sBody').innerHTML='<div class="m-empty empty-state"><span class="empty-ic"><svg viewBox="0 0 24 24" aria-hidden="true">'+ICONS[sub.icon]+'</svg></span><b>Design in progress</b><p>The detailed layout for the '+sub.label+' screen will be added in the next design cycle.</p></div>';
 }
 let deAns=null;
+const DE_TABS={pacnote:'PAC Note',manual:'Manual',og:'Operating Guidelines (OG)',sop:'Standard Operating Procedure (SOP)'};
+const DE_OPTS=[
+  {t:'New Process',ic:'fileplus'},
+  {t:'Review of Existing Process',ic:'cycle'},
+  {t:'Discontinuation of Existing Process',ic:'calslash'},
+  {t:'Addendum to Existing Process',ic:'filepen'},
+  {t:'Migration of System Pertaining to Product/Service Offering',ic:'swap'}
+];
+function dePlaceholder(title){return '<div class="m-empty empty-state"><span class="empty-ic"><svg viewBox="0 0 24 24" aria-hidden="true">'+ICONS.form+'</svg></span><b>'+title+'</b><p>The detailed layout of this screen will be added in the next design cycle.</p></div>'}
+function showDeTab(t){
+  document.querySelectorAll('.de-tab').forEach(b=>b.classList.toggle('active',b.dataset.dt===t));
+  const el=byId('deTabBody');
+  if(t==='pacnote'){
+    el.innerHTML='<div class="side-head">PAC Note Type</div><div class="de-opt-list">'
+      +DE_OPTS.map(o=>'<button class="de-opt" data-opt="'+o.t+'" type="button"><svg viewBox="0 0 24 24" aria-hidden="true">'+ICONS[o.ic]+'</svg><span>'+o.t+'</span><span class="chev-r">&#8250;</span></button>').join('')+'</div>';
+    el.querySelectorAll('.de-opt').forEach(b=>b.addEventListener('click',()=>dePick(b.dataset.opt)));
+  }else el.innerHTML=dePlaceholder(DE_TABS[t]);
+}
+function dePick(t){
+  byId('deTabs').classList.add('hidden');
+  byId('deTabBody').innerHTML=dePlaceholder(t+' \u2014 Data Entry');
+}
 function deFinish(ans){
   const body=byId('sBody');
   const extra=ans==='Yes'?
@@ -1346,8 +1355,15 @@ function deFinish(ans){
     +'<div class="de-strip"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12.3l2.4 2.4 4.6-5"/></svg>'
     +'<div><b>Privacy declaration completed</b><small>Customer information: '+ans+' \u2014 '+extra+'</small></div>'
     +'<button class="btn-ghost" id="deRestart" type="button">New Declaration</button></div>'
-    +'<div class="m-empty empty-state"><span class="empty-ic"><svg viewBox="0 0 24 24" aria-hidden="true">'+ICONS.form+'</svg></span><b>Proposal Data Entry Form</b><p>You are now clear to capture the proposal details. The detailed layout of this screen will be added in the next design cycle.</p></div></div>';
+    +'<div class="de-tabs" id="deTabs">'
+    +'<button class="de-tab active" data-dt="pacnote" type="button">PAC Note</button>'
+    +'<button class="de-tab" data-dt="manual" type="button">Manual</button>'
+    +'<button class="de-tab" data-dt="og" type="button">Operating Guidelines (OG)</button>'
+    +'<button class="de-tab" data-dt="sop" type="button">Standard Operating Procedure (SOP)</button>'
+    +'</div><div id="deTabBody"></div></div>';
   byId('deRestart').addEventListener('click',()=>renderDataEntry());
+  document.querySelectorAll('.de-tab').forEach(b=>b.addEventListener('click',()=>showDeTab(b.dataset.dt)));
+  showDeTab('pacnote');
 }
 function renderDataEntry(){
   const body=byId('sBody');
@@ -1398,21 +1414,29 @@ function renderDataEntry(){
   });
 }
 const siUser=document.getElementById('siUser'),siPass=document.getElementById('siPass');
-function trySignIn(){
-  [siUser,siPass].forEach(el=>el.classList.remove('invalid'));
+const wrapOf=el=>el.closest('.f-wrap');
+const EYE_OPEN='<path d="M2.5 12s3.4-6 9.5-6 9.5 6 9.5 6-3.4 6-9.5 6-9.5-6-9.5-6z"/><circle cx="12" cy="12" r="2.8"/>';
+const EYE_OFF=EYE_OPEN+'<path d="M4 3.5 20 20.5"/>';
+document.getElementById('eyeBtn').addEventListener('click',()=>{
+  const show=siPass.type==='password';
+  siPass.type=show?'text':'password';
+  document.getElementById('eyeIc').innerHTML=show?EYE_OFF:EYE_OPEN;
+  document.getElementById('eyeBtn').setAttribute('aria-label',show?'Hide password':'Show password');
+  siPass.focus();
+});
+function tryGetOtp(){
+  [siUser,siPass].forEach(el=>wrapOf(el).classList.remove('invalid'));
   const bad=[siUser,siPass].filter(el=>!el.value.trim());
-  if(bad.length){bad.forEach(el=>el.classList.add('invalid'));bad[0].focus();return}
+  if(bad.length){bad.forEach(el=>wrapOf(el).classList.add('invalid'));bad[0].focus();return}
+  if(!confChk.checked){confRow.classList.add('miss');return}
   document.getElementById('stateSignin').classList.add('hidden');
-  document.getElementById('stateVerify').classList.remove('hidden');
-  setStep(2);
-  document.getElementById('stmtCard').classList.remove('open');
-  document.getElementById('stmtMore').textContent='Read more';
-  document.getElementById('stmtHead').setAttribute('aria-expanded','false');
+  document.getElementById('stateOtp').classList.remove('hidden');
+  selectChannel('mobile');
 }
-siUser.addEventListener('input',()=>siUser.classList.remove('invalid'));
-siPass.addEventListener('input',()=>siPass.classList.remove('invalid'));
-[siUser,siPass].forEach(el=>el.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();trySignIn()}}));
-document.getElementById('siGo').addEventListener('click',trySignIn);
+siUser.addEventListener('input',()=>wrapOf(siUser).classList.remove('invalid'));
+siPass.addEventListener('input',()=>wrapOf(siPass).classList.remove('invalid'));
+[siUser,siPass].forEach(el=>el.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();tryGetOtp()}}));
+document.getElementById('siGo').addEventListener('click',tryGetOtp);
 document.querySelectorAll('.nav-tab').forEach(tab=>{
   tab.addEventListener('click',()=>{
     document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
@@ -1438,7 +1462,6 @@ function verifyOtp(){
   document.getElementById('stateChannel').classList.add('hidden');
   document.getElementById('otpPanel').classList.add('hidden');
   document.getElementById('stateSuccess').classList.remove('hidden');
-  setStep(4);
   setTimeout(()=>{
     const home=document.getElementById('screen-home');
     if(home){
