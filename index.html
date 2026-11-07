@@ -36,13 +36,9 @@ button{cursor:pointer}
 .logo-chip{width:38px;height:38px;border-radius:9px;background:#fff;display:grid;place-items:center;font-style:italic;font-weight:800;font-size:21px;color:var(--rust);position:relative;flex:none}
 .logo-chip b{position:absolute;top:-4px;right:-4px;width:12px;height:12px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#EA771D,#9D2E2B);box-shadow:0 1px 4px #00000038}
 .logo-word{font-weight:800;font-style:italic;font-size:18px;letter-spacing:.02em}
-.auth-intro{position:relative;z-index:1;margin-top:clamp(34px,9vh,96px);max-width:520px}
+.auth-intro{position:relative;z-index:1;margin-top:clamp(48px,13vh,120px);max-width:520px}
 .auth-intro h1{font-size:clamp(32px,3.4vw,46px);line-height:1.12;letter-spacing:-.04em;margin:0 0 18px;font-weight:700}
 .auth-intro p.tagline{font-size:17.5px;line-height:1.6;max-width:480px;color:#fff;opacity:.96;margin:0}
-.auth-feats{list-style:none;margin:26px 0 0;padding:0;display:flex;flex-direction:column;gap:15px;max-width:500px}
-.auth-feats li{display:flex;align-items:flex-start;gap:12px;font-size:14.5px;line-height:1.55;font-weight:600;color:#fff}
-.auth-feats svg{width:19px;height:19px;flex:none;margin-top:2px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.auth-feats li b{font-weight:800}
 .mandala{position:absolute;color:#fff;pointer-events:none}
 .mandala.left{width:430px;height:430px;left:-150px;bottom:-170px;opacity:.22}
 .mandala.ghost-orange{color:var(--orange);opacity:.07;width:300px;height:300px;top:-90px;right:-70px;position:absolute;pointer-events:none}
@@ -293,22 +289,14 @@ tr.flash{animation:rowflash 1.5s ease-out}
 .de-strip small{font-size:11px;font-weight:600;color:#5E7A66;display:block;margin-top:2px}
 .de-strip .btn-ghost{margin-left:auto;flex:none}
 .de-done .empty-state{padding:34px 20px}
-.de-intro .btn-new{margin-top:18px}
-.de-intro p{line-height:1.7}
-
-.modal-ov{position:fixed;inset:0;background:#172430AD;display:grid;place-items:center;z-index:95;padding:24px;animation:fade .18s ease-out}
-.modal{width:min(588px,100%);max-height:calc(100vh - 48px);display:flex;flex-direction:column;background:#fff;border-radius:16px;box-shadow:0 30px 80px #101C2766;overflow:hidden;animation:rise .2s ease-out}
-.modal-top{height:5px;background:var(--brand-grad);flex:none}
-.modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:20px 26px 0;flex:none}
-.modal-head h3{margin:0;font-size:16.5px;font-weight:800;letter-spacing:-.01em;color:var(--ink)}
-.modal-sub{font-size:11px;font-weight:700;color:var(--muted);margin-top:4px}
-.modal-x{width:30px;height:30px;flex:none;border:1px solid var(--line);background:#fff;border-radius:8px;display:grid;place-items:center;color:#5E6C79;transition:.13s}
-.modal-x:hover{border-color:#E9B48F;color:var(--rust);background:var(--soft)}
-.modal-x svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
-.modal-body{padding:18px 26px 6px;overflow-y:auto}
-.modal-foot{display:flex;align-items:center;gap:10px;padding:14px 26px 22px;flex:none}
-.modal-foot .f-err{margin-left:0;flex:1}
-.m-step{font-size:9.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--rust);background:var(--soft);border-radius:12px;padding:3px 10px;display:inline-block;margin-bottom:12px}
+.de-inline{max-width:680px}
+#deYesBlock{margin-top:16px;animation:rise .22s ease-out}
+.pt-list{display:flex;flex-direction:column;gap:9px}
+.pt-row{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:11px 13px;background:#fff}
+.pt-num{width:22px;height:22px;border-radius:50%;background:var(--soft);color:var(--rust);font-size:11px;font-weight:800;display:grid;place-items:center;flex:none}
+.pt-row .txt{font-size:12px;font-weight:600;color:#4E5B66;line-height:1.55}
+.de-actions{display:flex;align-items:center;gap:12px;margin-top:18px;padding-top:15px;border-top:1px dashed var(--line)}
+.de-actions .m-err{flex:1}
 .de-q{font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.55;margin:2px 0 14px}
 .opt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .opt-card{display:flex;align-items:center;gap:11px;border:1.5px solid var(--line);border-radius:11px;padding:13px 15px;background:#fff;text-align:left;font-size:13px;font-weight:800;color:#4E5B66;transition:.15s;width:100%}
@@ -349,8 +337,6 @@ tr.flash{animation:rowflash 1.5s ease-out}
   .auth-brand-panel{padding:20px 28px}
   .auth-intro{margin-top:14px}
   .auth-intro p.tagline{font-size:14px}
-  .auth-feats li{font-size:12.5px}
-  .auth-feats{gap:10px;margin-top:16px}
   .otp-box{width:40px;height:48px}
 }
 
@@ -384,11 +370,6 @@ tr.flash{animation:rowflash 1.5s ease-out}
       <div class="auth-intro">
         <h1>Welcome to PAC</h1>
         <p class="tagline">From proposal to approval — one structured workflow for processes, policies and manuals.</p>
-        <ul class="auth-feats">
-          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12.3l2.4 2.4 4.6-5"/></svg><span><b>Submit &amp; approve</b> proposals for new processes, policies and amendments to existing ones</span></li>
-          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12.3l2.4 2.4 4.6-5"/></svg><span>Govern <b>Regulatory, Compliance &amp; Branch Manuals</b>, Operating Guidelines (OG) and SOPs</span></li>
-          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12.3l2.4 2.4 4.6-5"/></svg><span><b>Structured, workflow-based reviews</b> through PAC meetings under ORMG operating guidelines</span></li>
-        </ul>
       </div>
       <svg class="mandala left" viewBox="0 0 240 240" aria-hidden="true">
         <defs><ellipse id="pt" cx="120" cy="56" rx="17" ry="52" fill="none" stroke="currentColor" stroke-width="1"/></defs>
@@ -576,46 +557,6 @@ tr.flash{animation:rowflash 1.5s ease-out}
     </div>
   </div>
 </template>
-
-<div class="modal-ov hidden" id="deModal" role="dialog" aria-modal="true" aria-labelledby="deTitle">
-  <div class="modal">
-    <div class="modal-top"></div>
-    <div class="modal-head">
-      <div>
-        <h3 id="deTitle">Privacy Declaration</h3>
-        <div class="modal-sub">Mandatory check before opening the proposal data entry form</div>
-      </div>
-      <button class="modal-x" id="deX" type="button" aria-label="Close privacy declaration"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-    </div>
-    <div class="modal-body">
-      <div id="deStep1">
-        <span class="m-step">Step 1 of 2 &middot; Customer Information Check</span>
-        <p class="de-q">Does the proposal process/product deal with any customer information?</p>
-        <div class="opt-row">
-          <button class="opt-card" id="deYes" type="button"><span class="radio"></span>Yes</button>
-          <button class="opt-card" id="deNo" type="button"><span class="radio"></span>No</button>
-        </div>
-      </div>
-      <div id="deStep2" class="hidden">
-        <span class="m-step">Step 2 of 2 &middot; Privacy Checks</span>
-        <div class="side-head">I confirm:</div>
-        <div class="chk-list">
-          <label class="chk-row" id="deCk1"><span class="cbx"><input type="checkbox" id="deChk1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></span><span class="txt">The proposal, process or product involves the collection, storage or transmission of customer information.</span></label>
-          <label class="chk-row" id="deCk2"><span class="cbx"><input type="checkbox" id="deChk2"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></span><span class="txt">All customer data used in this proposal is sourced through approved channels with the required customer consent in place.</span></label>
-          <label class="chk-row" id="deCk3"><span class="cbx"><input type="checkbox" id="deChk3"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></span><span class="txt">Access to customer data is restricted to authorised personnel strictly on a need-to-know basis.</span></label>
-          <label class="chk-row" id="deCk4"><span class="cbx"><input type="checkbox" id="deChk4"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></span><span class="txt">Customer data will be retained only for the period permitted under the Bank&rsquo;s data retention policy.</span></label>
-        </div>
-        <div class="de-note"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M12 11.5V16"/></svg><span><b>Note:</b> Customer data includes any derived data of the customer.</span></div>
-        <label class="chk-row chk-final" id="deCkF"><span class="cbx"><input type="checkbox" id="deChkF"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></span><span class="txt"><b>I confirm that the product/process meets the above requirements and is in line with the privacy Standard of the Bank.</b></span></label>
-      </div>
-    </div>
-    <div class="modal-foot">
-      <span class="m-err hidden" id="deErr" role="alert"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5L3 19.5h18z"/><path d="M12 10v4M12 16.8h.01"/></svg><span id="deErrTx"></span></span>
-      <button class="btn-ghost hidden" id="deBack" type="button">Back</button>
-      <button class="btn-new" id="deGo" type="button">Continue</button>
-    </div>
-  </div>
-</div>
 
 <script>
 let selectedChannel=null,otpSent=false,otpExpired=false,otpTimer=null;
@@ -1373,7 +1314,6 @@ function openSection(key){
   main.scrollTop=0;
 }
 function selectSub(ft){
-  closeDe();
   const sec=SECTIONS[currentSection];
   const sub=sec.subs.find(s=>s.id===ft.dataset.sub);
   ft.parentElement.querySelectorAll('.float-tab').forEach(t=>t.classList.toggle('active',t===ft));
@@ -1385,20 +1325,7 @@ function selectSub(ft){
   document.getElementById('sBody').innerHTML='<div class="m-empty empty-state"><span class="empty-ic"><svg viewBox="0 0 24 24" aria-hidden="true">'+ICONS[sub.icon]+'</svg></span><b>Design in progress</b><p>The detailed layout for the '+sub.label+' screen will be added in the next design cycle.</p></div>';
   document.getElementById('sNote').textContent='Placeholder preview \u2014 use the sub tabs on the left to explore the '+sec.title+' module.';
 }
-let deAns=null,deT=null;
-function openDe(){
-  deAns=null;
-  byId('deStep1').classList.remove('hidden');
-  byId('deStep2').classList.add('hidden');
-  byId('deBack').classList.add('hidden');
-  byId('deYes').classList.remove('on','miss');byId('deNo').classList.remove('on','miss');
-  ['deChk1','deChk2','deChk3','deChk4','deChkF'].forEach(i=>{byId(i).checked=false});
-  ['deCk1','deCk2','deCk3','deCk4','deCkF'].forEach(i=>byId(i).classList.remove('miss','on'));
-  byId('deErr').classList.add('hidden');
-  byId('deModal').classList.remove('hidden');
-  byId('deYes').focus();
-}
-function closeDe(){byId('deModal').classList.add('hidden')}
+let deAns=null;
 function deShowErr(t){byId('deErrTx').textContent=t;byId('deErr').classList.remove('hidden')}
 function deFinish(ans){
   const body=byId('sBody');
@@ -1415,53 +1342,62 @@ function deFinish(ans){
 }
 function renderDataEntry(){
   const body=byId('sBody');
-  body.innerHTML='<div class="m-empty empty-state de-intro"><span class="empty-ic"><svg viewBox="0 0 24 24" aria-hidden="true">'+ICONS.form+'</svg></span><b>Start a new proposal</b><p>Every new proposal begins with a short privacy declaration.<br>The data entry form opens once the declaration is completed.</p><button class="btn-new" id="deBegin" type="button">Begin Privacy Declaration</button></div>';
-  byId('sNote').textContent='The privacy declaration popup opens automatically when you open Data Entry.';
-  const begin=byId('deBegin');
-  begin.addEventListener('click',openDe);
-  clearTimeout(deT);
-  deT=setTimeout(()=>{if(begin.isConnected)openDe()},300);
-}
-byId('deYes').addEventListener('click',()=>{deAns='Yes';byId('deYes').classList.add('on');byId('deNo').classList.remove('on','miss');byId('deYes').classList.remove('miss');byId('deErr').classList.add('hidden')});
-byId('deNo').addEventListener('click',()=>{deAns='No';byId('deNo').classList.add('on');byId('deYes').classList.remove('on','miss');byId('deNo').classList.remove('miss');byId('deErr').classList.add('hidden')});
-['deChk1','deChk2','deChk3','deChk4','deChkF'].forEach(id=>{
-  byId(id).addEventListener('change',e=>{
-    const row=e.target.closest('.chk-row');
-    row.classList.toggle('on',e.target.checked);
-    if(e.target.checked)row.classList.remove('miss');
+  body.innerHTML='<div class="de-inline">'
+    +'<p class="de-q">Does the proposal process/product deal with any customer information?</p>'
+    +'<div class="opt-row">'
+    +'<button class="opt-card" id="deYes" type="button"><span class="radio"></span>Yes</button>'
+    +'<button class="opt-card" id="deNo" type="button"><span class="radio"></span>No</button>'
+    +'</div>'
+    +'<div id="deYesBlock" class="hidden">'
+    +'<div class="side-head">I confirm:</div>'
+    +'<div class="pt-list">'
+    +'<div class="pt-row"><span class="pt-num">1</span><span class="txt">The proposal, process or product involves the collection, storage or transmission of customer information.</span></div>'
+    +'<div class="pt-row"><span class="pt-num">2</span><span class="txt">All customer data used in this proposal is sourced through approved channels with the required customer consent in place.</span></div>'
+    +'<div class="pt-row"><span class="pt-num">3</span><span class="txt">Access to customer data is restricted to authorised personnel strictly on a need-to-know basis.</span></div>'
+    +'<div class="pt-row"><span class="pt-num">4</span><span class="txt">Customer data will be retained only for the period permitted under the Bank\u2019s data retention policy.</span></div>'
+    +'</div>'
+    +'<div class="de-note"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M12 11.5V16"/></svg><span><b>Note:</b> Customer data includes any derived data of the customer.</span></div>'
+    +'<label class="chk-row chk-final" id="deCkF"><span class="cbx"><input type="checkbox" id="deChkF"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></span><span class="txt"><b>I confirm that the product/process meets the above requirements and is in line with the privacy Standard of the Bank.</b></span></label>'
+    +'</div>'
+    +'<div class="de-actions"><span class="m-err hidden" id="deErr" role="alert"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5L3 19.5h18z"/><path d="M12 10v4M12 16.8h.01"/></svg><span id="deErrTx"></span></span><button class="btn-new" id="deGo" type="button">Continue</button></div>'
+    +'</div>';
+  deAns=null;
+  byId('sNote').textContent='Answer the customer information question \u2014 the proposal data entry form opens once the declaration is complete.';
+  byId('deYes').addEventListener('click',()=>{
+    deAns='Yes';
+    byId('deYes').classList.add('on');byId('deYes').classList.remove('miss');
+    byId('deNo').classList.remove('on','miss');
+    byId('deYesBlock').classList.remove('hidden');
+    byId('deErr').classList.add('hidden');
+    setTimeout(()=>byId('deYesBlock').scrollIntoView({block:'nearest',behavior:'smooth'}),60);
+  });
+  byId('deNo').addEventListener('click',()=>{
+    deAns='No';
+    byId('deNo').classList.add('on');byId('deNo').classList.remove('miss');
+    byId('deYes').classList.remove('on','miss');
+    byId('deYesBlock').classList.add('hidden');
     byId('deErr').classList.add('hidden');
   });
-});
-byId('deBack').addEventListener('click',()=>{
-  byId('deStep2').classList.add('hidden');byId('deStep1').classList.remove('hidden');
-  byId('deBack').classList.add('hidden');byId('deErr').classList.add('hidden');
-});
-byId('deGo').addEventListener('click',()=>{
-  if(deAns==null){
-    byId('deYes').classList.add('miss');byId('deNo').classList.add('miss');
-    deShowErr('Select Yes or No to continue.');return;
-  }
-  if(!byId('deStep1').classList.contains('hidden')){
-    if(deAns==='No'){closeDe();deFinish('No');return}
-    byId('deStep1').classList.add('hidden');byId('deStep2').classList.remove('hidden');
-    byId('deBack').classList.remove('hidden');byId('deErr').classList.add('hidden');
-    return;
-  }
-  const rows=['deCk1','deCk2','deCk3','deCk4','deCkF'],cks=['deChk1','deChk2','deChk3','deChk4','deChkF'];
-  let missed=false;
-  rows.forEach((r,i)=>{
-    const ok=byId(cks[i]).checked;
-    byId(r).classList.toggle('miss',!ok);
-    if(!ok)missed=true;
+  byId('deChkF').addEventListener('change',e=>{
+    byId('deCkF').classList.toggle('on',e.target.checked);
+    if(e.target.checked)byId('deCkF').classList.remove('miss');
+    byId('deErr').classList.add('hidden');
   });
-  if(missed){deShowErr('Please confirm all the highlighted statements to continue.');return}
-  closeDe();deFinish('Yes');
-});
-byId('deX').addEventListener('click',closeDe);
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!byId('deModal').classList.contains('hidden'))closeDe()});
+  byId('deGo').addEventListener('click',()=>{
+    if(deAns==null){
+      byId('deYes').classList.add('miss');byId('deNo').classList.add('miss');
+      deShowErr('Select Yes or No to continue.');return;
+    }
+    if(deAns==='No'){deFinish('No');return}
+    if(!byId('deChkF').checked){
+      byId('deCkF').classList.add('miss');
+      deShowErr('Please tick the confirmation below to continue.');return;
+    }
+    deFinish('Yes');
+  });
+}
 document.querySelectorAll('.nav-tab').forEach(tab=>{
   tab.addEventListener('click',()=>{
-    closeDe();
     document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
     tab.classList.add('active');
     const main=document.getElementById('appMain');
