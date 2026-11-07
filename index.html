@@ -75,7 +75,6 @@ button{cursor:pointer}
 .otp-meta{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:10px;font-size:10px;color:var(--muted)}
 .link-btn{border:0;background:none;color:var(--rust);font-size:10px;font-weight:800;padding:0}
 .link-btn:disabled{color:#AAB2B9;cursor:not-allowed}
-.error{color:#B42318;font-size:10px;min-height:16px;margin-top:6px;font-weight:700}
 
 .btn-primary{width:100%;background:var(--brand-grad);color:#fff;border:0;border-radius:7px;padding:13px;font-size:12.5px;font-weight:800;letter-spacing:.02em;margin-top:16px;box-shadow:0 6px 16px #9D2E2B33}
 .btn-primary:hover{filter:brightness(1.05)}
@@ -98,17 +97,20 @@ button{cursor:pointer}
 .step-pill.done{background:#EAF6EE;color:var(--green)}
 .step-pill.done .n{background:var(--green);color:#fff}
 .stmt-card{border:1px solid var(--line);border-radius:9px;background:#fff;overflow:hidden}
-.stmt-head{display:flex;align-items:center;gap:9px;padding:11px 14px;border-bottom:1px solid var(--line);background:#FBFCFD}
+.stmt-head{display:flex;align-items:center;gap:9px;padding:11px 14px;border-bottom:1px solid var(--line);background:#FBFCFD;cursor:pointer;user-select:none;transition:background .15s}
+.stmt-head:hover{background:#F4F6F8}
 .stmt-head .ic{width:30px;height:30px;border-radius:8px;background:var(--soft);color:var(--rust);display:grid;place-items:center;flex:none}
 .stmt-head b{font-size:12px;flex:1}
 .stmt-tag{font-size:8.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;background:#FCEDEC;color:#A33224;border-radius:12px;padding:3px 8px;white-space:nowrap}
+.stmt-more{font-size:10px;font-weight:800;color:var(--rust);white-space:nowrap}
+.stmt-chev{width:22px;height:22px;border:1px solid var(--line);border-radius:6px;background:#fff;color:#5E6C79;display:grid;place-items:center;flex:none;transition:transform .18s}
+.stmt-card.open .stmt-chev{transform:rotate(180deg)}
 .stmt-text{padding:12px 14px;font-size:10.5px;line-height:1.7;color:#52606D}
 .stmt-text p{margin:0}
 .stmt-summary{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .stmt-card.open .stmt-summary{display:none}
 .stmt-body{display:none}
 .stmt-card.open .stmt-body{display:block}
-.stmt-togglebar{padding:0 14px 11px}
 .stmt-notices{background:#FCEDEC;border:1px solid #F3C9C4;border-radius:7px;padding:10px 13px;margin-top:12px}
 .stmt-notices h4{margin:0 0 7px;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#A33224}
 .stmt-notices ul{margin:0;padding:0}
@@ -118,6 +120,8 @@ button{cursor:pointer}
 .accept-row label{font-size:11px;font-weight:800;cursor:pointer;flex:1}
 .chk{position:relative;width:18px;height:18px;flex:none}
 .chk input{position:absolute;inset:0;opacity:0;cursor:pointer;margin:0}
+.chk input:disabled{cursor:not-allowed}
+.chk input:disabled+.box{opacity:.45}
 .chk .box{width:18px;height:18px;border:1.5px solid #B9C2C9;border-radius:5px;background:#fff;display:grid;place-items:center;color:#fff;font-size:11px;transition:.15s;pointer-events:none}
 .chk input:checked+.box{background:var(--green);border-color:var(--green)}
 .decline{color:#98A1A9}
@@ -192,13 +196,13 @@ button{cursor:pointer}
 .add-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .add-head>b{font-size:12.5px;font-weight:800;color:var(--ink)}
 .edit-tag{font-size:10.5px;font-weight:800;color:var(--rust);background:#fff;border:1px solid #E9B48F;border-radius:12px;padding:3px 10px;animation:rise .18s ease-out}
-.f-err{margin-left:auto;color:#B42318;font-size:10.5px;font-weight:800;text-align:right}
 .add-fields{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap}
 .add-fields.row-center{align-items:center}
 .f-field{display:flex;flex-direction:column;gap:5px;font-size:10.5px;font-weight:800;color:#5E6C79;flex:1 1 170px;min-width:0}
 .f-field span i{color:#B42318;font-style:normal}
 .f-field input{border:1px solid #D8DFE5;border-radius:7px;padding:9px 11px;font-size:12.5px;font-weight:600;color:var(--ink);outline:none;background:#fff;width:100%}
 .f-field input:focus{border-color:var(--orange);box-shadow:0 0 0 3px #EA771D1A}
+.f-field input.invalid,.otp-box.invalid{border-color:#E5484D!important;background:#FDF1F0!important}
 .f-field input::placeholder{color:#AAB4BC;font-weight:500}
 .add-actions{display:flex;gap:8px;margin-left:auto;flex:none}
 .btn-ghost{border:1px solid #D8DFE5;background:#fff;color:#5E6C79;border-radius:9px;padding:9px 14px;font-size:12px;font-weight:800}
@@ -211,7 +215,8 @@ button{cursor:pointer}
 .switch input:checked+.sw-track::after{left:17px}
 .switch input:focus-visible+.sw-track{outline:2px solid var(--orange);outline-offset:2px}
 .sw-lab{font-size:10.5px;font-weight:800;color:#5E6C79}
-.edit-hint{font-size:10.5px;font-weight:700;color:#8A97A3}
+.si-fields{display:flex;flex-direction:column;gap:13px}
+.si-fields .f-field{flex:1 1 100%}
 .tbl-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;flex:none}
 .search-box{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:8px 12px;flex:1 1 300px;max-width:400px}
 .search-box:focus-within{border-color:var(--orange);box-shadow:0 0 0 3px #EA771D1A}
@@ -268,7 +273,6 @@ button{cursor:pointer}
 .pg-btn:disabled{opacity:.4;cursor:default}
 .no-hit{padding:28px;text-align:center}
 .no-hit b{font-size:12.5px;color:var(--ink)}
-.no-hit p{margin:5px 0 0;font-size:11px;color:var(--muted)}
 @keyframes rowflash{from{background:var(--soft)}to{background:#fff}}
 tr.flash{animation:rowflash 1.5s ease-out}
 .m-ok,.m-off{font-size:11px;font-weight:800;border-radius:20px;padding:3px 10px;display:inline-block}
@@ -280,8 +284,6 @@ tr.flash{animation:rowflash 1.5s ease-out}
 .empty-ic svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .empty-state b{display:block;font-size:14px;color:var(--ink)}
 .empty-state p{margin:7px 0 0;font-size:11.5px;color:var(--muted);line-height:1.6}
-.card-note{margin-top:auto;display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:#8A6E4B;background:var(--soft);border:1px dashed #E4C9A4;border-radius:9px;padding:9px 13px;flex:none}
-.card-note svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;flex:none}
 
 .de-strip{display:flex;align-items:center;gap:13px;border:1px solid #BFDCc8;background:#F2FAF5;border-radius:11px;padding:13px 16px;flex:none}
 .de-strip svg{width:21px;height:21px;flex:none;fill:none;stroke:var(--green);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
@@ -295,8 +297,7 @@ tr.flash{animation:rowflash 1.5s ease-out}
 .pt-row{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:11px 13px;background:#fff}
 .pt-num{width:22px;height:22px;border-radius:50%;background:var(--soft);color:var(--rust);font-size:11px;font-weight:800;display:grid;place-items:center;flex:none}
 .pt-row .txt{font-size:12px;font-weight:600;color:#4E5B66;line-height:1.55}
-.de-actions{display:flex;align-items:center;gap:12px;margin-top:18px;padding-top:15px;border-top:1px dashed var(--line)}
-.de-actions .m-err{flex:1}
+.de-actions{display:flex;align-items:center;justify-content:flex-end;gap:12px;margin-top:18px;padding-top:15px;border-top:1px dashed var(--line)}
 .de-q{font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.55;margin:2px 0 14px}
 .opt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .opt-card{display:flex;align-items:center;gap:11px;border:1.5px solid var(--line);border-radius:11px;padding:13px 15px;background:#fff;text-align:left;font-size:13px;font-weight:800;color:#4E5B66;transition:.15s;width:100%}
@@ -327,8 +328,6 @@ tr.flash{animation:rowflash 1.5s ease-out}
 .de-note span{font-size:11.5px;font-weight:700;color:#8A6E4B;line-height:1.55}
 .de-note b{font-weight:800}
 .chk-final{border-left:3px solid var(--rust);margin-top:12px}
-.m-err{color:#B42318;font-size:11px;font-weight:800;display:flex;align-items:center;gap:6px}
-.m-err svg{width:14px;height:14px;fill:none;stroke:#B42318;stroke-width:1.8;stroke-linecap:round;flex:none}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
 @keyframes fade{from{opacity:0}to{opacity:1}}
 
@@ -382,20 +381,33 @@ tr.flash{animation:rowflash 1.5s ease-out}
       <svg class="mandala ghost-orange" viewBox="0 0 240 240" aria-hidden="true"><use href="#pt"/><use href="#pt" transform="rotate(30 120 120)"/><use href="#pt" transform="rotate(60 120 120)"/><use href="#pt" transform="rotate(90 120 120)"/><use href="#pt" transform="rotate(120 120 120)"/><use href="#pt" transform="rotate(150 120 120)"/><use href="#pt" transform="rotate(180 120 120)"/><use href="#pt" transform="rotate(210 120 120)"/><use href="#pt" transform="rotate(240 120 120)"/><use href="#pt" transform="rotate(270 120 120)"/><use href="#pt" transform="rotate(300 120 120)"/><use href="#pt" transform="rotate(330 120 120)"/></svg>
 
       <div class="auth-content">
+        <div class="steps">
+          <span class="step-pill on" id="pill1"><span class="n">1</span>Sign in</span>
+          <span class="step-pill" id="pill2"><span class="n">2</span>Confidentiality</span>
+          <span class="step-pill" id="pill3"><span class="n">3</span>OTP verification</span>
+        </div>
+
+        <div id="stateSignin">
+          <h2>Sign In</h2>
+          <div class="si-fields">
+            <label class="f-field"><span>User ID</span><input id="siUser" type="text" autocomplete="username" maxlength="40"></label>
+            <label class="f-field"><span>Password</span><input id="siPass" type="password" autocomplete="current-password" maxlength="40"></label>
+          </div>
+          <button class="btn-primary" id="siGo" type="button">Next</button>
+        </div>
+
+        <div id="stateVerify" class="hidden">
         <h2>Verify Your Account</h2>
         <p class="auth-desc">Confirm the confidentiality statement, then verify with a one-time password to continue.</p>
 
-        <div class="steps">
-          <span class="step-pill on" id="pill1"><span class="n">1</span>Confidentiality</span>
-          <span class="step-pill" id="pill2"><span class="n">2</span>OTP verification</span>
-        </div>
-
         <div class="stmt-card" id="stmtCard">
-          <div class="stmt-head">
+          <div class="stmt-head" id="stmtHead" role="button" tabindex="0" aria-expanded="false" onclick="toggleStmt()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleStmt()}">
             <span class="ic"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 4 5.5v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10v-6z"/><path d="M9 11.8l2.1 2.1L15.4 9.6"/></svg></span>
             <b>Confidentiality Statement</b>
             <span class="stmt-tag">3 notices</span>
-            <button class="link-btn" type="button">FAQs</button>
+            <button class="link-btn" type="button" onclick="event.stopPropagation()">FAQs</button>
+            <span class="stmt-more" id="stmtMore">Read more</span>
+            <span class="stmt-chev"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></svg></span>
           </div>
           <div class="stmt-text stmt-summary">I understand that by accessing this site, I will be given access to proprietary and confidential information. I acknowledge that all information I will have access to is required to be maintained as strictly confidential as per the requirement of the applicable laws and regulations…</div>
           <div class="stmt-body">
@@ -412,9 +424,8 @@ tr.flash{animation:rowflash 1.5s ease-out}
               </div>
             </div>
           </div>
-          <div class="stmt-togglebar"><button class="link-btn" type="button" id="stmtToggle" onclick="toggleStmt()">Expand full statement ▾</button></div>
           <div class="accept-row">
-            <span class="chk"><input type="checkbox" id="acceptChk" onchange="acceptConf(this.checked)"><span class="box">✓</span></span>
+            <span class="chk"><input type="checkbox" id="acceptChk" onchange="acceptConf(this.checked)" disabled><span class="box">✓</span></span>
             <label for="acceptChk">I accept the above Confidentiality Statement</label>
             <button class="link-btn decline" type="button" onclick="declineConf()">I do not accept</button>
           </div>
@@ -453,8 +464,8 @@ tr.flash{animation:rowflash 1.5s ease-out}
             <span id="timerText">Remaining Time: 00:54s</span>
             <span>Didn’t get OTP? <button id="resendButton" class="link-btn" type="button" onclick="resendOtp()" disabled>Resend</button></span>
           </div>
-          <div class="error" id="otpError" aria-live="polite"></div>
           <button class="btn-primary" type="button" onclick="verifyOtp()">Submit</button>
+        </div>
         </div>
 
         <div id="stateSuccess" class="success hidden">
@@ -527,7 +538,6 @@ tr.flash{animation:rowflash 1.5s ease-out}
             <h2 id="mTitle"></h2>
           </div>
           <div id="mBody"></div>
-          <div class="card-note"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M12 11.5V16"/></svg><span id="mNote"></span></div>
         </div>
       </div>
     </div>
@@ -551,7 +561,6 @@ tr.flash{animation:rowflash 1.5s ease-out}
             <button class="btn-new hidden" id="sNew" type="button"></button>
           </div>
           <div id="sBody"></div>
-          <div class="card-note"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M12 11.5V16"/></svg><span id="sNote"></span></div>
         </div>
       </div>
     </div>
@@ -578,8 +587,7 @@ function dispatchOtp(){
     :'OTP sent to your registered email address abhishek.s••••@icici.com.';
   const panel=document.getElementById('otpPanel');
   panel.classList.remove('hidden');
-  boxes.forEach(b=>b.value='');
-  document.getElementById('otpError').textContent='';
+  boxes.forEach(b=>{b.value='';b.classList.remove('invalid')});
   panel.scrollIntoView({block:'nearest'});
   boxes[0].focus();
   startTimer();
@@ -603,14 +611,14 @@ function startTimer(){
 function stopTimer(){if(otpTimer)clearInterval(otpTimer);otpTimer=null}
 function resendOtp(){
   if(document.getElementById('resendButton').disabled)return;
-  boxes.forEach(b=>b.value='');
-  document.getElementById('otpError').textContent='';
+  boxes.forEach(b=>{b.value='';b.classList.remove('invalid')});
   otpExpired=false;
   boxes[0].focus();
   startTimer();
 }
 boxes.forEach((box,i)=>{
   box.addEventListener('input',()=>{
+    box.classList.remove('invalid');
     box.value=box.value.replace(/\D/g,'').slice(-1);
     if(box.value&&i<boxes.length-1)boxes[i+1].focus();
   });
@@ -628,15 +636,18 @@ boxes.forEach((box,i)=>{
 });
 function toggleStmt(){
   const open=document.getElementById('stmtCard').classList.toggle('open');
-  document.getElementById('stmtToggle').textContent=open?'Collapse statement ▴':'Expand full statement ▾';
+  document.getElementById('stmtMore').textContent=open?'Read less':'Read more';
+  document.getElementById('stmtHead').setAttribute('aria-expanded',open?'true':'false');
+  if(open)document.getElementById('acceptChk').disabled=false;
 }
 function acceptConf(on){
   const ch=document.getElementById('stateChannel'),op=document.getElementById('otpPanel');
   document.getElementById('denied').classList.add('hidden');
   if(on){
-    setStep(2);
+    setStep(3);
     document.getElementById('stmtCard').classList.remove('open');
-    document.getElementById('stmtToggle').textContent='Expand full statement ▾';
+    document.getElementById('stmtMore').textContent='Read more';
+    document.getElementById('stmtHead').setAttribute('aria-expanded','false');
     const target=otpSent?op:ch;
     target.classList.remove('hidden');
     target.scrollIntoView({block:'nearest',behavior:'smooth'});
@@ -654,9 +665,12 @@ function returnToStmt(){
   document.getElementById('acceptChk').focus();
 }
 function setStep(n){
-  const p1=document.getElementById('pill1'),p2=document.getElementById('pill2');
-  if(n>=2){p1.classList.remove('on');p1.classList.add('done');p1.querySelector('.n').textContent='✓';p2.classList.add('on')}
-  if(n>=3){p2.classList.remove('on');p2.classList.add('done');p2.querySelector('.n').textContent='✓'}
+  ['pill1','pill2','pill3'].forEach((id,i)=>{
+    const p=document.getElementById(id),num=p.querySelector('.n');
+    if(i+1<n){p.classList.remove('on');p.classList.add('done');num.textContent='✓'}
+    else if(i+1===n){p.classList.remove('done');p.classList.add('on');num.textContent=String(i+1)}
+    else{p.classList.remove('on','done');num.textContent=String(i+1)}
+  });
 }
 const mastersInfo={
   group:{label:'Group',page:'group'},
@@ -843,16 +857,17 @@ const PAGES={};
 function initCrud(o){
   let page=1,editId=null;
   byId(o.mount).innerHTML=o.html;
-  const tb=byId(o.ids.body),cnt=byId(o.ids.cnt),show=byId(o.ids.show),pager=byId(o.ids.pager),err=byId(o.ids.err),form=byId(o.ids.form),submit=byId(o.ids.submit),cancel=byId(o.ids.cancel),tag=byId(o.ids.tag),search=byId(o.ids.search);
+  const tb=byId(o.ids.body),cnt=byId(o.ids.cnt),show=byId(o.ids.show),pager=byId(o.ids.pager),form=byId(o.ids.form),submit=byId(o.ids.submit),cancel=byId(o.ids.cancel),tag=byId(o.ids.tag),search=byId(o.ids.search);
   const head=o.ids.head?byId(o.ids.head):null,extra=o.ids.extra?byId(o.ids.extra):null;
-  const syncHead=()=>{if(head)head.classList.toggle('hidden',tag.classList.contains('hidden')&&!err.textContent)};
+  const syncHead=()=>{if(head)head.classList.toggle('hidden',tag.classList.contains('hidden'))};
+  const clearInvalid=()=>form.querySelectorAll('.invalid').forEach(el=>el.classList.remove('invalid'));
   const filtered=()=>{const q=search.value.trim().toLowerCase();return q?o.data.filter(r=>o.search(r).toLowerCase().includes(q)):o.data.slice()};
   function draw(flashId){
     const list=filtered(),tp=Math.max(1,Math.ceil(list.length/10));
     if(page>tp)page=tp;
     const start=(page-1)*10,rows=list.slice(start,start+10);
     tb.innerHTML=rows.length?rows.map(r=>o.row(r)).join(''):
-      '<tr><td colspan="'+o.cols+'"><div class="no-hit"><b>No matching records</b><p>Adjust the search text and try again.</p></div></td></tr>';
+      '<tr><td colspan="'+o.cols+'"><div class="no-hit"><b>No matching records</b></div></td></tr>';
     cnt.textContent=list.length+(list.length===1?' record':' records');
     show.textContent=list.length?'Showing '+(start+1)+'\u2013'+Math.min(start+10,list.length)+' of '+list.length:'Showing 0 of 0';
     let h='<button class="pg-btn" type="button" data-pg="'+(page-1)+'"'+(page===1?' disabled':'')+'>&#8249;</button>';
@@ -863,25 +878,26 @@ function initCrud(o){
     tb.querySelectorAll('.row-edit').forEach(b=>b.addEventListener('click',()=>startEdit(+b.dataset.id)));
     if(flashId!=null){const tr=tb.querySelector('tr[data-id="'+flashId+'"]');if(tr){tr.classList.add('flash');setTimeout(()=>tr.classList.remove('flash'),1600)}}
   }
-  function stopEdit(){editId=null;form.classList.remove('editing');tag.classList.add('hidden');cancel.classList.add('hidden');submit.textContent=o.addLabel;if(extra)extra.classList.add('hidden');o.clear();err.textContent='';syncHead()}
+  function stopEdit(){editId=null;form.classList.remove('editing');tag.classList.add('hidden');cancel.classList.add('hidden');submit.textContent=o.addLabel;if(extra)extra.classList.add('hidden');o.clear();clearInvalid();syncHead()}
   function startEdit(id){
     const rec=o.data.find(r=>r.id===id);if(!rec)return;
     editId=id;o.set(rec);form.classList.add('editing');
     if(extra)extra.classList.remove('hidden');
     tag.textContent='Editing \u201C'+o.disp(rec)+'\u201D';tag.classList.remove('hidden');
-    cancel.classList.remove('hidden');submit.textContent=o.updateLabel;err.textContent='';syncHead();
+    cancel.classList.remove('hidden');submit.textContent=o.updateLabel;syncHead();
     form.scrollIntoView({block:'nearest',behavior:'smooth'});
     const fi=form.querySelector('input:not(:disabled)');if(fi)fi.focus();
   }
   search.addEventListener('input',()=>{page=1;draw()});
   cancel.addEventListener('click',stopEdit);
+  form.addEventListener('input',e=>{if(e.target.classList.contains('invalid'))e.target.classList.remove('invalid')});
   form.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.tagName==='INPUT'&&e.target.type!=='checkbox'){e.preventDefault();submit.click()}});
   submit.addEventListener('click',()=>{
-    const d=o.read(),v=o.validate(d);
-    if(v){err.textContent=v;syncHead();return}
+    clearInvalid();
+    const d=o.read(),bad=o.bad(d);
+    if(bad.length){bad.forEach(id=>byId(id).classList.add('invalid'));const fi=byId(bad[0]);if(fi)fi.focus();return}
     const dup=o.data.find(r=>r.id!==editId&&o.dupKey(r).toLowerCase()===o.dupKey(d).toLowerCase());
-    if(dup){err.textContent=o.dupMsg;syncHead();return}
-    err.textContent='';syncHead();
+    if(dup){byId(o.dupField).classList.add('invalid');return}
     if(editId!=null){Object.assign(o.data.find(r=>r.id===editId),d);const fid=editId;stopEdit();draw(fid)}
     else{if(o.defaults)o.defaults(d);d.id=Math.max(0,...o.data.map(r=>r.id))+1;o.data.unshift(d);page=1;const fid=d.id;stopEdit();draw(fid)}
   });
@@ -891,11 +907,11 @@ function initCrud(o){
 PAGES.group=()=>{
   activeCrud=initCrud({
     mount:'mBody',cols:7,data:groupData,
-    addLabel:'Add Group',updateLabel:'Update Group',dupMsg:'A group with this name already exists.',
-    ids:{form:'gpForm',body:'gpBody',cnt:'gpCnt',show:'gpShow',pager:'gpPager',err:'gpErr',submit:'gpSubmit',cancel:'gpCancel',tag:'gpTag',search:'gpSearch',head:'gpHead',extra:'gpExtra'},
+    addLabel:'Add Group',updateLabel:'Update Group',
+    ids:{form:'gpForm',body:'gpBody',cnt:'gpCnt',show:'gpShow',pager:'gpPager',submit:'gpSubmit',cancel:'gpCancel',tag:'gpTag',search:'gpSearch',head:'gpHead',extra:'gpExtra'},
     html:'<div class="crud">'
       +'<div class="add-panel" id="gpForm">'
-      +'<div class="add-head hidden" id="gpHead"><span class="edit-tag hidden" id="gpTag"></span><span class="f-err" id="gpErr" role="alert"></span></div>'
+      +'<div class="add-head hidden" id="gpHead"><span class="edit-tag hidden" id="gpTag"></span></div>'
       +'<div class="add-fields">'
       +'<label class="f-field"><span>Group Name <i>*</i></span><input id="gpName" type="text" maxlength="60" placeholder="e.g. Credit Administration Group"></label>'
       +'<label class="f-field"><span>Department Name <i>*</i></span><input id="gpDept" type="text" maxlength="60" placeholder="e.g. Retail Banking"></label>'
@@ -924,7 +940,7 @@ PAGES.group=()=>{
     defaults:d=>{d.active='Y';d.comp='No';d.branch='No';d.reg='No'},
     set:g=>{byId('gpName').value=g.name;byId('gpDept').value=g.dept;byId('gpActive').checked=g.active==='Y';byId('gpComp').checked=g.comp==='Yes';byId('gpBranch').checked=g.branch==='Yes';byId('gpReg').checked=g.reg==='Yes'},
     clear:()=>{byId('gpName').value='';byId('gpDept').value='';byId('gpActive').checked=true;byId('gpComp').checked=false;byId('gpBranch').checked=false;byId('gpReg').checked=false},
-    validate:d=>!d.name.trim()?'Enter the group name.':!d.dept.trim()?'Enter the department name.':'',
+    bad:d=>[!d.name.trim()&&'gpName',!d.dept.trim()&&'gpDept'].filter(Boolean),dupField:'gpName',
     row:g=>'<tr data-id="'+g.id+'">'
       +'<td><b>'+esc(g.name)+'</b></td><td>'+esc(g.dept)+'</td>'
       +'<td class="c"><span class="'+(g.active==='Y'?'m-ok':'m-off')+'">'+g.active+'</span></td>'
@@ -937,11 +953,11 @@ PAGES.group=()=>{
 PAGES.parameter=()=>{
   activeCrud=initCrud({
     mount:'mBody',cols:4,data:paramData,
-    addLabel:'Add Parameter',updateLabel:'Update Parameter',dupMsg:'A parameter with this name already exists.',
-    ids:{form:'pmForm',body:'pmBody',cnt:'pmCnt',show:'pmShow',pager:'pmPager',err:'pmErr',submit:'pmSubmit',cancel:'pmCancel',tag:'pmTag',search:'pmSearch',head:'pmHead',extra:'pmExtra'},
+    addLabel:'Add Parameter',updateLabel:'Update Parameter',
+    ids:{form:'pmForm',body:'pmBody',cnt:'pmCnt',show:'pmShow',pager:'pmPager',submit:'pmSubmit',cancel:'pmCancel',tag:'pmTag',search:'pmSearch',head:'pmHead',extra:'pmExtra'},
     html:'<div class="crud">'
       +'<div class="add-panel" id="pmForm">'
-      +'<div class="add-head hidden" id="pmHead"><span class="edit-tag hidden" id="pmTag"></span><span class="f-err" id="pmErr" role="alert"></span></div>'
+      +'<div class="add-head hidden" id="pmHead"><span class="edit-tag hidden" id="pmTag"></span></div>'
       +'<div class="add-fields">'
       +'<label class="f-field"><span>Parameter Name <i>*</i></span><input id="pmName" type="text" maxlength="60" placeholder="e.g. MAX_AGENDA_ITEMS"></label>'
       +'<label class="f-field"><span>Parameter Value <i>*</i></span><input id="pmValue" type="text" maxlength="120" placeholder="e.g. 25"></label>'
@@ -966,7 +982,7 @@ PAGES.parameter=()=>{
     defaults:d=>{d.active='Y'},
     set:p=>{byId('pmName').value=p.name;byId('pmValue').value=p.value;byId('pmActive').checked=p.active==='Y'},
     clear:()=>{byId('pmName').value='';byId('pmValue').value='';byId('pmActive').checked=true},
-    validate:d=>!d.name.trim()?'Enter the parameter name.':!d.value.trim()?'Enter the parameter value.':'',
+    bad:d=>[!d.name.trim()&&'pmName',!d.value.trim()&&'pmValue'].filter(Boolean),dupField:'pmName',
     row:p=>'<tr data-id="'+p.id+'">'
       +'<td><b>'+esc(p.name)+'</b></td><td>'+esc(p.value)+'</td>'
       +'<td class="c"><span class="'+(p.active==='Y'?'m-ok':'m-off')+'">'+p.active+'</span></td>'
@@ -976,11 +992,11 @@ PAGES.parameter=()=>{
 PAGES.ldap=()=>{
   activeCrud=initCrud({
     mount:'mBody',cols:7,data:ldapData,
-    addLabel:'Add Support Group',updateLabel:'Update Support Group',dupMsg:'A support group with this name already exists.',
-    ids:{form:'lgForm',body:'lgBody',cnt:'lgCnt',show:'lgShow',pager:'lgPager',err:'lgErr',submit:'lgSubmit',cancel:'lgCancel',tag:'lgTag',search:'lgSearch',head:'lgHeadRow'},
+    addLabel:'Add Support Group',updateLabel:'Update Support Group',
+    ids:{form:'lgForm',body:'lgBody',cnt:'lgCnt',show:'lgShow',pager:'lgPager',submit:'lgSubmit',cancel:'lgCancel',tag:'lgTag',search:'lgSearch',head:'lgHeadRow'},
     html:'<div class="crud">'
       +'<div class="add-panel" id="lgForm">'
-      +'<div class="add-head hidden" id="lgHeadRow"><span class="edit-tag hidden" id="lgTag"></span><span class="f-err" id="lgErr" role="alert"></span></div>'
+      +'<div class="add-head hidden" id="lgHeadRow"><span class="edit-tag hidden" id="lgTag"></span></div>'
       +'<div class="add-fields">'
       +'<label class="f-field"><span>Group Name <i>*</i></span><input id="lgName" type="text" maxlength="60" placeholder="e.g. PAC-CREDIT-SUPPORT"></label>'
       +'<label class="f-field"><span>Display Name <i>*</i></span><input id="lgDisp" type="text" maxlength="60" placeholder="e.g. PAC Credit Support"></label>'
@@ -1007,7 +1023,7 @@ PAGES.ldap=()=>{
     read:()=>({name:byId('lgName').value,display:byId('lgDisp').value,email:byId('lgEmail').value,head:byId('lgHead').value,active:byId('lgActive').checked?'Y':'N',mandatory:byId('lgMand').checked?'Y':'N'}),
     set:g=>{byId('lgName').value=g.name;byId('lgDisp').value=g.display;byId('lgEmail').value=g.email;byId('lgHead').value=g.head;byId('lgActive').checked=g.active==='Y';byId('lgMand').checked=g.mandatory==='Y'},
     clear:()=>{byId('lgName').value='';byId('lgDisp').value='';byId('lgEmail').value='';byId('lgHead').value='';byId('lgActive').checked=true;byId('lgMand').checked=false},
-    validate:d=>!d.name.trim()?'Enter the group name.':!d.display.trim()?'Enter the display name.':!d.email.trim()?'Enter the email ID.':!EMAIL_RE.test(d.email.trim())?'Enter a valid email ID.':!d.head.trim()?'Enter the group head email ID.':!EMAIL_RE.test(d.head.trim())?'Enter a valid group head email ID.':'',
+    bad:d=>[!d.name.trim()&&'lgName',!d.display.trim()&&'lgDisp',(!d.email.trim()||!EMAIL_RE.test(d.email.trim()))&&'lgEmail',(!d.head.trim()||!EMAIL_RE.test(d.head.trim()))&&'lgHead'].filter(Boolean),dupField:'lgName',
     row:g=>'<tr data-id="'+g.id+'">'
       +'<td><b>'+esc(g.name)+'</b></td><td>'+esc(g.display)+'</td>'
       +'<td class="em">'+esc(g.email)+'</td><td class="em">'+esc(g.head)+'</td>'
@@ -1019,11 +1035,11 @@ PAGES.ldap=()=>{
 PAGES.holiday=()=>{
   activeCrud=initCrud({
     mount:'mBody',cols:4,data:holidayData,
-    addLabel:'Add Holiday',updateLabel:'Update Holiday',dupMsg:'A holiday already exists for this date.',
-    ids:{form:'hdForm',body:'hdBody',cnt:'hdCnt',show:'hdShow',pager:'hdPager',err:'hdErr',submit:'hdSubmit',cancel:'hdCancel',tag:'hdTag',search:'hdSearch',head:'hdHead',extra:'hdExtra'},
+    addLabel:'Add Holiday',updateLabel:'Update Holiday',
+    ids:{form:'hdForm',body:'hdBody',cnt:'hdCnt',show:'hdShow',pager:'hdPager',submit:'hdSubmit',cancel:'hdCancel',tag:'hdTag',search:'hdSearch',head:'hdHead',extra:'hdExtra'},
     html:'<div class="crud">'
       +'<div class="add-panel" id="hdForm">'
-      +'<div class="add-head hidden" id="hdHead"><span class="edit-tag hidden" id="hdTag"></span><span class="f-err" id="hdErr" role="alert"></span></div>'
+      +'<div class="add-head hidden" id="hdHead"><span class="edit-tag hidden" id="hdTag"></span></div>'
       +'<div class="add-fields">'
       +'<div class="f-field df-wrap"><span>Holiday Date <i>*</i></span><input id="hdDate" type="text" readonly placeholder="Select date">'
       +'<div class="cal-pop hidden" id="hdCal" role="dialog" aria-label="Holiday calendar">'
@@ -1043,7 +1059,6 @@ PAGES.holiday=()=>{
       +'</div>'
       +'<div class="add-fields row-center hidden" id="hdExtra">'
       +'<label class="switch"><input type="checkbox" id="hdActive" checked><span class="sw-track"></span><span class="sw-lab">Active (Y/N)</span></label>'
-      +'<span class="edit-hint" id="hdHint">Holiday date cannot be changed.</span>'
       +'</div></div>'
       +'<div class="tbl-toolbar">'
       +'<div class="search-box"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16.2 16.2 21 21"/></svg><input id="hdSearch" type="text" placeholder="Search by holiday name or date"></div>'
@@ -1061,7 +1076,7 @@ PAGES.holiday=()=>{
     defaults:d=>{d.active='Y'},
     set:h=>{byId('hdDate').value=h.date;byId('hdDate').disabled=true;byId('hdName').value=h.name;byId('hdActive').checked=h.active==='Y'},
     clear:()=>{byId('hdDate').value='';byId('hdDate').disabled=false;byId('hdName').value='';byId('hdActive').checked=true},
-    validate:d=>!d.date?'Select the holiday date.':!d.name.trim()?'Enter the holiday name.':'',
+    bad:d=>[!d.date&&'hdDate',!d.name.trim()&&'hdName'].filter(Boolean),dupField:'hdDate',
     row:h=>{
       const past=h.date<=todayISO();
       return '<tr data-id="'+h.id+'">'
@@ -1075,11 +1090,11 @@ PAGES.holiday=()=>{
 PAGES.reason=()=>{
   activeCrud=initCrud({
     mount:'mBody',cols:3,data:reasonData,
-    addLabel:'Add Reason',updateLabel:'Update Reason',dupMsg:'A reason with this name already exists.',
-    ids:{form:'rsForm',body:'rsBody',cnt:'rsCnt',show:'rsShow',pager:'rsPager',err:'rsErr',submit:'rsSubmit',cancel:'rsCancel',tag:'rsTag',search:'rsSearch',head:'rsHead',extra:'rsExtra'},
+    addLabel:'Add Reason',updateLabel:'Update Reason',
+    ids:{form:'rsForm',body:'rsBody',cnt:'rsCnt',show:'rsShow',pager:'rsPager',submit:'rsSubmit',cancel:'rsCancel',tag:'rsTag',search:'rsSearch',head:'rsHead',extra:'rsExtra'},
     html:'<div class="crud">'
       +'<div class="add-panel" id="rsForm">'
-      +'<div class="add-head hidden" id="rsHead"><span class="edit-tag hidden" id="rsTag"></span><span class="f-err" id="rsErr" role="alert"></span></div>'
+      +'<div class="add-head hidden" id="rsHead"><span class="edit-tag hidden" id="rsTag"></span></div>'
       +'<div class="add-fields">'
       +'<label class="f-field"><span>Reason <i>*</i></span><input id="rsName" type="text" maxlength="80" placeholder="e.g. New Process Launch"></label>'
       +'<div class="add-actions"><button class="btn-new" id="rsSubmit" type="button">Add Reason</button><button class="btn-ghost hidden" id="rsCancel" type="button">Cancel</button></div>'
@@ -1103,7 +1118,7 @@ PAGES.reason=()=>{
     defaults:d=>{d.active='Y'},
     set:r=>{byId('rsName').value=r.name;byId('rsActive').checked=r.active==='Y'},
     clear:()=>{byId('rsName').value='';byId('rsActive').checked=true},
-    validate:d=>!d.name.trim()?'Enter the reason.':'',
+    bad:d=>[!d.name.trim()&&'rsName'].filter(Boolean),dupField:'rsName',
     row:r=>'<tr data-id="'+r.id+'">'
       +'<td><b>'+esc(r.name)+'</b></td>'
       +'<td class="c"><span class="'+(r.active==='Y'?'m-ok':'m-off')+'">'+r.active+'</span></td>'
@@ -1113,11 +1128,11 @@ PAGES.reason=()=>{
 PAGES.venue=()=>{
   activeCrud=initCrud({
     mount:'mBody',cols:3,data:venueData,
-    addLabel:'Add Venue',updateLabel:'Update Venue',dupMsg:'A venue with this name already exists.',
-    ids:{form:'vnForm',body:'vnBody',cnt:'vnCnt',show:'vnShow',pager:'vnPager',err:'vnErr',submit:'vnSubmit',cancel:'vnCancel',tag:'vnTag',search:'vnSearch',head:'vnHead',extra:'vnExtra'},
+    addLabel:'Add Venue',updateLabel:'Update Venue',
+    ids:{form:'vnForm',body:'vnBody',cnt:'vnCnt',show:'vnShow',pager:'vnPager',submit:'vnSubmit',cancel:'vnCancel',tag:'vnTag',search:'vnSearch',head:'vnHead',extra:'vnExtra'},
     html:'<div class="crud">'
       +'<div class="add-panel" id="vnForm">'
-      +'<div class="add-head hidden" id="vnHead"><span class="edit-tag hidden" id="vnTag"></span><span class="f-err" id="vnErr" role="alert"></span></div>'
+      +'<div class="add-head hidden" id="vnHead"><span class="edit-tag hidden" id="vnTag"></span></div>'
       +'<div class="add-fields">'
       +'<label class="f-field"><span>Venue <i>*</i></span><input id="vnName" type="text" maxlength="80" placeholder="e.g. North Tower - BKC, Mumbai"></label>'
       +'<div class="add-actions"><button class="btn-new" id="vnSubmit" type="button">Add Venue</button><button class="btn-ghost hidden" id="vnCancel" type="button">Cancel</button></div>'
@@ -1141,7 +1156,7 @@ PAGES.venue=()=>{
     defaults:d=>{d.active='Y'},
     set:r=>{byId('vnName').value=r.name;byId('vnActive').checked=r.active==='Y'},
     clear:()=>{byId('vnName').value='';byId('vnActive').checked=true},
-    validate:d=>!d.name.trim()?'Enter the venue.':'',
+    bad:d=>[!d.name.trim()&&'vnName'].filter(Boolean),dupField:'vnName',
     row:r=>'<tr data-id="'+r.id+'">'
       +'<td><b>'+esc(r.name)+'</b></td>'
       +'<td class="c"><span class="'+(r.active==='Y'?'m-ok':'m-off')+'">'+r.active+'</span></td>'
@@ -1151,11 +1166,11 @@ PAGES.venue=()=>{
 PAGES.product=()=>{
   activeCrud=initCrud({
     mount:'mBody',cols:3,data:productData,
-    addLabel:'Add Product/Process',updateLabel:'Update Product/Process',dupMsg:'A product/process with this name already exists.',
-    ids:{form:'pdForm',body:'pdBody',cnt:'pdCnt',show:'pdShow',pager:'pdPager',err:'pdErr',submit:'pdSubmit',cancel:'pdCancel',tag:'pdTag',search:'pdSearch',head:'pdHead',extra:'pdExtra'},
+    addLabel:'Add Product/Process',updateLabel:'Update Product/Process',
+    ids:{form:'pdForm',body:'pdBody',cnt:'pdCnt',show:'pdShow',pager:'pdPager',submit:'pdSubmit',cancel:'pdCancel',tag:'pdTag',search:'pdSearch',head:'pdHead',extra:'pdExtra'},
     html:'<div class="crud">'
       +'<div class="add-panel" id="pdForm">'
-      +'<div class="add-head hidden" id="pdHead"><span class="edit-tag hidden" id="pdTag"></span><span class="f-err" id="pdErr" role="alert"></span></div>'
+      +'<div class="add-head hidden" id="pdHead"><span class="edit-tag hidden" id="pdTag"></span></div>'
       +'<div class="add-fields">'
       +'<label class="f-field"><span>Product/Process Name <i>*</i></span><input id="pdName" type="text" maxlength="100" placeholder="e.g. Savings Account Opening Process"></label>'
       +'<div class="add-actions"><button class="btn-new" id="pdSubmit" type="button">Add Product/Process</button><button class="btn-ghost hidden" id="pdCancel" type="button">Cancel</button></div>'
@@ -1179,14 +1194,13 @@ PAGES.product=()=>{
     defaults:d=>{d.active='Y'},
     set:r=>{byId('pdName').value=r.name;byId('pdActive').checked=r.active==='Y'},
     clear:()=>{byId('pdName').value='';byId('pdActive').checked=true},
-    validate:d=>!d.name.trim()?'Enter the product/process name.':'',
+    bad:d=>[!d.name.trim()&&'pdName'].filter(Boolean),dupField:'pdName',
     row:r=>'<tr data-id="'+r.id+'">'
       +'<td><b>'+esc(r.name)+'</b></td>'
       +'<td class="c"><span class="'+(r.active==='Y'?'m-ok':'m-off')+'">'+r.active+'</span></td>'
       +'<td class="td-act"><button class="row-edit" type="button" data-id="'+r.id+'" aria-label="Edit '+esc(r.name)+'">'+EDIT_IC+'</button></td></tr>'
   });
 };
-const MASTER_NOTE='Up to 10 records display per page \u2014 use the page numbers below the table to view the remaining records.';
 function selectMaster(ft){
   const main=document.getElementById('appMain');
   main.scrollTop=0;
@@ -1197,10 +1211,8 @@ function selectMaster(ft){
   activeCrud=null;
   if(info.page){
     PAGES[info.page]();
-    document.getElementById('mNote').textContent=MASTER_NOTE;
   }else{
     document.getElementById('mBody').innerHTML='<div class="m-empty empty-state"><span class="empty-ic">'+ft.querySelector('svg').outerHTML+'</span><b>No records to display</b><p>Records maintained under this master will appear here.</p></div>';
-    document.getElementById('mNote').textContent='Placeholder preview \u2014 the '+info.label+' screen will be designed next.';
   }
 }
 function openMasters(){
@@ -1323,10 +1335,8 @@ function selectSub(ft){
   nb.textContent=sub.action||'';nb.classList.toggle('hidden',!sub.action);
   if(currentSection==='transaction'&&sub.id==='data-entry'){renderDataEntry();return}
   document.getElementById('sBody').innerHTML='<div class="m-empty empty-state"><span class="empty-ic"><svg viewBox="0 0 24 24" aria-hidden="true">'+ICONS[sub.icon]+'</svg></span><b>Design in progress</b><p>The detailed layout for the '+sub.label+' screen will be added in the next design cycle.</p></div>';
-  document.getElementById('sNote').textContent='Placeholder preview \u2014 use the sub tabs on the left to explore the '+sec.title+' module.';
 }
 let deAns=null;
-function deShowErr(t){byId('deErrTx').textContent=t;byId('deErr').classList.remove('hidden')}
 function deFinish(ans){
   const body=byId('sBody');
   const extra=ans==='Yes'?
@@ -1337,7 +1347,6 @@ function deFinish(ans){
     +'<div><b>Privacy declaration completed</b><small>Customer information: '+ans+' \u2014 '+extra+'</small></div>'
     +'<button class="btn-ghost" id="deRestart" type="button">New Declaration</button></div>'
     +'<div class="m-empty empty-state"><span class="empty-ic"><svg viewBox="0 0 24 24" aria-hidden="true">'+ICONS.form+'</svg></span><b>Proposal Data Entry Form</b><p>You are now clear to capture the proposal details. The detailed layout of this screen will be added in the next design cycle.</p></div></div>';
-  byId('sNote').textContent='Privacy gate cleared \u2014 the proposal data entry form opens from here. Use \u201CNew Declaration\u201D to run the declaration again for a fresh proposal.';
   byId('deRestart').addEventListener('click',()=>renderDataEntry());
 }
 function renderDataEntry(){
@@ -1359,16 +1368,14 @@ function renderDataEntry(){
     +'<div class="de-note"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M12 11.5V16"/></svg><span><b>Note:</b> Customer data includes any derived data of the customer.</span></div>'
     +'<label class="chk-row chk-final" id="deCkF"><span class="cbx"><input type="checkbox" id="deChkF"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></span><span class="txt"><b>I confirm that the product/process meets the above requirements and is in line with the privacy Standard of the Bank.</b></span></label>'
     +'</div>'
-    +'<div class="de-actions"><span class="m-err hidden" id="deErr" role="alert"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5L3 19.5h18z"/><path d="M12 10v4M12 16.8h.01"/></svg><span id="deErrTx"></span></span><button class="btn-new" id="deGo" type="button">Continue</button></div>'
+    +'<div class="de-actions"><button class="btn-new" id="deGo" type="button">Continue</button></div>'
     +'</div>';
   deAns=null;
-  byId('sNote').textContent='Answer the customer information question \u2014 the proposal data entry form opens once the declaration is complete.';
   byId('deYes').addEventListener('click',()=>{
     deAns='Yes';
     byId('deYes').classList.add('on');byId('deYes').classList.remove('miss');
     byId('deNo').classList.remove('on','miss');
     byId('deYesBlock').classList.remove('hidden');
-    byId('deErr').classList.add('hidden');
     setTimeout(()=>byId('deYesBlock').scrollIntoView({block:'nearest',behavior:'smooth'}),60);
   });
   byId('deNo').addEventListener('click',()=>{
@@ -1376,26 +1383,36 @@ function renderDataEntry(){
     byId('deNo').classList.add('on');byId('deNo').classList.remove('miss');
     byId('deYes').classList.remove('on','miss');
     byId('deYesBlock').classList.add('hidden');
-    byId('deErr').classList.add('hidden');
   });
   byId('deChkF').addEventListener('change',e=>{
     byId('deCkF').classList.toggle('on',e.target.checked);
     if(e.target.checked)byId('deCkF').classList.remove('miss');
-    byId('deErr').classList.add('hidden');
   });
   byId('deGo').addEventListener('click',()=>{
     if(deAns==null){
-      byId('deYes').classList.add('miss');byId('deNo').classList.add('miss');
-      deShowErr('Select Yes or No to continue.');return;
+      byId('deYes').classList.add('miss');byId('deNo').classList.add('miss');return;
     }
     if(deAns==='No'){deFinish('No');return}
-    if(!byId('deChkF').checked){
-      byId('deCkF').classList.add('miss');
-      deShowErr('Please tick the confirmation below to continue.');return;
-    }
+    if(!byId('deChkF').checked){byId('deCkF').classList.add('miss');return}
     deFinish('Yes');
   });
 }
+const siUser=document.getElementById('siUser'),siPass=document.getElementById('siPass');
+function trySignIn(){
+  [siUser,siPass].forEach(el=>el.classList.remove('invalid'));
+  const bad=[siUser,siPass].filter(el=>!el.value.trim());
+  if(bad.length){bad.forEach(el=>el.classList.add('invalid'));bad[0].focus();return}
+  document.getElementById('stateSignin').classList.add('hidden');
+  document.getElementById('stateVerify').classList.remove('hidden');
+  setStep(2);
+  document.getElementById('stmtCard').classList.remove('open');
+  document.getElementById('stmtMore').textContent='Read more';
+  document.getElementById('stmtHead').setAttribute('aria-expanded','false');
+}
+siUser.addEventListener('input',()=>siUser.classList.remove('invalid'));
+siPass.addEventListener('input',()=>siPass.classList.remove('invalid'));
+[siUser,siPass].forEach(el=>el.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();trySignIn()}}));
+document.getElementById('siGo').addEventListener('click',trySignIn);
 document.querySelectorAll('.nav-tab').forEach(tab=>{
   tab.addEventListener('click',()=>{
     document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
@@ -1415,15 +1432,13 @@ userTab.addEventListener('click',e=>{
 document.addEventListener('click',()=>{userMenu.classList.remove('open');userTab.classList.remove('open')});
 function verifyOtp(){
   const code=boxes.map(b=>b.value).join('');
-  const err=document.getElementById('otpError');
-  if(!/^\d{6}$/.test(code)){err.textContent='Enter the valid six-digit OTP.';boxes.find(b=>!b.value)?.focus();return}
-  if(otpExpired){err.textContent='This OTP has expired. Please request a new one.';return}
+  if(!/^\d{6}$/.test(code)){boxes.forEach(b=>{if(!b.value)b.classList.add('invalid')});boxes.find(b=>!b.value)?.focus();return}
+  if(otpExpired){boxes.forEach(b=>b.classList.add('invalid'));boxes[0].focus();return}
   stopTimer();
-  err.textContent='';
   document.getElementById('stateChannel').classList.add('hidden');
   document.getElementById('otpPanel').classList.add('hidden');
   document.getElementById('stateSuccess').classList.remove('hidden');
-  setStep(3);
+  setStep(4);
   setTimeout(()=>{
     const home=document.getElementById('screen-home');
     if(home){
