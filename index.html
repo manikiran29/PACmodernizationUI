@@ -230,13 +230,14 @@ button{cursor:pointer}
 .add-actions{display:flex;gap:8px;margin-left:auto;flex:none}
 .btn-ghost{border:1px solid #D8DFE5;background:#fff;color:#5E6C79;border-radius:9px;padding:9px 14px;font-size:12px;font-weight:800}
 .btn-ghost:hover{border-color:#E9B48F;color:var(--rust)}
-.switch{display:inline-flex;align-items:center;gap:8px;cursor:pointer;user-select:none}
-.switch input{position:absolute;opacity:0;width:0;height:0}
-.sw-track{width:34px;height:19px;border-radius:20px;background:#D5DCE2;position:relative;transition:.15s;flex:none}
-.sw-track::after{content:'';position:absolute;top:2.5px;left:3px;width:14px;height:14px;border-radius:50%;background:#fff;box-shadow:0 1px 3px #00000030;transition:.15s}
+.switch{display:inline-flex;align-items:center;gap:8px;cursor:pointer;user-select:none;position:relative}
+.switch input{position:absolute;opacity:0;width:0;height:0;margin:0}
+.sw-track{width:34px;height:19px;border-radius:20px;background:#D5DCE2;position:relative;flex:none;transition:background .22s cubic-bezier(.4,0,.2,1)}
+.sw-track::after{content:'';position:absolute;top:2.5px;left:3px;width:14px;height:14px;border-radius:50%;background:#fff;box-shadow:0 1px 3px #00000030;transform:translateX(var(--tx,0)) scale(var(--sc,1));transition:transform .22s cubic-bezier(.4,0,.2,1)}
 .switch input:checked+.sw-track{background:var(--brand-grad)}
-.switch input:checked+.sw-track::after{left:17px}
+.switch input:checked+.sw-track::after{--tx:14px}
 .switch input:focus-visible+.sw-track{outline:2px solid var(--orange);outline-offset:2px}
+.switch:active .sw-track::after{--sc:.84}
 .sw-lab{font-size:10.5px;font-weight:800;color:#5E6C79}
 .si-fields{display:flex;flex-direction:column;gap:13px}
 .si-fields .f-field{flex:1 1 100%}
@@ -452,13 +453,12 @@ tr.flash{animation:rowflash 1.5s ease-out}
 .ico-ic svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .ico-row.on .ico-ic{background:var(--brand-grad);color:#fff}
 .ico-row>b{font-size:12.5px;font-weight:700;color:var(--ink)}
-.switch{position:relative;width:44px;height:24px;flex:none;margin-left:auto}
-.switch input{position:absolute;inset:0;width:100%;height:100%;opacity:0;margin:0;cursor:pointer;z-index:1}
-.sw-track{position:absolute;inset:0;border-radius:20px;background:#D9E0E6;transition:background .22s}
-.sw-track::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 2px 6px #24374638;transition:left .22s cubic-bezier(.34,1.56,.64,1)}
-.switch input:checked+.sw-track{background:var(--brand-grad)}
-.switch input:checked+.sw-track::after{left:23px}
-.switch input:focus-visible+.sw-track{box-shadow:0 0 0 3px #EA771D40}
+.sw-solo{width:44px;height:24px;flex:none;margin-left:auto}
+.sw-solo input{position:absolute;inset:0;width:100%;height:100%;opacity:0;margin:0;cursor:pointer;z-index:1}
+.sw-solo .sw-track{position:absolute;inset:0;width:auto;height:auto;border-radius:20px;background:#D9E0E6}
+.sw-solo .sw-track::after{top:3px;left:3px;width:18px;height:18px;box-shadow:0 2px 6px #24374638}
+.sw-solo input:checked+.sw-track::after{--tx:20px}
+.sw-solo input:focus-visible+.sw-track{box-shadow:0 0 0 3px #EA771D40}
 /* keyword chips */
 .tok-box{display:flex;flex-wrap:wrap;align-items:center;gap:6px;border:1px solid #D8DFE5;border-radius:7px;background:#fff;padding:6px 9px;min-height:41px;cursor:text;transition:.15s;width:100%}
 .tok-box:focus-within{border-color:var(--orange);box-shadow:0 0 0 3px #EA771D1A}
@@ -475,15 +475,10 @@ tr.flash{animation:rowflash 1.5s ease-out}
 .pn-bar span{display:block;height:100%;width:0;background:var(--brand-grad);border-radius:3px;transition:width .25s}
 .pn-bar.warn span{background:#EA771D}
 .pn-bar.max span{background:#E5484D}
-/* team member cards */
-.team-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
-.tm-card{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:10px;background:#fff;padding:9px 11px;animation:rise .22s ease-out;min-width:0}
-.tm-av{width:32px;height:32px;border-radius:50%;background:var(--brand-grad);color:#fff;font-size:10.5px;font-weight:800;display:grid;place-items:center;flex:none;letter-spacing:.03em}
-.tm-meta{min-width:0;flex:1}
-.tm-meta b{display:block;font-size:12px;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.tm-meta small{display:block;font-size:10px;font-weight:600;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
-.tm-role{font-size:9px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--rust);background:var(--soft);border-radius:10px;padding:3px 8px;flex:none}
-.tm-card .row-x{flex:none}
+/* team records table */
+.tm-wrap{margin-top:12px}
+.tm-wrap .data-table td{font-size:12px}
+.tm-wrap .row-x{width:26px;height:26px}
 /* ldap count badge */
 .lb-cnt{float:right;font-size:9.5px;font-weight:800;color:#7A8794;background:#EEF1F4;border-radius:9px;padding:1.5px 7px;min-width:14px;text-align:center}
 
@@ -644,7 +639,7 @@ tr.flash{animation:rowflash 1.5s ease-out}
     <div class="conf-body">
       <p>I confirm that the Risk Control Matrix (RCM) applicable to this proposal has been reviewed and updated in line with the current ICOFR requirements, and that the key controls documented therein reflect the process changes proposed in this PAC Note. The updated RCM will be submitted along with this proposal for independent validation by the control group prior to the PAC meeting.</p>
     </div>
-    <div class="conf-foot"><button class="btn-modal" type="button" onclick="closeIcofr()">Close</button></div>
+    <div class="conf-foot"><button class="btn-modal" type="button" onclick="closeIcofr()">OK</button></div>
   </div>
 </div>
 
@@ -1552,6 +1547,9 @@ function renderDataEntry(){
 }
 const PAC_MEETING_DATES=['2026-11-20','2026-12-18','2027-01-15','2027-02-19','2027-03-19'];
 const PN_ROLES=['Proposal Owner','Team Leader','Group Head'];
+const PN_EMP_DIR={'E12564':'Ananya Sharma','E20981':'Rohan Kulkarni','E31207':'Priya Nair','E27654':'Aditya Deshpande','E15890':'Meera Iyer','E41033':'Karan Malhotra','E23478':'Sneha Patil','E36502':'Vikram Rao'};
+const PN_EMP_POOL=['Neha Joshi','Arjun Menon','Divya Kapoor','Siddharth Bose','Ritika Jain','Aakash Shetty','Lakshmi Venkatesan','Farhan Qureshi','Pooja Desai','Nikhil Chandra'];
+const empNameOf=id=>{const k=(id||'').trim().toUpperCase();if(PN_EMP_DIR[k])return PN_EMP_DIR[k];let h=0;for(let i=0;i<k.length;i++)h=(h*31+k.charCodeAt(i))>>>0;return PN_EMP_POOL[h%PN_EMP_POOL.length]};
 let ddOpen=null;
 function closeDD(){if(ddOpen){ddOpen.classList.remove('open');const m=ddOpen.querySelector('.dd-menu');if(m)m.classList.add('hidden');ddOpen=null}}
 document.addEventListener('click',e=>{if(ddOpen&&!ddOpen.contains(e.target))closeDD()});
@@ -1612,7 +1610,7 @@ function renderPacNoteForm(){
       +'<label class="f-field"><span>Define keyword(s)</span><span class="tok-box" id="pnKeys"><input class="tok-in" id="pnKeysIn" type="text" autocomplete="off" spellcheck="false"></span><small class="pn-help">Please enter \',\' separated list for multiple keywords</small></label>'
       +'<label class="f-field full"><span>Brief description</span><textarea id="pnDesc" maxlength="500" rows="4"></textarea><span class="pn-count" id="pnCount">0 / 500</span><span class="pn-bar" id="pnBar"><span></span></span></label>'
     +'</div>'
-    +'<div class="ico-row" id="pnIcofrRow"><span class="ico-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5 4 5.5v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10v-6z"/><path d="M9 11.8l2.1 2.1L15.4 9.6"/></svg></span><b>ICOFR RCM updated</b><span class="switch"><input type="checkbox" id="pnIcofr"><span class="sw-track"></span></span></div>'
+    +'<div class="ico-row" id="pnIcofrRow"><span class="ico-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5 4 5.5v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10v-6z"/><path d="M9 11.8l2.1 2.1L15.4 9.6"/></svg></span><b>ICOFR RCM updated</b><span class="switch sw-solo"><input type="checkbox" id="pnIcofr"><span class="sw-track"></span></span></div>'
     +'<div><span class="field-title">LDAP Support Group</span><div class="pn-dual">'
       +'<div class="pn-listbox"><div class="lb-head">Optional groups<span class="lb-cnt" id="pnOptCnt">0</span></div><div class="lb-body" id="pnOptList">'+optG.map(g=>lb(g,false)).join('')+'</div></div>'
       +'<div class="pn-arrows">'
@@ -1628,7 +1626,7 @@ function renderPacNoteForm(){
         +'<div class="f-field"><span>Group</span><span id="pnTeamGroup"></span></div>'
         +'<button class="btn-new" id="pnAddMember" type="button">Add</button>'
       +'</div>'
-      +'<div class="team-cards hidden" id="pnTeamCards"></div>'
+      +'<div class="tbl-wrap tm-wrap hidden" id="pnTeamWrap"><table class="data-table"><thead><tr><th>Employee ID</th><th>Employee Name</th><th>Role</th><th>Group</th><th class="th-act">Action</th></tr></thead><tbody id="pnTeamBody"></tbody></table></div>'
     +'</div>'
     +'<div><span class="field-title">Proposal Note</span>'
       +'<div class="dropzone" id="pnDrop" tabindex="0" role="button" aria-label="Upload proposal note">'
@@ -1697,22 +1695,23 @@ function renderPacNoteForm(){
   selList.addEventListener('click',e=>{const it=e.target.closest('.lb-item');if(!it||it.classList.contains('locked'))return;it.classList.toggle('on');refreshArrows()});
   toR.addEventListener('click',()=>{let last=null;optList.querySelectorAll('.lb-item.on').forEach(it=>{const n=mkItem(it.dataset.nm,false);selList.appendChild(n);last=n;it.remove()});refreshArrows();syncCnt();if(last)last.scrollIntoView({block:'nearest',behavior:'smooth'})});
   toL.addEventListener('click',()=>{let last=null;selList.querySelectorAll('.lb-item.on:not(.locked)').forEach(it=>{const n=mkItem(it.dataset.nm,false);optList.appendChild(n);last=n;it.remove()});refreshArrows();syncCnt();if(last)last.scrollIntoView({block:'nearest',behavior:'smooth'})});
-  const renderTeam=()=>{
-    el('pnTeamCards').innerHTML=team.map((m,i)=>'<div class="tm-card"><span class="tm-av">'+esc(m.emp.slice(0,2).toUpperCase())+'</span><span class="tm-meta"><b>'+esc(m.emp)+'</b><small>'+esc(m.group)+'</small></span><span class="tm-role">'+esc(m.role)+'</span><button class="row-x" data-i="'+i+'" type="button" aria-label="Remove member"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>').join('');
-    el('pnTeamCards').classList.toggle('hidden',!team.length);
+  const renderTeam=flash=>{
+    const tb=el('pnTeamBody');
+    tb.innerHTML=team.map((m,i)=>'<tr'+(i===flash?' class="flash"':'')+'><td><b>'+esc(m.emp)+'</b></td><td>'+esc(m.name)+'</td><td>'+esc(m.role)+'</td><td>'+esc(m.group)+'</td><td class="td-act"><button class="row-x" data-i="'+i+'" type="button" aria-label="Remove '+esc(m.emp)+'"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></td></tr>').join('');
+    el('pnTeamWrap').classList.toggle('hidden',!team.length);
     addBtn.disabled=team.length>=3;
-    roleDD.setOpts(PN_ROLES.filter(r=>!team.some(m=>m.role===r)).map(r=>({v:r,m:r})));
   };
   renderTeam();
-  el('pnTeamCards').addEventListener('click',e=>{const b=e.target.closest('.row-x');if(!b)return;team.splice(+b.dataset.i,1);renderTeam()});
+  el('pnTeamBody').addEventListener('click',e=>{const b=e.target.closest('.row-x');if(!b)return;team.splice(+b.dataset.i,1);renderTeam()});
   addBtn.addEventListener('click',()=>{
     let ok=true;
-    if(!empIn.value.trim()){empIn.classList.add('invalid');ok=false}
+    const v=empIn.value.trim();
+    if(!v||team.some(m=>m.emp.toLowerCase()===v.toLowerCase())){empIn.classList.add('invalid');ok=false}
     if(!roleDD.value){roleDD.invalidate(true);ok=false}
     if(!tGroupDD.value){tGroupDD.invalidate(true);ok=false}
     if(!ok||team.length>=3)return;
-    team.push({emp:empIn.value.trim(),role:roleDD.value,group:tGroupDD.value});
-    empIn.value='';renderTeam();empIn.focus();
+    team.push({emp:v,name:empNameOf(v),role:roleDD.value,group:tGroupDD.value});
+    empIn.value='';renderTeam(team.length-1);empIn.focus();
   });
   const setFile=f=>{
     if(!f)return;
