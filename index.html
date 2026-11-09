@@ -359,6 +359,11 @@ tr.flash{animation:rowflash 1.5s ease-out}
 .de-opt:hover{border-color:#E9B48F;background:var(--soft);transform:translateX(4px)}
 .de-opt .chev-r{margin-left:auto;color:#B9C2C9;font-size:15px;font-weight:800;transition:.15s;flex:none}
 .de-opt:hover .chev-r{color:var(--rust);transform:translateX(2px)}
+.dd-back{width:24px;height:24px;border:1px solid var(--line);background:#fff;border-radius:7px;color:#5E6C79;display:inline-grid;place-items:center;margin-right:9px;vertical-align:middle;transition:.13s;padding:0;flex:none}
+.dd-back:hover{border-color:#E9B48F;color:var(--rust);background:var(--soft)}
+.dd-back svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.dr-row{cursor:pointer}
+.pn-actions .btn-ghost{padding:11px 24px;font-size:12.5px}
 .de-note b{font-weight:800}
 .chk-final{border-left:3px solid var(--rust);margin-top:12px}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
@@ -1401,6 +1406,7 @@ const SECTIONS={
   ]},
   transaction:{title:'Transaction',subs:[
     {id:'data-entry',label:'Data Entry',icon:'form',action:null},
+    {id:'draft-proposal-list',label:'Draft Proposal List',icon:'filetext',action:null},
     {id:'create-proposal',label:'Create Proposal',icon:'fileplus',action:'Create'},
     {id:'validate-proposal',label:'Validate Proposal',icon:'validate',action:'Validate'},
     {id:'file-upload',label:'File Upload',icon:'upload',action:'Upload'},
@@ -1456,6 +1462,7 @@ function selectSub(ft){
   const nb=document.getElementById('sNew');
   nb.textContent=sub.action||'';nb.classList.toggle('hidden',!sub.action);
   if(currentSection==='transaction'&&sub.id==='data-entry'){renderDataEntry();return}
+  if(currentSection==='transaction'&&sub.id==='draft-proposal-list'){renderDraftList();return}
   document.getElementById('sBody').innerHTML='<div class="m-empty empty-state"><span class="empty-ic"><svg viewBox="0 0 24 24" aria-hidden="true">'+ICONS[sub.icon]+'</svg></span><b>Design in progress</b><p>The detailed layout for the '+sub.label+' screen will be added in the next design cycle.</p></div>';
 }
 let deAns=null;
@@ -1467,13 +1474,47 @@ const DE_OPTS=[
   {t:'Addendum to Existing Process',ic:'filepen'},
   {t:'Migration of System Pertaining to Product/Service Offering',ic:'swap'}
 ];
+const DE_MANUAL=[
+  {t:'Sections',ic:'list',sub:[
+    {t:'New Section/Regulatory Report Process Document Upload',ic:'upload'},
+    {t:'Modification/Deletion of an Existing Section in Manual',ic:'filepen'}]},
+  {t:'Consolidation of Sections into Manual',ic:'table',sub:[
+    {t:'New Manual \u2013 Consolidation of Sections/Regulatory Report Process Document',ic:'fileplus'},
+    {t:'Review/Discontinuation of Existing Manual',ic:'cycle'},
+    {t:'Addendum to Existing Manual',ic:'filepen'}]}
+];
+const DE_OG=[
+  {t:'New Operating Guideline',ic:'fileplus'},
+  {t:'Review/Addendum/Discontinuation of Existing Operating Guideline',ic:'cycle'}
+];
+const DE_SOP=[
+  {t:'New Standard Operating Procedure',ic:'fileplus'},
+  {t:'Review/Addendum/Discontinuation of Existing Standard Operating Procedure',ic:'cycle'},
+  {t:'Processes for Migration of IT Systems Used Other Than for a Product/Service Offered to the Customer',ic:'swap'}
+];
 function dePlaceholder(title){return '<div class="m-empty empty-state"><span class="empty-ic"><svg viewBox="0 0 24 24" aria-hidden="true">'+ICONS.form+'</svg></span><b>'+title+'</b><p>The detailed layout of this screen will be added in the next design cycle.</p></div>'}
+function optBtns(arr){return arr.map(o=>'<button class="de-opt" data-opt="'+esc(o.t)+'" type="button"><svg viewBox="0 0 24 24" aria-hidden="true">'+ICONS[o.ic]+'</svg><span>'+esc(o.t)+'</span><span class="chev-r">&#8250;</span></button>').join('')}
+function showManualSub(i){
+  const el=byId('deTabBody'),m=DE_MANUAL[i];
+  el.innerHTML='<div class="side-head"><button class="dd-back" id="mnBack" type="button" aria-label="Back to Manual"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5 8 12l6.5 6.5"/></svg></button>'+esc(m.t)+'</div>'
+    +'<div class="de-opt-list">'+optBtns(m.sub)+'</div>';
+  el.querySelectorAll('.de-opt').forEach(b=>b.addEventListener('click',()=>dePick(b.dataset.opt)));
+  byId('mnBack').addEventListener('click',()=>showDeTab('manual'));
+}
 function showDeTab(t){
   document.querySelectorAll('.de-tab').forEach(b=>b.classList.toggle('active',b.dataset.dt===t));
   const el=byId('deTabBody');
   if(t==='pacnote'){
-    el.innerHTML='<div class="side-head">PAC Note Type</div><div class="de-opt-list">'
-      +DE_OPTS.map(o=>'<button class="de-opt" data-opt="'+o.t+'" type="button"><svg viewBox="0 0 24 24" aria-hidden="true">'+ICONS[o.ic]+'</svg><span>'+o.t+'</span><span class="chev-r">&#8250;</span></button>').join('')+'</div>';
+    el.innerHTML='<div class="side-head">PAC Note Type</div><div class="de-opt-list">'+optBtns(DE_OPTS)+'</div>';
+    el.querySelectorAll('.de-opt').forEach(b=>b.addEventListener('click',()=>dePick(b.dataset.opt)));
+  }else if(t==='manual'){
+    el.innerHTML='<div class="side-head">Manual</div><div class="de-opt-list">'+optBtns(DE_MANUAL)+'</div>';
+    el.querySelectorAll('.de-opt').forEach((b,i)=>b.addEventListener('click',()=>showManualSub(i)));
+  }else if(t==='og'){
+    el.innerHTML='<div class="side-head">Operating Guidelines (OG)</div><div class="de-opt-list">'+optBtns(DE_OG)+'</div>';
+    el.querySelectorAll('.de-opt').forEach(b=>b.addEventListener('click',()=>dePick(b.dataset.opt)));
+  }else if(t==='sop'){
+    el.innerHTML='<div class="side-head">Standard Operating Procedure (SOP)</div><div class="de-opt-list">'+optBtns(DE_SOP)+'</div>';
     el.querySelectorAll('.de-opt').forEach(b=>b.addEventListener('click',()=>dePick(b.dataset.opt)));
   }else el.innerHTML=dePlaceholder(DE_TABS[t]);
 }
@@ -1496,6 +1537,37 @@ function deFinish(){
     +'</div><div id="deTabBody"></div></div>';
   document.querySelectorAll('.de-tab').forEach(b=>b.addEventListener('click',()=>showDeTab(b.dataset.dt)));
   showDeTab('pacnote');
+}
+function renderDraftList(){
+  const body=byId('sBody');
+  body.innerHTML='<div class="crud"><div class="tbl-toolbar">'
+    +'<div class="search-box"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16.2 16.2 21 21"/></svg><input id="drSearch" type="text" placeholder="Search by proposal name or group"></div>'
+    +'<span class="tbl-count" id="drCnt"></span></div>'
+    +'<div class="tbl-wrap"><table class="data-table">'
+    +'<thead><tr><th>Proposal Name</th><th>Group</th><th>Meeting Date</th><th>Saved On</th><th class="th-act">Action</th></tr></thead>'
+    +'<tbody id="drBody"></tbody></table></div></div>';
+  const draw=q=>{
+    q=(q||'').toLowerCase();
+    const list=drafts.filter(d=>!q||(d.name+' '+d.group).toLowerCase().includes(q));
+    byId('drCnt').textContent=list.length+(list.length===1?' draft':' drafts');
+    byId('drBody').innerHTML=list.length?list.map(d=>'<tr class="dr-row" data-id="'+d.id+'">'
+        +'<td><b>'+esc(d.name||'\u2014')+'</b></td>'
+        +'<td>'+esc(d.group||'\u2014')+'</td>'
+        +'<td>'+(d.date?fmtDate(d.date):'\u2014')+'</td>'
+        +'<td class="em">'+esc(d.savedOn)+'</td>'
+        +'<td class="td-act"><button class="row-edit" type="button" aria-label="Open draft">'+EDIT_IC+'</button></td></tr>').join('')
+      :'<tr><td colspan="5"><div class="empty-state"><span class="empty-ic"><svg viewBox="0 0 24 24" aria-hidden="true">'+ICONS.filetext+'</svg></span><b>No Draft Proposals</b><p>Proposals saved as draft from the New PAC Note form will be available here.</p></div></td></tr>';
+  };
+  draw();
+  byId('drSearch').addEventListener('input',e=>draw(e.target.value));
+  byId('drBody').addEventListener('click',e=>{
+    const tr=e.target.closest('tr.dr-row');if(!tr)return;
+    const d=drafts.find(x=>x.id===+tr.dataset.id);if(!d)return;
+    byId('sCrumb').innerHTML=SECTIONS[currentSection].title+' <i>&#8250;</i> <b>Draft Proposal List</b>';
+    byId('sTitle').textContent='New PAC Note';
+    renderPacNoteForm(d);
+    byId('appMain').scrollTop=0;
+  });
 }
 function renderDataEntry(){
   const body=byId('sBody');
@@ -1550,6 +1622,9 @@ const PN_ROLES=['Proposal Owner','Team Leader','Group Head'];
 const PN_EMP_DIR={'E12564':'Ananya Sharma','E20981':'Rohan Kulkarni','E31207':'Priya Nair','E27654':'Aditya Deshpande','E15890':'Meera Iyer','E41033':'Karan Malhotra','E23478':'Sneha Patil','E36502':'Vikram Rao'};
 const PN_EMP_POOL=['Neha Joshi','Arjun Menon','Divya Kapoor','Siddharth Bose','Ritika Jain','Aakash Shetty','Lakshmi Venkatesan','Farhan Qureshi','Pooja Desai','Nikhil Chandra'];
 const empNameOf=id=>{const k=(id||'').trim().toUpperCase();if(PN_EMP_DIR[k])return PN_EMP_DIR[k];let h=0;for(let i=0;i<k.length;i++)h=(h*31+k.charCodeAt(i))>>>0;return PN_EMP_POOL[h%PN_EMP_POOL.length]};
+let drafts=[],draftSeq=0,pnFrom='tabs',openDraftId=null;
+const fmtSize=n=>n<1048576?Math.max(1,Math.round(n/1024))+' KB':(n/1048576).toFixed(2)+' MB';
+const nowStamp=()=>{const n=new Date(),p=x=>String(x).padStart(2,'0');return fmtDate(n.getFullYear()+'-'+p(n.getMonth()+1)+'-'+p(n.getDate()))+' \u00b7 '+p(n.getHours())+':'+p(n.getMinutes())};
 let ddOpen=null;
 function closeDD(){if(ddOpen){ddOpen.classList.remove('open');const m=ddOpen.querySelector('.dd-menu');if(m)m.classList.add('hidden');ddOpen=null}}
 document.addEventListener('click',e=>{if(ddOpen&&!ddOpen.contains(e.target))closeDD()});
@@ -1592,7 +1667,7 @@ function makeDD(mount,ph,opts,cfg){
     setOpts(l){items=l.slice();val='';const s=phSpan();s.className='dd-ph';s.textContent=ph;renderList()},
     invalidate(b){mount.classList.toggle('invalid',b)}};
 }
-function renderPacNoteForm(){
+function renderPacNoteForm(draft){
   const groups=groupData.filter(r=>r.active==='Y').map(r=>({v:r.name,m:r.name,s:r.dept})).sort((a,b)=>a.m.localeCompare(b.m));
   const products=productData.filter(r=>r.active==='Y').map(r=>({v:r.name,m:r.name})).sort((a,b)=>a.m.localeCompare(b.m));
   const dates=PAC_MEETING_DATES.map(d=>({v:d,m:fmtDate(d),s:WEEKDAY[new Date(d+'T00:00:00').getDay()]}));
@@ -1637,13 +1712,13 @@ function renderPacNoteForm(){
       +'</div>'
       +'<div class="pn-file hidden" id="pnFileRow"><span class="pdf-ic">PDF</span><div><b id="pnFileName"></b><small id="pnFileSize"></small></div><button class="row-x" id="pnFileX" type="button" aria-label="Remove file"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>'
     +'</div>'
-    +'<div class="pn-actions"><button class="btn-new" id="pnSubmit" type="button">Submit</button></div>'
+    +'<div class="pn-actions"><button class="btn-ghost" id="pnDraft" type="button">Save as Draft</button><button class="btn-new" id="pnSubmit" type="button">Submit</button></div>'
   +'</div>';
   const el=id=>byId(id);
   const nameIn=el('pnName'),descTa=el('pnDesc'),empIn=el('pnEmp'),addBtn=el('pnAddMember');
   const keysBox=el('pnKeys'),keysIn=el('pnKeysIn');
   const optList=el('pnOptList'),selList=el('pnSelList'),toR=el('pnToRight'),toL=el('pnToLeft'),drop=el('pnDrop'),fin=el('pnFile');
-  let pnFileSel=null;const team=[];let chips=[];
+  let pnFileSel=null,team=[],chips=[];
   const dateDD=makeDD(el('pnDate'),'Select meeting date',dates);
   const prodDD=makeDD(el('pnProduct'),'Select product/process',products,{filter:true});
   const roleDD=makeDD(el('pnRole'),'Select role',PN_ROLES.map(r=>({v:r,m:r})));
@@ -1740,8 +1815,35 @@ function renderPacNoteForm(){
     if(team.length!==3)[empIn,roleDD.mount,tGroupDD.mount].forEach(s=>s.classList.add('invalid'));
     const first=document.querySelector('.pn-form .invalid,.pn-form .miss');
     if(first){first.scrollIntoView({block:'center',behavior:'smooth'});return}
-    deFinish();
+    if(openDraftId!=null){drafts=drafts.filter(x=>x.id!==openDraftId);openDraftId=null}
+    if(pnFrom==='drafts'){renderDraftList();pnFrom='tabs'}else deFinish();
   });
+  el('pnDraft').addEventListener('click',()=>{
+    const snap={name:nameIn.value.trim(),group:groupDD.value||'',date:dateDD.value||'',product:prodDD.value||'',
+      keys:chips.slice(),desc:descTa.value,icofr:byId('pnIcofr').checked,
+      team:team.map(m=>({emp:m.emp,name:m.name,role:m.role,group:m.group})),
+      file:pnFileSel?{name:pnFileSel.name,size:pnFileSel.size,obj:pnFileSel}:null,
+      opt:[...selList.querySelectorAll('.lb-item:not(.locked)')].map(b=>b.dataset.nm)};
+    if(openDraftId!=null){const d=drafts.find(x=>x.id===openDraftId);if(d){Object.assign(d,snap);d.savedOn=nowStamp()}}
+    else drafts.unshift(Object.assign({id:++draftSeq,savedOn:nowStamp()},snap));
+    openDraftId=null;
+    if(pnFrom==='drafts')renderDraftList();else deFinish();
+    pnFrom='tabs';
+  });
+  if(draft){
+    openDraftId=draft.id;pnFrom='drafts';
+    nameIn.value=draft.name||'';descTa.value=draft.desc||'';
+    descTa.dispatchEvent(new Event('input'));
+    chips=(draft.keys||[]).slice();renderChips();
+    if(draft.date)dateDD.pick(draft.date,true);
+    if(draft.group){groupDD.pick(draft.group,true);syncTeamGroup()}
+    if(draft.product)prodDD.pick(draft.product,true);
+    (draft.opt||[]).forEach(nm=>{const it=[...optList.querySelectorAll('.lb-item')].find(x=>x.dataset.nm===nm);if(it){selList.appendChild(mkItem(nm,false));it.remove()}});
+    syncCnt();refreshArrows();
+    team=(draft.team||[]).slice();renderTeam();
+    if(draft.icofr){byId('pnIcofr').checked=true;byId('pnIcofrRow').classList.add('on')}
+    if(draft.file){pnFileSel=draft.file.obj;el('pnFileName').textContent=draft.file.name;el('pnFileSize').textContent=fmtSize(draft.file.size);el('pnFileRow').classList.remove('hidden')}
+  }else{openDraftId=null;pnFrom='tabs'}
 }
 const icofrOv=document.getElementById('icofrOv');
 function openIcofr(){icofrOv.classList.remove('hidden')}
