@@ -399,6 +399,35 @@ tr.flash{animation:rowflash 1.5s ease-out}
 .pn-arrow svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .pn-arrow:hover:not(:disabled){border-color:#E9B48F;color:var(--rust);background:var(--soft)}
 .pn-arrow:disabled{opacity:.38;cursor:default}
+.pm-btns{display:flex;justify-content:flex-end;gap:9px;margin:3px 0}
+.pm-btn{border:1px solid #D8DFE5;background:#fff;color:#4E5B66;border-radius:8px;padding:8px 20px;font-size:11.5px;font-weight:800;transition:.13s}
+.pm-btn:hover:not(:disabled){border-color:#E9B48F;color:var(--rust);background:var(--soft)}
+.pm-btn:disabled{opacity:.4;cursor:default}
+.pm-sub{position:relative;padding-left:15px;display:flex;flex-direction:column;gap:12px;animation:rise .3s ease-out}
+.pm-sub .f-field{flex:0 0 auto}
+.pm-sub::before{content:'';position:absolute;left:0;top:4px;bottom:4px;width:2.5px;border-radius:2px;background:var(--brand-grad)}
+.pm-sub .pn-listbox{min-height:0}
+.pm-sub .lb-body{max-height:168px}
+.pn-listbox.invalid{border-color:#E5484D!important;background:#FDF1F0!important}
+.pm-none{padding:15px 13px;font-size:11.5px;font-weight:600;color:#8A959E}
+.pm-sep{color:#C3CCD4;font-style:normal;font-weight:400;padding:0 2px}
+.ana-box{display:flex;flex-wrap:wrap;align-items:center;gap:6px;border:1px solid #D8DFE5;border-radius:7px;background:#F3F5F7;padding:5.5px 10px;min-height:41px}
+.ana-chip{display:inline-flex;align-items:center;background:#fff;border:1px solid #E8CBA6;color:var(--maroon);font-size:11px;font-weight:800;border-radius:13px;padding:4px 11px;animation:tokIn .18s ease-out}
+.pm-tbl .data-table td{font-size:12px}
+.dc-alert{display:flex;align-items:flex-start;gap:10px;border:1px solid #F0C4C2;background:#FDF1F0;color:#9E2B26;border-radius:10px;padding:11px 14px;font-size:12px;font-weight:700;line-height:1.55;animation:rise .25s ease-out}
+.dc-alert svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none;margin-top:1px}
+.yn-pair{display:inline-flex;gap:6px}
+.ynb{border:1px solid #D8DFE5;background:#fff;color:#4E5B66;border-radius:7px;padding:5px 13px;font-size:10.5px;font-weight:800;transition:.13s;line-height:1.4}
+.ynb:hover:not(:disabled):not(.on){border-color:#E9B48F;color:var(--rust);background:var(--soft)}
+.ynb.on{background:var(--brand-grad);border-color:transparent;color:#fff;box-shadow:0 3px 8px #9D2E2B30}
+.ynb:disabled{opacity:.35;cursor:not-allowed}
+.dc-table th.sn,.dc-table td.sn{width:60px;text-align:center}
+.dc-table td.sn{font-weight:800;color:#8A959E}
+.dc-table td.dc-param{font-weight:600;color:#4E5B66;line-height:1.5}
+.dc-table th:nth-child(3){width:150px}
+.f-wrap input[readonly]{background:#F3F5F7!important;color:#3D4A56;cursor:default}
+.f-wrap:has(input[readonly]):focus-within{border-color:#D8DFE5;box-shadow:none}
+.lb-item.flash{animation:rowflash 1.5s ease-out}
 .pn-team{display:grid;grid-template-columns:1.05fr 1.15fr 1.15fr auto;gap:12px;align-items:end}
 .pn-team .btn-new{padding:10px 22px}
 .btn-new:disabled{opacity:.42;cursor:not-allowed}
@@ -486,6 +515,29 @@ tr.flash{animation:rowflash 1.5s ease-out}
 .tm-wrap .row-x{width:26px;height:26px}
 /* ldap count badge */
 .lb-cnt{float:right;font-size:9.5px;font-weight:800;color:#7A8794;background:#EEF1F4;border-radius:9px;padding:1.5px 7px;min-width:14px;text-align:center}
+
+/* OG e-circular issuance + approver details */
+.ec-block{border:1px solid var(--line);border-radius:11px;background:#fff;padding:13px 15px;display:flex;flex-direction:column;gap:12px;transition:.2s}
+.ec-block.on{border-color:#EAC9AC;background:#FFFBF5}
+.ec-head{display:flex;align-items:center;gap:12px}
+.ec-head>b{font-size:12.5px;font-weight:700;color:var(--ink)}
+.sw-state{margin-left:auto;font-size:11px;font-weight:800;color:#8A959E;transition:.15s}
+.ec-block.on .sw-state{color:var(--maroon)}
+.ec-sub{border-top:1px dashed var(--line);padding-top:13px;animation:rise .25s ease-out}
+.ec-conf{display:flex;align-items:center;gap:10px;border:1px solid #D8DFE5;border-radius:7px;background:#fff;padding:8px 12px;min-height:41px;transition:.15s}
+.ec-conf.on{border-color:#EAC9AC;background:#FFFBF5}
+.ec-conf b{font-size:11px;font-weight:800;color:#8A959E;transition:.15s}
+.ec-conf.on b{color:var(--maroon)}
+.ec-conf .switch{margin-left:auto}
+.gate-msg{display:flex;align-items:flex-start;gap:10px;border:1px solid #EFD9AE;background:#FDF6E9;color:#8A6E4B;border-radius:10px;padding:10px 13px;font-size:11.5px;font-weight:700;line-height:1.55;animation:rise .25s ease-out}
+.gate-msg svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none;margin-top:1px}
+.sec-miss{animation:secPulse .9s ease-out;border-radius:11px;padding:3px;margin:-3px}
+@keyframes secPulse{from{box-shadow:inset 0 0 0 1.5px #E5484D59;background:#FDF1F0}to{box-shadow:inset 0 0 0 1.5px #E5484D00;background:transparent}}
+.ap-sec{display:flex;flex-direction:column;gap:16px}
+.ap-lab{font-size:11px;font-weight:800;color:#5E6C79;margin:0 0 8px}
+.ap-add{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:end;max-width:520px}
+.ap-add .btn-new{padding:10px 22px}
+.w420{max-width:420px}
 
 @media(max-width:900px){
   .auth-frame{grid-template-columns:1fr;grid-template-rows:minmax(150px,32%) 1fr;height:auto;min-height:calc(100vh - 40px)}
@@ -1522,6 +1574,10 @@ function dePick(t){
   byId('deTabs').classList.add('hidden');
   byId('sCrumb').innerHTML=SECTIONS[currentSection].title+' <i>&#8250;</i> Data Entry <i>&#8250;</i> <b>'+t+'</b>';
   if(t==='New Process'){renderPacNoteForm();return}
+  if(t==='Review of Existing Process'){renderPacNoteForm(null,'review');return}
+  if(t==='Addendum to Existing Process'){renderPacNoteForm(null,'addendum');return}
+  if(t==='Discontinuation of Existing Process'){renderDiscCheck();return}
+  if(t==='New Operating Guideline'){renderOgForm();return}
   byId('deTabBody').innerHTML=dePlaceholder(t+' \u2014 Data Entry');
 }
 function deFinish(){
@@ -1548,15 +1604,15 @@ function renderDraftList(){
     +'<tbody id="drBody"></tbody></table></div></div>';
   const draw=q=>{
     q=(q||'').toLowerCase();
-    const list=drafts.filter(d=>!q||(d.name+' '+d.group).toLowerCase().includes(q));
+    const list=drafts.filter(d=>!q||((d.doc||'')+' '+(d.name||'')+' '+d.group).toLowerCase().includes(q));
     byId('drCnt').textContent=list.length+(list.length===1?' draft':' drafts');
     byId('drBody').innerHTML=list.length?list.map(d=>'<tr class="dr-row" data-id="'+d.id+'">'
-        +'<td><b>'+esc(d.name||'\u2014')+'</b></td>'
+        +'<td><b>'+esc(d.doc||d.name||'\u2014')+'</b></td>'
         +'<td>'+esc(d.group||'\u2014')+'</td>'
         +'<td>'+(d.date?fmtDate(d.date):'\u2014')+'</td>'
         +'<td class="em">'+esc(d.savedOn)+'</td>'
         +'<td class="td-act"><button class="row-edit" type="button" aria-label="Open draft">'+EDIT_IC+'</button></td></tr>').join('')
-      :'<tr><td colspan="5"><div class="empty-state"><span class="empty-ic"><svg viewBox="0 0 24 24" aria-hidden="true">'+ICONS.filetext+'</svg></span><b>No Draft Proposals</b><p>Proposals saved as draft from the New PAC Note form will be available here.</p></div></td></tr>';
+      :'<tr><td colspan="5"><div class="empty-state"><span class="empty-ic"><svg viewBox="0 0 24 24" aria-hidden="true">'+ICONS.filetext+'</svg></span><b>No Draft Proposals</b><p>Proposals saved as draft from the PAC Note forms will be available here.</p></div></td></tr>';
   };
   draw();
   byId('drSearch').addEventListener('input',e=>draw(e.target.value));
@@ -1564,8 +1620,7 @@ function renderDraftList(){
     const tr=e.target.closest('tr.dr-row');if(!tr)return;
     const d=drafts.find(x=>x.id===+tr.dataset.id);if(!d)return;
     byId('sCrumb').innerHTML=SECTIONS[currentSection].title+' <i>&#8250;</i> <b>Draft Proposal List</b>';
-    byId('sTitle').textContent='New PAC Note';
-    renderPacNoteForm(d);
+    if(d.kind==='og-new')renderOgForm(d);else renderPacNoteForm(d);
     byId('appMain').scrollTop=0;
   });
 }
@@ -1618,6 +1673,16 @@ function renderDataEntry(){
   });
 }
 const PAC_MEETING_DATES=['2026-11-20','2026-12-18','2027-01-15','2027-02-19','2027-03-19'];
+const PM_PROPOSALS=[
+ {no:'PAC/2026/0102',name:'Digital Onboarding Journey for Savings Accounts',type:'new',date:'2026-06-19',group:'Retail Banking',ec:'EC/2026/0058',rmg:'Kavya Menon'},
+ {no:'PAC/2026/0107',name:'Review of Letter of Credit Advisory Process',type:'review',date:'2026-07-17',group:'Trade Finance',ec:'EC/2026/0063',rmg:'Rahul Verma'},
+ {no:'PAC/2026/0111',name:'Addendum to Beneficiary Name Match Validation Process',type:'addendum',group:'Retail Banking',ec:'EC/2026/0069',rmg:'Kavya Menon'},
+ {no:'PAC/2026/0115',name:'Cash Management Services for Emerging Corporates',type:'new',date:'2026-08-21',group:'Corporate Banking',ec:'EC/2026/0074',rmg:'Sneha Rajan'},
+ {no:'PAC/2026/0119',name:'Review of UPI Dispute Resolution Workflow',type:'review',date:'2026-09-18',group:'Payments Operations',ec:'EC/2026/0081',rmg:'Aditya Rao'},
+ {no:'PAC/2026/0123',name:'Bank Guarantee Issuance Process Digitisation',type:'new',date:'2026-10-16',group:'Trade Finance',ec:'EC/2026/0086',rmg:'Rahul Verma'},
+ {no:'PAC/2026/0126',name:'Addendum to Working Capital Assessment Norms',type:'addendum',group:'Corporate Banking',ec:'EC/2026/0090',rmg:'Sneha Rajan'},
+ {no:'PAC/2026/0129',name:'Review of Discretionary Portfolio Rebalancing Process',type:'review',date:'2026-11-20',group:'Wealth Management',ec:'EC/2026/0094',rmg:'Divya Pillai'}
+];
 const PN_ROLES=['Proposal Owner','Team Leader','Group Head'];
 const PN_EMP_DIR={'E12564':'Ananya Sharma','E20981':'Rohan Kulkarni','E31207':'Priya Nair','E27654':'Aditya Deshpande','E15890':'Meera Iyer','E41033':'Karan Malhotra','E23478':'Sneha Patil','E36502':'Vikram Rao'};
 const PN_EMP_POOL=['Neha Joshi','Arjun Menon','Divya Kapoor','Siddharth Bose','Ritika Jain','Aakash Shetty','Lakshmi Venkatesan','Farhan Qureshi','Pooja Desai','Nikhil Chandra'];
@@ -1667,19 +1732,386 @@ function makeDD(mount,ph,opts,cfg){
     setOpts(l){items=l.slice();val='';const s=phSpan();s.className='dd-ph';s.textContent=ph;renderList()},
     invalidate(b){mount.classList.toggle('invalid',b)}};
 }
-function renderPacNoteForm(draft){
+const PN_TITLES={new:'New PAC Note',review:'Review of Existing Process',addendum:'Addendum to Existing Process',disc:'Discontinuation of Existing Process'};
+const DC_PARAMS=[
+ 'The existing process is active and has completed at least one full periodic review since its implementation.',
+ 'All proposals and addendums linked to the process are closed and no actionable items are pending against it.',
+ 'The discontinuation of the process does not impact any statutory, regulatory or customer commitment of the Bank.'
+];
+function renderDiscCheck(){
+  byId('sTitle').textContent=PN_TITLES.disc;
+  byId('sCrumb').innerHTML=SECTIONS[currentSection].title+' <i>&#8250;</i> Data Entry <i>&#8250;</i> <b>Discontinuation of Existing Process</b>';
+  const ans=[null,null,null];
+  byId('sBody').innerHTML='<div class="pn-form">'
+    +'<div class="dc-alert hidden" id="dcAlert"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5 3 19.5h18z"/><path d="M12 10v4M12 16.8h.01"/></svg><span>The discontinuation proposal cannot be raised as the mandatory eligibility parameters are not met.</span></div>'
+    +'<div class="tbl-wrap"><table class="data-table dc-table"><thead><tr><th class="sn">S.No</th><th>Parameters</th><th>Yes/No</th></tr></thead><tbody>'
+    +DC_PARAMS.map((p,i)=>'<tr><td class="sn">'+(i+1)+'</td><td class="dc-param">'+esc(p)+'</td><td><span class="yn-pair" data-i="'+i+'"><button class="ynb" data-v="Yes" type="button">Yes</button><button class="ynb" data-v="No" type="button">No</button></span></td></tr>').join('')
+    +'</tbody></table></div>'
+    +'<div class="de-actions"><button class="btn-new" id="dcGo" type="button" disabled>Continue</button></div>'
+    +'</div>';
+  const go=byId('dcGo');
+  const sync=()=>{
+    const locked=ans[0]!=='No';
+    document.querySelectorAll('#sBody .yn-pair').forEach(pr=>{
+      const i=+pr.dataset.i;
+      pr.querySelectorAll('.ynb').forEach(b=>b.disabled=i>0&&locked);
+    });
+    const blocked=ans[0]==='No'&&ans[1]&&ans[2]&&!(ans[1]==='Yes'&&ans[2]==='Yes');
+    const allowed=ans[0]==='Yes'||(ans[0]==='No'&&ans[1]==='Yes'&&ans[2]==='Yes');
+    byId('dcAlert').classList.toggle('hidden',!blocked);
+    go.disabled=!allowed;
+  };
+  document.querySelectorAll('#sBody .yn-pair .ynb').forEach(b=>b.addEventListener('click',()=>{
+    if(b.disabled)return;
+    const pr=b.closest('.yn-pair'),i=+pr.dataset.i,v=b.dataset.v;
+    if(ans[i]!==v){
+      ans[i]=v;
+      pr.querySelectorAll('.ynb').forEach(x=>x.classList.toggle('on',x===b));
+    }else{
+      ans[i]=null;
+      b.classList.remove('on');
+    }
+    if(i===0&&ans[0]==='Yes'){
+      ans[1]=null;ans[2]=null;
+      document.querySelectorAll('#sBody .yn-pair[data-i="1"] .ynb,#sBody .yn-pair[data-i="2"] .ynb').forEach(x=>x.classList.remove('on'));
+    }
+    sync();
+  }));
+  go.addEventListener('click',()=>{if(!go.disabled)renderPacNoteForm(null,'disc')});
+  sync();
+}
+function pmBlockHTML(ana){
+  return '<div class="f-field full" id="pmField"><span>Proposal Mapping</span>'
+    +'<div class="pn-listbox" id="pmSrcWrap"><div class="lb-head">Available proposals<span class="lb-cnt" id="pmSrcCnt">0</span></div><div class="lb-body" id="pmSrcList"></div></div>'
+    +'<div class="pm-btns"><button class="pm-btn" id="pmAdd" type="button" disabled>Add</button><button class="pm-btn" id="pmRemove" type="button" disabled>Remove</button></div>'
+    +'<div class="pm-sub hidden" id="pmSub"><div class="pn-listbox"><div class="lb-head">Mapped proposals<span class="lb-cnt" id="pmMapCnt">0</span></div><div class="lb-body" id="pmMapList"></div></div>'
+    +(ana?'<label class="f-field" id="pmAnaWrap"><span>RMG Analyst name</span><span class="ana-box" id="pmAna"></span></label>':'')
+    +'<div class="f-field full" id="pmDetWrap"><span>Proposal Details</span><div class="tbl-wrap pm-tbl"><table class="data-table"><thead><tr><th>PAC ID</th><th>Proposal Name</th><th>Group</th><th>E-circular number</th></tr></thead><tbody id="pmDetBody"></tbody></table></div></div>'
+    +'</div>'
+    +'</div>';
+}
+function initPm(ana){
+  let pmNew=[];
+  const st={mapped:[]};
+  const pmTxt=p=>'<b>'+esc(p.no)+'</b>'+(p.date?'<span class="pm-sep">|</span>'+fmtDate(p.date):'')+'<span class="pm-sep">|</span>'+esc(p.group)+'<span class="pm-sep">|</span>'+esc(p.ec);
+  const pmRow=p=>'<button class="lb-item'+(pmNew.includes(p.no)?' flash':'')+'" type="button" data-no="'+esc(p.no)+'"><span>'+pmTxt(p)+'</span></button>';
+  const render=()=>{
+    const avail=PM_PROPOSALS.filter(p=>!st.mapped.some(m=>m.no===p.no));
+    byId('pmSrcList').innerHTML=avail.length?avail.map(pmRow).join(''):'<div class="pm-none">No proposals available</div>';
+    byId('pmMapList').innerHTML=st.mapped.map(pmRow).join('');
+    byId('pmSrcCnt').textContent=avail.length;
+    byId('pmMapCnt').textContent=st.mapped.length;
+    byId('pmSub').classList.toggle('hidden',!st.mapped.length);
+    if(ana)byId('pmAna').innerHTML=[...new Set(st.mapped.map(p=>p.rmg))].map(n=>'<span class="ana-chip">'+esc(n)+'</span>').join('');
+    byId('pmDetBody').innerHTML=st.mapped.map(p=>'<tr'+(pmNew.includes(p.no)?' class="flash"':'')+'><td><b>'+esc(p.no)+'</b></td><td>'+esc(p.name)+'</td><td>'+esc(p.group)+'</td><td>'+esc(p.ec)+'</td></tr>').join('');
+    byId('pmAdd').disabled=!byId('pmSrcList').querySelector('.lb-item.on');
+    byId('pmRemove').disabled=!byId('pmMapList').querySelector('.lb-item.on');
+    pmNew=[];
+  };
+  byId('pmSrcList').addEventListener('click',e=>{const it=e.target.closest('.lb-item');if(!it)return;it.classList.toggle('on');byId('pmAdd').disabled=!byId('pmSrcList').querySelector('.lb-item.on')});
+  byId('pmMapList').addEventListener('click',e=>{const it=e.target.closest('.lb-item');if(!it)return;it.classList.toggle('on');byId('pmRemove').disabled=!byId('pmMapList').querySelector('.lb-item.on')});
+  byId('pmAdd').addEventListener('click',()=>{
+    const sel=[...byId('pmSrcList').querySelectorAll('.lb-item.on')].map(b=>PM_PROPOSALS.find(p=>p.no===b.dataset.no)).filter(Boolean);
+    if(!sel.length)return;
+    st.mapped=st.mapped.concat(sel);
+    pmNew=sel.map(p=>p.no);
+    byId('pmSrcWrap').classList.remove('invalid');
+    render();
+    setTimeout(()=>byId('pmSub').scrollIntoView({block:'nearest',behavior:'smooth'}),80);
+  });
+  byId('pmRemove').addEventListener('click',()=>{
+    const sel=[...byId('pmMapList').querySelectorAll('.lb-item.on')].map(b=>b.dataset.no);
+    if(!sel.length)return;
+    st.mapped=st.mapped.filter(p=>!sel.includes(p.no));
+    render();
+  });
+  st.render=render;
+  st.set=nos=>{st.mapped=(nos||[]).map(no=>PM_PROPOSALS.find(p=>p.no===no)).filter(Boolean);render()};
+  return st;
+}
+function initKeys(){
+  const box=byId('pnKeys'),inp=byId('pnKeysIn');
+  let chips=[];
+  const render=()=>{
+    box.querySelectorAll('.tok').forEach(t=>t.remove());
+    chips.forEach((c,i)=>{
+      const t=document.createElement('span');t.className='tok';
+      t.innerHTML=esc(c)+'<button type="button" aria-label="Remove keyword"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>';
+      t.querySelector('button').addEventListener('click',()=>{chips.splice(i,1);render();inp.focus()});
+      box.insertBefore(t,inp);
+    });
+    if(chips.length)box.classList.remove('invalid');
+  };
+  const add=()=>{
+    const v=inp.value.replace(/,/g,'').trim();
+    if(v&&!chips.some(c=>c.toLowerCase()===v.toLowerCase())){chips.push(v);render()}
+    inp.value='';
+  };
+  box.addEventListener('click',e=>{if(e.target===box)inp.focus()});
+  inp.addEventListener('keydown',e=>{
+    if(e.key===','||e.key==='Enter'){e.preventDefault();add()}
+    else if(e.key==='Backspace'&&!inp.value&&chips.length){chips.pop();render()}
+  });
+  inp.addEventListener('blur',()=>{if(inp.value.trim())add()});
+  inp.addEventListener('input',()=>box.classList.remove('invalid'));
+  return {get chips(){return chips},render,set(a){chips=(a||[]).slice();render()},invalid(b){box.classList.toggle('invalid',b)}};
+}
+function initDesc(){
+  const ta=byId('pnDesc');
+  ta.addEventListener('input',()=>{
+    const n=ta.value.length,c=byId('pnCount');
+    c.textContent=n+' / 500';c.classList.toggle('max',n>=500);
+    const bar=byId('pnBar');bar.firstElementChild.style.width=n/500*100+'%';
+    bar.classList.toggle('warn',n>=400&&n<500);bar.classList.toggle('max',n>=500);
+  });
+}
+function initTeam(onChange){
+  const empIn=byId('pnEmp'),addBtn=byId('pnAddMember');
+  const roleDD=makeDD(byId('pnRole'),'Select role',PN_ROLES.map(r=>({v:r,m:r})));
+  const tGroupDD=makeDD(byId('pnTeamGroup'),'Select group',[],{disabled:true});
+  let team=[];
+  const sync=mainGroup=>{
+    if(mainGroup){
+      tGroupDD.setDisabled(false);
+      tGroupDD.setOpts([{v:mainGroup,m:mainGroup}]);
+      tGroupDD.pick(mainGroup,true);
+      tGroupDD.mount.classList.remove('invalid');
+    }else{tGroupDD.setDisabled(true);tGroupDD.setOpts([])}
+  };
+  const render=(flash,silent)=>{
+    byId('pnTeamBody').innerHTML=team.map((m,i)=>'<tr'+(i===flash?' class="flash"':'')+'><td><b>'+esc(m.emp)+'</b></td><td>'+esc(m.name)+'</td><td>'+esc(m.role)+'</td><td>'+esc(m.group)+'</td><td class="td-act"><button class="row-x" data-i="'+i+'" type="button" aria-label="Remove '+esc(m.emp)+'"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></td></tr>').join('');
+    byId('pnTeamWrap').classList.toggle('hidden',!team.length);
+    addBtn.disabled=team.length>=3;
+    if(onChange&&!silent)onChange();
+  };
+  render(undefined,true);
+  byId('pnTeamBody').addEventListener('click',e=>{const b=e.target.closest('.row-x');if(!b)return;team.splice(+b.dataset.i,1);render()});
+  addBtn.addEventListener('click',()=>{
+    let ok=true;
+    const v=empIn.value.trim();
+    if(!v||team.some(m=>m.emp.toLowerCase()===v.toLowerCase())){empIn.classList.add('invalid');ok=false}
+    if(!roleDD.value){roleDD.invalidate(true);ok=false}
+    if(!tGroupDD.value){tGroupDD.invalidate(true);ok=false}
+    if(!ok||team.length>=3)return;
+    team.push({emp:v,name:empNameOf(v),role:roleDD.value,group:tGroupDD.value});
+    empIn.value='';render(team.length-1);empIn.focus();
+  });
+  return {get team(){return team},roleDD,tGroupDD,render,sync,
+    set(list){team=(list||[]).slice();render()},
+    coverage:()=>PN_ROLES.every(r=>team.some(m=>m.role===r)),
+    markInvalid(){[empIn,roleDD.mount,tGroupDD.mount].forEach(s=>s.classList.add('invalid'))}};
+}
+function initUpload(){
+  const drop=byId('pnDrop'),fin=byId('pnFile');
+  let sel=null;
+  const show=f=>{byId('pnFileName').textContent=f.name;byId('pnFileSize').textContent=fmtSize(f.size);byId('pnFileRow').classList.remove('hidden')};
+  const setFile=f=>{
+    if(!f)return;
+    const okPdf=/\.pdf$/i.test(f.name)||f.type==='application/pdf';
+    if(!okPdf||f.size>50*1024*1024){drop.classList.add('miss');setTimeout(()=>drop.classList.remove('miss'),900);return}
+    sel=f;
+    show(f);
+    drop.classList.remove('miss');
+  };
+  drop.addEventListener('click',()=>fin.click());
+  drop.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();fin.click()}});
+  ['dragover','dragenter'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('over')}));
+  ['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('over')}));
+  drop.addEventListener('drop',e=>{const f=e.dataTransfer.files&&e.dataTransfer.files[0];if(f)setFile(f)});
+  fin.addEventListener('change',()=>{if(fin.files[0])setFile(fin.files[0])});
+  byId('pnFileX').addEventListener('click',()=>{sel=null;fin.value='';byId('pnFileRow').classList.add('hidden')});
+  return {get file(){return sel},set:f=>setFile(f),miss(b){drop.classList.toggle('miss',b)},
+    restore(f,name,size){sel=f;byId('pnFileName').textContent=name;byId('pnFileSize').textContent=fmtSize(size);byId('pnFileRow').classList.remove('hidden')}};
+}
+function initDual(){
+  const optList=byId('pnOptList'),selList=byId('pnSelList'),toR=byId('pnToRight'),toL=byId('pnToLeft');
+  const syncCnt=()=>{byId('pnOptCnt').textContent=optList.querySelectorAll('.lb-item').length;byId('pnSelCnt').textContent=selList.querySelectorAll('.lb-item').length};
+  const refreshArrows=()=>{toR.disabled=!optList.querySelector('.lb-item.on');toL.disabled=!selList.querySelector('.lb-item.on:not(.locked)')};
+  const mkItem=(name,locked)=>{const b=document.createElement('button');b.type='button';b.className='lb-item'+(locked?' locked':'');b.dataset.nm=name;b.innerHTML='<span>'+esc(name)+'</span>'+(locked?'<span class="lb-tag">Mandatory</span>':'');return b};
+  optList.addEventListener('click',e=>{const it=e.target.closest('.lb-item');if(!it)return;it.classList.toggle('on');refreshArrows()});
+  selList.addEventListener('click',e=>{const it=e.target.closest('.lb-item');if(!it||it.classList.contains('locked'))return;it.classList.toggle('on');refreshArrows()});
+  toR.addEventListener('click',()=>{let last=null;optList.querySelectorAll('.lb-item.on').forEach(it=>{const n=mkItem(it.dataset.nm,false);selList.appendChild(n);last=n;it.remove()});refreshArrows();syncCnt();if(last)last.scrollIntoView({block:'nearest',behavior:'smooth'})});
+  toL.addEventListener('click',()=>{let last=null;selList.querySelectorAll('.lb-item.on:not(.locked)').forEach(it=>{const n=mkItem(it.dataset.nm,false);optList.appendChild(n);last=n;it.remove()});refreshArrows();syncCnt();if(last)last.scrollIntoView({block:'nearest',behavior:'smooth'})});
+  syncCnt();refreshArrows();
+  return {sel:()=>[...selList.querySelectorAll('.lb-item:not(.locked)')].map(b=>b.dataset.nm),
+    set(names){(names||[]).forEach(nm=>{const it=[...optList.querySelectorAll('.lb-item')].find(x=>x.dataset.nm===nm);if(it){selList.appendChild(mkItem(nm,false));it.remove()}});syncCnt();refreshArrows()}};
+}
+function pmBlockHTML(ana){
+  return '<div class="f-field full" id="pmField"><span>Proposal Mapping</span>'
+    +'<div class="pn-listbox" id="pmSrcWrap"><div class="lb-head">Available proposals<span class="lb-cnt" id="pmSrcCnt">0</span></div><div class="lb-body" id="pmSrcList"></div></div>'
+    +'<div class="pm-btns"><button class="pm-btn" id="pmAdd" type="button" disabled>Add</button><button class="pm-btn" id="pmRemove" type="button" disabled>Remove</button></div>'
+    +'<div class="pm-sub hidden" id="pmSub"><div class="pn-listbox"><div class="lb-head">Mapped proposals<span class="lb-cnt" id="pmMapCnt">0</span></div><div class="lb-body" id="pmMapList"></div></div>'
+    +(ana?'<label class="f-field" id="pmAnaWrap"><span>RMG Analyst name</span><span class="ana-box" id="pmAna"></span></label>':'')
+    +'<div class="f-field full" id="pmDetWrap"><span>Proposal Details</span><div class="tbl-wrap pm-tbl"><table class="data-table"><thead><tr><th>PAC ID</th><th>Proposal Name</th><th>Group</th><th>E-circular number</th></tr></thead><tbody id="pmDetBody"></tbody></table></div></div>'
+    +'</div>'
+    +'</div>';
+}
+function initPm(ana){
+  let pmNew=[];
+  const st={mapped:[]};
+  const pmTxt=p=>'<b>'+esc(p.no)+'</b>'+(p.date?'<span class="pm-sep">|</span>'+fmtDate(p.date):'')+'<span class="pm-sep">|</span>'+esc(p.group)+'<span class="pm-sep">|</span>'+esc(p.ec);
+  const pmRow=p=>'<button class="lb-item'+(pmNew.includes(p.no)?' flash':'')+'" type="button" data-no="'+esc(p.no)+'"><span>'+pmTxt(p)+'</span></button>';
+  const render=()=>{
+    const avail=PM_PROPOSALS.filter(p=>!st.mapped.some(m=>m.no===p.no));
+    byId('pmSrcList').innerHTML=avail.length?avail.map(pmRow).join(''):'<div class="pm-none">No proposals available</div>';
+    byId('pmMapList').innerHTML=st.mapped.map(pmRow).join('');
+    byId('pmSrcCnt').textContent=avail.length;
+    byId('pmMapCnt').textContent=st.mapped.length;
+    byId('pmSub').classList.toggle('hidden',!st.mapped.length);
+    if(ana)byId('pmAna').innerHTML=[...new Set(st.mapped.map(p=>p.rmg))].map(n=>'<span class="ana-chip">'+esc(n)+'</span>').join('');
+    byId('pmDetBody').innerHTML=st.mapped.map(p=>'<tr'+(pmNew.includes(p.no)?' class="flash"':'')+'><td><b>'+esc(p.no)+'</b></td><td>'+esc(p.name)+'</td><td>'+esc(p.group)+'</td><td>'+esc(p.ec)+'</td></tr>').join('');
+    byId('pmAdd').disabled=!byId('pmSrcList').querySelector('.lb-item.on');
+    byId('pmRemove').disabled=!byId('pmMapList').querySelector('.lb-item.on');
+    pmNew=[];
+  };
+  byId('pmSrcList').addEventListener('click',e=>{const it=e.target.closest('.lb-item');if(!it)return;it.classList.toggle('on');byId('pmAdd').disabled=!byId('pmSrcList').querySelector('.lb-item.on')});
+  byId('pmMapList').addEventListener('click',e=>{const it=e.target.closest('.lb-item');if(!it)return;it.classList.toggle('on');byId('pmRemove').disabled=!byId('pmMapList').querySelector('.lb-item.on')});
+  byId('pmAdd').addEventListener('click',()=>{
+    const sel=[...byId('pmSrcList').querySelectorAll('.lb-item.on')].map(b=>PM_PROPOSALS.find(p=>p.no===b.dataset.no)).filter(Boolean);
+    if(!sel.length)return;
+    st.mapped=st.mapped.concat(sel);
+    pmNew=sel.map(p=>p.no);
+    byId('pmSrcWrap').classList.remove('invalid');
+    render();
+    setTimeout(()=>byId('pmSub').scrollIntoView({block:'nearest',behavior:'smooth'}),80);
+  });
+  byId('pmRemove').addEventListener('click',()=>{
+    const sel=[...byId('pmMapList').querySelectorAll('.lb-item.on')].map(b=>b.dataset.no);
+    if(!sel.length)return;
+    st.mapped=st.mapped.filter(p=>!sel.includes(p.no));
+    render();
+  });
+  st.render=render;
+  st.set=nos=>{st.mapped=(nos||[]).map(no=>PM_PROPOSALS.find(p=>p.no===no)).filter(Boolean);render()};
+  render();
+  return st;
+}
+function initKeys(){
+  const box=byId('pnKeys'),inp=byId('pnKeysIn');
+  let chips=[];
+  const render=()=>{
+    box.querySelectorAll('.tok').forEach(t=>t.remove());
+    chips.forEach((c,i)=>{
+      const t=document.createElement('span');t.className='tok';
+      t.innerHTML=esc(c)+'<button type="button" aria-label="Remove keyword"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>';
+      t.querySelector('button').addEventListener('click',()=>{chips.splice(i,1);render();inp.focus()});
+      box.insertBefore(t,inp);
+    });
+    if(chips.length)box.classList.remove('invalid');
+  };
+  const add=()=>{
+    const v=inp.value.replace(/,/g,'').trim();
+    if(v&&!chips.some(c=>c.toLowerCase()===v.toLowerCase())){chips.push(v);render()}
+    inp.value='';
+  };
+  box.addEventListener('click',e=>{if(e.target===box)inp.focus()});
+  inp.addEventListener('keydown',e=>{
+    if(e.key===','||e.key==='Enter'){e.preventDefault();add()}
+    else if(e.key==='Backspace'&&!inp.value&&chips.length){chips.pop();render()}
+  });
+  inp.addEventListener('blur',()=>{if(inp.value.trim())add()});
+  inp.addEventListener('input',()=>box.classList.remove('invalid'));
+  return {get chips(){return chips},render,set(a){chips=(a||[]).slice();render()},invalid(b){box.classList.toggle('invalid',b)}};
+}
+function initDesc(){
+  const ta=byId('pnDesc');
+  ta.addEventListener('input',()=>{
+    const n=ta.value.length,c=byId('pnCount');
+    c.textContent=n+' / 500';c.classList.toggle('max',n>=500);
+    const bar=byId('pnBar');bar.firstElementChild.style.width=n/500*100+'%';
+    bar.classList.toggle('warn',n>=400&&n<500);bar.classList.toggle('max',n>=500);
+  });
+}
+function initTeam(onChange){
+  const empIn=byId('pnEmp'),addBtn=byId('pnAddMember');
+  const roleDD=makeDD(byId('pnRole'),'Select role',PN_ROLES.map(r=>({v:r,m:r})));
+  const tGroupDD=makeDD(byId('pnTeamGroup'),'Select group',[],{disabled:true});
+  let team=[];
+  const sync=mainGroup=>{
+    if(mainGroup){
+      tGroupDD.setDisabled(false);
+      tGroupDD.setOpts([{v:mainGroup,m:mainGroup}]);
+      tGroupDD.pick(mainGroup,true);
+      tGroupDD.mount.classList.remove('invalid');
+    }else{tGroupDD.setDisabled(true);tGroupDD.setOpts([])}
+  };
+  const render=(flash,silent)=>{
+    byId('pnTeamBody').innerHTML=team.map((m,i)=>'<tr'+(i===flash?' class="flash"':'')+'><td><b>'+esc(m.emp)+'</b></td><td>'+esc(m.name)+'</td><td>'+esc(m.role)+'</td><td>'+esc(m.group)+'</td><td class="td-act"><button class="row-x" data-i="'+i+'" type="button" aria-label="Remove '+esc(m.emp)+'"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></td></tr>').join('');
+    byId('pnTeamWrap').classList.toggle('hidden',!team.length);
+    addBtn.disabled=team.length>=3;
+    if(onChange&&!silent)onChange();
+  };
+  render(undefined,true);
+  byId('pnTeamBody').addEventListener('click',e=>{const b=e.target.closest('.row-x');if(!b)return;team.splice(+b.dataset.i,1);render()});
+  addBtn.addEventListener('click',()=>{
+    let ok=true;
+    const v=empIn.value.trim();
+    if(!v||team.some(m=>m.emp.toLowerCase()===v.toLowerCase())){empIn.classList.add('invalid');ok=false}
+    if(!roleDD.value){roleDD.invalidate(true);ok=false}
+    if(!tGroupDD.value){tGroupDD.invalidate(true);ok=false}
+    if(!ok||team.length>=3)return;
+    team.push({emp:v,name:empNameOf(v),role:roleDD.value,group:tGroupDD.value});
+    empIn.value='';render(team.length-1);empIn.focus();
+  });
+  return {get team(){return team},roleDD,tGroupDD,render,sync,
+    set(list){team=(list||[]).slice();render()},
+    coverage:()=>PN_ROLES.every(r=>team.some(m=>m.role===r)),
+    markInvalid(){[empIn,roleDD.mount,tGroupDD.mount].forEach(s=>s.classList.add('invalid'))}};
+}
+function initUpload(){
+  const drop=byId('pnDrop'),fin=byId('pnFile');
+  let sel=null;
+  const show=f=>{byId('pnFileName').textContent=f.name;byId('pnFileSize').textContent=fmtSize(f.size);byId('pnFileRow').classList.remove('hidden')};
+  const setFile=f=>{
+    if(!f)return;
+    const okPdf=/\.pdf$/i.test(f.name)||f.type==='application/pdf';
+    if(!okPdf||f.size>50*1024*1024){drop.classList.add('miss');setTimeout(()=>drop.classList.remove('miss'),900);return}
+    sel=f;
+    show(f);
+    drop.classList.remove('miss');
+  };
+  drop.addEventListener('click',()=>fin.click());
+  drop.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();fin.click()}});
+  ['dragover','dragenter'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('over')}));
+  ['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('over')}));
+  drop.addEventListener('drop',e=>{const f=e.dataTransfer.files&&e.dataTransfer.files[0];if(f)setFile(f)});
+  fin.addEventListener('change',()=>{if(fin.files[0])setFile(fin.files[0])});
+  byId('pnFileX').addEventListener('click',()=>{sel=null;fin.value='';byId('pnFileRow').classList.add('hidden')});
+  return {get file(){return sel},set:f=>setFile(f),miss(b){drop.classList.toggle('miss',b)},
+    restore(f,name,size){sel=f;byId('pnFileName').textContent=name;byId('pnFileSize').textContent=fmtSize(size);byId('pnFileRow').classList.remove('hidden')}};
+}
+function initDual(){
+  const optList=byId('pnOptList'),selList=byId('pnSelList'),toR=byId('pnToRight'),toL=byId('pnToLeft');
+  const syncCnt=()=>{byId('pnOptCnt').textContent=optList.querySelectorAll('.lb-item').length;byId('pnSelCnt').textContent=selList.querySelectorAll('.lb-item').length};
+  const refreshArrows=()=>{toR.disabled=!optList.querySelector('.lb-item.on');toL.disabled=!selList.querySelector('.lb-item.on:not(.locked)')};
+  const mkItem=(name,locked)=>{const b=document.createElement('button');b.type='button';b.className='lb-item'+(locked?' locked':'');b.dataset.nm=name;b.innerHTML='<span>'+esc(name)+'</span>'+(locked?'<span class="lb-tag">Mandatory</span>':'');return b};
+  optList.addEventListener('click',e=>{const it=e.target.closest('.lb-item');if(!it)return;it.classList.toggle('on');refreshArrows()});
+  selList.addEventListener('click',e=>{const it=e.target.closest('.lb-item');if(!it||it.classList.contains('locked'))return;it.classList.toggle('on');refreshArrows()});
+  toR.addEventListener('click',()=>{let last=null;optList.querySelectorAll('.lb-item.on').forEach(it=>{const n=mkItem(it.dataset.nm,false);selList.appendChild(n);last=n;it.remove()});refreshArrows();syncCnt();if(last)last.scrollIntoView({block:'nearest',behavior:'smooth'})});
+  toL.addEventListener('click',()=>{let last=null;selList.querySelectorAll('.lb-item.on:not(.locked)').forEach(it=>{const n=mkItem(it.dataset.nm,false);optList.appendChild(n);last=n;it.remove()});refreshArrows();syncCnt();if(last)last.scrollIntoView({block:'nearest',behavior:'smooth'})});
+  syncCnt();refreshArrows();
+  return {sel:()=>[...selList.querySelectorAll('.lb-item:not(.locked)')].map(b=>b.dataset.nm),
+    set(names){(names||[]).forEach(nm=>{const it=[...optList.querySelectorAll('.lb-item')].find(x=>x.dataset.nm===nm);if(it){selList.appendChild(mkItem(nm,false));it.remove()}});syncCnt();refreshArrows()}};
+}
+function renderPacNoteForm(draft,mode){
+  if(draft&&draft.kind)mode=draft.kind;
+  mode=mode||'new';
+  const rev=mode!=='new';
+  const docLab=mode==='addendum'?'Name of the Addendum':mode==='disc'?'Name of the discontinuation note':'';
   const groups=groupData.filter(r=>r.active==='Y').map(r=>({v:r.name,m:r.name,s:r.dept})).sort((a,b)=>a.m.localeCompare(b.m));
   const products=productData.filter(r=>r.active==='Y').map(r=>({v:r.name,m:r.name})).sort((a,b)=>a.m.localeCompare(b.m));
   const dates=PAC_MEETING_DATES.map(d=>({v:d,m:fmtDate(d),s:WEEKDAY[new Date(d+'T00:00:00').getDay()]}));
   const ldapAct=ldapData.filter(r=>r.active==='Y');
   const mandG=ldapAct.filter(r=>r.mandatory==='Y').map(r=>r.display);
   const optG=ldapAct.filter(r=>r.mandatory!=='Y').map(r=>r.display).sort();
-  byId('sTitle').textContent='New PAC Note';
+  byId('sTitle').textContent=PN_TITLES[mode];
   const lb=(name,locked)=>'<button class="lb-item'+(locked?' locked':'')+'" type="button" data-nm="'+esc(name)+'"><span>'+esc(name)+'</span>'+(locked?'<span class="lb-tag">Mandatory</span>':'')+'</button>';
   byId('sBody').innerHTML='<div class="pn-form">'
     +'<div class="pn-grid">'
+      +(docLab?'<label class="f-field full"><span>'+docLab+'</span><span class="f-wrap"><input id="pnDoc" type="text" maxlength="150"></span></label>':'')
       +'<div class="f-field"><span>Meeting date</span><span id="pnDate"></span></div>'
       +'<div class="f-field"><span>Group</span><span id="pnGroup"></span></div>'
+      +(rev?pmBlockHTML(true):'')
       +'<label class="f-field full"><span>Proposal Name</span><span class="f-wrap"><input id="pnName" type="text" maxlength="150"></span></label>'
       +'<div class="f-field"><span>Products/Processes</span><span id="pnProduct"></span></div>'
       +'<label class="f-field"><span>Define keyword(s)</span><span class="tok-box" id="pnKeys"><input class="tok-in" id="pnKeysIn" type="text" autocomplete="off" spellcheck="false"></span><small class="pn-help">Please enter \',\' separated list for multiple keywords</small></label>'
@@ -1714,116 +2146,224 @@ function renderPacNoteForm(draft){
     +'</div>'
     +'<div class="pn-actions"><button class="btn-ghost" id="pnDraft" type="button">Save as Draft</button><button class="btn-new" id="pnSubmit" type="button">Submit</button></div>'
   +'</div>';
-  const el=id=>byId(id);
-  const nameIn=el('pnName'),descTa=el('pnDesc'),empIn=el('pnEmp'),addBtn=el('pnAddMember');
-  const keysBox=el('pnKeys'),keysIn=el('pnKeysIn');
-  const optList=el('pnOptList'),selList=el('pnSelList'),toR=el('pnToRight'),toL=el('pnToLeft'),drop=el('pnDrop'),fin=el('pnFile');
-  let pnFileSel=null,team=[],chips=[];
-  const dateDD=makeDD(el('pnDate'),'Select meeting date',dates);
-  const prodDD=makeDD(el('pnProduct'),'Select product/process',products,{filter:true});
-  const roleDD=makeDD(el('pnRole'),'Select role',PN_ROLES.map(r=>({v:r,m:r})));
-  const tGroupDD=makeDD(el('pnTeamGroup'),'Select group',[],{disabled:true});
-  const syncTeamGroup=()=>{
-    if(groupDD.value){
-      tGroupDD.setDisabled(false);
-      tGroupDD.setOpts([{v:groupDD.value,m:groupDD.value}]);
-      tGroupDD.pick(groupDD.value,true);
-      tGroupDD.mount.classList.remove('invalid');
-    }else{tGroupDD.setDisabled(true);tGroupDD.setOpts([])}
-  };
-  const groupDD=makeDD(el('pnGroup'),'Select group',groups,{filter:true,onChange:()=>syncTeamGroup()});
-  [nameIn,descTa,empIn].forEach(i=>i.addEventListener('input',()=>i.classList.remove('invalid')));
-  const renderChips=()=>{
-    keysBox.querySelectorAll('.tok').forEach(t=>t.remove());
-    chips.forEach((c,i)=>{
-      const t=document.createElement('span');t.className='tok';
-      t.innerHTML=esc(c)+'<button type="button" aria-label="Remove keyword"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>';
-      t.querySelector('button').addEventListener('click',()=>{chips.splice(i,1);renderChips();keysIn.focus()});
-      keysBox.insertBefore(t,keysIn);
-    });
-    if(chips.length)keysBox.classList.remove('invalid');
-  };
-  const addChip=()=>{
-    const v=keysIn.value.replace(/,/g,'').trim();
-    if(v&&!chips.some(c=>c.toLowerCase()===v.toLowerCase())){chips.push(v);renderChips()}
-    keysIn.value='';
-  };
-  keysBox.addEventListener('click',e=>{if(e.target===keysBox)keysIn.focus()});
-  keysIn.addEventListener('keydown',e=>{
-    if(e.key===','||e.key==='Enter'){e.preventDefault();addChip()}
-    else if(e.key==='Backspace'&&!keysIn.value&&chips.length){chips.pop();renderChips()}
-  });
-  keysIn.addEventListener('blur',()=>{if(keysIn.value.trim())addChip()});
-  keysIn.addEventListener('input',()=>keysBox.classList.remove('invalid'));
-  descTa.addEventListener('input',()=>{
-    const n=descTa.value.length,c=el('pnCount');
-    c.textContent=n+' / 500';c.classList.toggle('max',n>=500);
-    const bar=el('pnBar');bar.firstElementChild.style.width=n/500*100+'%';
-    bar.classList.toggle('warn',n>=400&&n<500);bar.classList.toggle('max',n>=500);
-  });
-  el('pnIcofr').addEventListener('change',e=>{el('pnIcofrRow').classList.toggle('on',e.target.checked);if(e.target.checked)openIcofr()});
-  const syncCnt=()=>{el('pnOptCnt').textContent=optList.querySelectorAll('.lb-item').length;el('pnSelCnt').textContent=selList.querySelectorAll('.lb-item').length};
-  syncCnt();
-  const refreshArrows=()=>{toR.disabled=!optList.querySelector('.lb-item.on');toL.disabled=!selList.querySelector('.lb-item.on:not(.locked)')};
-  const mkItem=(name,locked)=>{const b=document.createElement('button');b.type='button';b.className='lb-item'+(locked?' locked':'');b.dataset.nm=name;b.innerHTML='<span>'+esc(name)+'</span>'+(locked?'<span class="lb-tag">Mandatory</span>':'');return b};
-  optList.addEventListener('click',e=>{const it=e.target.closest('.lb-item');if(!it)return;it.classList.toggle('on');refreshArrows()});
-  selList.addEventListener('click',e=>{const it=e.target.closest('.lb-item');if(!it||it.classList.contains('locked'))return;it.classList.toggle('on');refreshArrows()});
-  toR.addEventListener('click',()=>{let last=null;optList.querySelectorAll('.lb-item.on').forEach(it=>{const n=mkItem(it.dataset.nm,false);selList.appendChild(n);last=n;it.remove()});refreshArrows();syncCnt();if(last)last.scrollIntoView({block:'nearest',behavior:'smooth'})});
-  toL.addEventListener('click',()=>{let last=null;selList.querySelectorAll('.lb-item.on:not(.locked)').forEach(it=>{const n=mkItem(it.dataset.nm,false);optList.appendChild(n);last=n;it.remove()});refreshArrows();syncCnt();if(last)last.scrollIntoView({block:'nearest',behavior:'smooth'})});
-  const renderTeam=flash=>{
-    const tb=el('pnTeamBody');
-    tb.innerHTML=team.map((m,i)=>'<tr'+(i===flash?' class="flash"':'')+'><td><b>'+esc(m.emp)+'</b></td><td>'+esc(m.name)+'</td><td>'+esc(m.role)+'</td><td>'+esc(m.group)+'</td><td class="td-act"><button class="row-x" data-i="'+i+'" type="button" aria-label="Remove '+esc(m.emp)+'"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></td></tr>').join('');
-    el('pnTeamWrap').classList.toggle('hidden',!team.length);
-    addBtn.disabled=team.length>=3;
-  };
-  renderTeam();
-  el('pnTeamBody').addEventListener('click',e=>{const b=e.target.closest('.row-x');if(!b)return;team.splice(+b.dataset.i,1);renderTeam()});
-  addBtn.addEventListener('click',()=>{
-    let ok=true;
-    const v=empIn.value.trim();
-    if(!v||team.some(m=>m.emp.toLowerCase()===v.toLowerCase())){empIn.classList.add('invalid');ok=false}
-    if(!roleDD.value){roleDD.invalidate(true);ok=false}
-    if(!tGroupDD.value){tGroupDD.invalidate(true);ok=false}
-    if(!ok||team.length>=3)return;
-    team.push({emp:v,name:empNameOf(v),role:roleDD.value,group:tGroupDD.value});
-    empIn.value='';renderTeam(team.length-1);empIn.focus();
-  });
-  const setFile=f=>{
-    if(!f)return;
-    const okPdf=/\.pdf$/i.test(f.name)||f.type==='application/pdf';
-    if(!okPdf||f.size>50*1024*1024){drop.classList.add('miss');setTimeout(()=>drop.classList.remove('miss'),900);return}
-    pnFileSel=f;
-    el('pnFileName').textContent=f.name;
-    el('pnFileSize').textContent=f.size<1048576?Math.max(1,Math.round(f.size/1024))+' KB':(f.size/1048576).toFixed(2)+' MB';
-    el('pnFileRow').classList.remove('hidden');
-    drop.classList.remove('miss');
-  };
-  drop.addEventListener('click',()=>fin.click());
-  drop.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();fin.click()}});
-  ['dragover','dragenter'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('over')}));
-  ['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('over')}));
-  drop.addEventListener('drop',e=>{const f=e.dataTransfer.files&&e.dataTransfer.files[0];if(f)setFile(f)});
-  fin.addEventListener('change',()=>{if(fin.files[0])setFile(fin.files[0])});
-  el('pnFileX').addEventListener('click',()=>{pnFileSel=null;fin.value='';el('pnFileRow').classList.add('hidden')});
-  el('pnSubmit').addEventListener('click',()=>{
+  const nameIn=byId('pnName'),descTa=byId('pnDesc');
+  const docIn=docLab?byId('pnDoc'):null;
+  const keys=initKeys();
+  initDesc();
+  const tm=initTeam();
+  const up=initUpload();
+  const dateDD=makeDD(byId('pnDate'),'Select meeting date',dates);
+  const prodDD=makeDD(byId('pnProduct'),'Select product/process',products,{filter:true});
+  const groupDD=makeDD(byId('pnGroup'),'Select group',groups,{filter:true,onChange:()=>tm.sync(groupDD.value)});
+  [nameIn,descTa,byId('pnEmp')].concat(docIn?[docIn]:[]).forEach(i=>i.addEventListener('input',()=>i.classList.remove('invalid')));
+  byId('pnIcofr').addEventListener('change',e=>{byId('pnIcofrRow').classList.toggle('on',e.target.checked);if(e.target.checked)openIcofr()});
+  const dual=initDual();
+  const pm=rev?initPm(true):null;
+  byId('pnSubmit').addEventListener('click',()=>{
     dateDD.invalidate(!dateDD.value);
     groupDD.invalidate(!groupDD.value);
     prodDD.invalidate(!prodDD.value);
-    [nameIn,descTa].forEach(i=>i.classList.toggle('invalid',!i.value.trim()));
-    keysBox.classList.toggle('invalid',!chips.length);
-    drop.classList.toggle('miss',!pnFileSel);
-    if(team.length!==3)[empIn,roleDD.mount,tGroupDD.mount].forEach(s=>s.classList.add('invalid'));
+    [nameIn,descTa].concat(docIn?[docIn]:[]).forEach(i=>i.classList.toggle('invalid',!i.value.trim()));
+    keys.invalid(!keys.chips.length);
+    up.miss(!up.file);
+    if(tm.team.length!==3)tm.markInvalid();
+    if(rev&&!pm.mapped.length)byId('pmSrcWrap').classList.add('invalid');
     const first=document.querySelector('.pn-form .invalid,.pn-form .miss');
     if(first){first.scrollIntoView({block:'center',behavior:'smooth'});return}
     if(openDraftId!=null){drafts=drafts.filter(x=>x.id!==openDraftId);openDraftId=null}
     if(pnFrom==='drafts'){renderDraftList();pnFrom='tabs'}else deFinish();
   });
-  el('pnDraft').addEventListener('click',()=>{
-    const snap={name:nameIn.value.trim(),group:groupDD.value||'',date:dateDD.value||'',product:prodDD.value||'',
-      keys:chips.slice(),desc:descTa.value,icofr:byId('pnIcofr').checked,
-      team:team.map(m=>({emp:m.emp,name:m.name,role:m.role,group:m.group})),
-      file:pnFileSel?{name:pnFileSel.name,size:pnFileSel.size,obj:pnFileSel}:null,
-      opt:[...selList.querySelectorAll('.lb-item:not(.locked)')].map(b=>b.dataset.nm)};
+  byId('pnDraft').addEventListener('click',()=>{
+    const snap={name:nameIn.value.trim(),doc:docIn?docIn.value.trim():'',group:groupDD.value||'',date:dateDD.value||'',product:prodDD.value||'',
+      keys:keys.chips.slice(),desc:descTa.value,icofr:byId('pnIcofr').checked,
+      team:tm.team.map(m=>({emp:m.emp,name:m.name,role:m.role,group:m.group})),
+      file:up.file?{name:up.file.name,size:up.file.size,obj:up.file}:null,
+      opt:dual.sel(),kind:mode};
+    if(rev)snap.map=pm.mapped.map(p=>p.no);
+    if(openDraftId!=null){const d=drafts.find(x=>x.id===openDraftId);if(d){Object.assign(d,snap);d.savedOn=nowStamp()}}
+    else drafts.unshift(Object.assign({id:++draftSeq,savedOn:nowStamp()},snap));
+    openDraftId=null;
+    if(pnFrom==='drafts')renderDraftList();else deFinish();
+    pnFrom='tabs';
+  });
+  if(draft){
+    openDraftId=draft.id;pnFrom='drafts';
+    nameIn.value=draft.name||'';if(docIn)docIn.value=draft.doc||'';descTa.value=draft.desc||'';
+    descTa.dispatchEvent(new Event('input'));
+    keys.set(draft.keys||[]);
+    if(draft.date)dateDD.pick(draft.date,true);
+    if(draft.group){groupDD.pick(draft.group,true);tm.sync(draft.group)}
+    if(draft.product)prodDD.pick(draft.product,true);
+    dual.set(draft.opt||[]);
+    tm.set(draft.team||[]);
+    if(draft.icofr){byId('pnIcofr').checked=true;byId('pnIcofrRow').classList.add('on')}
+    if(draft.file)up.restore(draft.file.obj,draft.file.name,draft.file.size);
+    if(rev)pm.set(draft.map||[]);
+  }else{openDraftId=null;pnFrom='tabs'}
+}
+const OG_DEPTS=['Corporate Human Resources','Information Technology','Corporate Communications','Facilities & Administration','Learning & Development','Procurement & Vendor Management','Investment Banking Operations','Corporate Secretary\u2019s Office'];
+const OG_DESG_DIR={'E12564':'Manager','E20981':'Deputy General Manager','E31207':'Chief Manager','E27654':'Senior Manager','E15890':'Senior Manager','E41033':'Assistant General Manager','E23478':'Manager','E36502':'General Manager'};
+const OG_DESG_POOL=['Manager','Senior Manager','Chief Manager','Assistant General Manager','Deputy General Manager'];
+const desgOf=id=>{const k=(id||'').trim().toUpperCase();if(OG_DESG_DIR[k])return OG_DESG_DIR[k];let h=0;for(let i=0;i<k.length;i++)h=(h*31+k.charCodeAt(i))>>>0;return OG_DESG_POOL[h%OG_DESG_POOL.length]};
+function wireApprover(inId,addId,wrapId,bodyId){
+  const inp=byId(inId),add=byId(addId);
+  let list=[];
+  const render=flash=>{
+    byId(bodyId).innerHTML=list.map((m,i)=>'<tr'+(i===flash?' class="flash"':'')+'><td><b>'+esc(m.emp)+'</b></td><td>'+esc(m.name)+'</td><td>'+esc(m.desg)+'</td><td class="td-act"><button class="row-x" data-i="'+i+'" type="button" aria-label="Remove '+esc(m.emp)+'"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></td></tr>').join('');
+    byId(wrapId).classList.toggle('hidden',!list.length);
+  };
+  render();
+  byId(bodyId).addEventListener('click',e=>{const b=e.target.closest('.row-x');if(!b)return;list.splice(+b.dataset.i,1);render()});
+  inp.addEventListener('input',()=>inp.classList.remove('invalid'));
+  add.addEventListener('click',()=>{
+    const v=inp.value.trim();
+    if(!v||list.some(m=>m.emp.toLowerCase()===v.toLowerCase())){inp.classList.add('invalid');return}
+    list.push({emp:v,name:empNameOf(v),desg:desgOf(v)});
+    inp.value='';render(list.length-1);inp.focus();
+  });
+  return {get list(){return list},set(a){list=(a||[]).slice();render()},markInvalid(){inp.classList.add('invalid')}};
+}
+function renderOgForm(draft){
+  const groups=groupData.filter(r=>r.active==='Y').map(r=>({v:r.name,m:r.name,s:r.dept})).sort((a,b)=>a.m.localeCompare(b.m));
+  const products=productData.filter(r=>r.active==='Y').map(r=>({v:r.name,m:r.name})).sort((a,b)=>a.m.localeCompare(b.m));
+  const deptOpts=OG_DEPTS.map(d=>({v:d,m:d}));
+  const ormgOpts=[{v:'E31207',m:'Priya Nair (E31207)'},{v:'E27654',m:'Aditya Deshpande (E27654)'}];
+  const ldapAll=ldapData.map(r=>r.display).sort((a,b)=>a.localeCompare(b));
+  byId('sTitle').textContent='New Operating Guideline';
+  byId('sCrumb').innerHTML=SECTIONS[currentSection].title+' <i>&#8250;</i> Data Entry <i>&#8250;</i> <b>New Operating Guideline</b>';
+  const lb=name=>'<button class="lb-item" type="button" data-nm="'+esc(name)+'"><span>'+esc(name)+'</span></button>';
+  byId('sBody').innerHTML='<div class="pn-form">'
+    +'<div class="pn-grid">'
+      +'<label class="f-field full"><span>Name of the Operating Guideline</span><span class="f-wrap"><input id="ogName" type="text" maxlength="150"></span></label>'
+      +'<div class="f-field"><span>Group</span><span id="pnGroup"></span></div>'
+      +pmBlockHTML(false)
+      +'<div class="f-field"><span>Products/Processes</span><span id="pnProduct"></span></div>'
+      +'<label class="f-field"><span>Define keyword(s)</span><span class="tok-box" id="pnKeys"><input class="tok-in" id="pnKeysIn" type="text" autocomplete="off" spellcheck="false"></span><small class="pn-help">Please enter \',\' separated list for multiple keywords</small></label>'
+      +'<label class="f-field full"><span>Brief description</span><textarea id="pnDesc" maxlength="500" rows="4"></textarea><span class="pn-count" id="pnCount">0 / 500</span><span class="pn-bar" id="pnBar"><span></span></span></label>'
+    +'</div>'
+    +'<div><span class="field-title">LDAP Support Group</span><div class="pn-dual">'
+      +'<div class="pn-listbox"><div class="lb-head">Optional groups<span class="lb-cnt" id="pnOptCnt">0</span></div><div class="lb-body" id="pnOptList">'+ldapAll.map(g=>lb(g)).join('')+'</div></div>'
+      +'<div class="pn-arrows">'
+        +'<button class="pn-arrow" id="pnToRight" type="button" disabled aria-label="Map selected optional groups"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12h14M13 6.5l5.5 5.5-5.5 5.5"/></svg></button>'
+        +'<button class="pn-arrow" id="pnToLeft" type="button" disabled aria-label="Remove mapped groups"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.5 12h-14M11 6.5 5.5 12l5.5 5.5"/></svg></button>'
+      +'</div>'
+      +'<div class="pn-listbox"><div class="lb-head">Selected groups<span class="lb-cnt" id="pnSelCnt">0</span></div><div class="lb-body" id="pnSelList"></div></div>'
+    +'</div></div>'
+    +'<div id="ogTeamSec"><span class="field-title">Team details</span>'
+      +'<div class="pn-team">'
+        +'<label class="f-field"><span>EMP ID</span><span class="f-wrap"><input id="pnEmp" type="text" maxlength="12"></span></label>'
+        +'<div class="f-field"><span>Role</span><span id="pnRole"></span></div>'
+        +'<div class="f-field"><span>Group</span><span id="pnTeamGroup"></span></div>'
+        +'<button class="btn-new" id="pnAddMember" type="button">Add</button>'
+      +'</div>'
+      +'<div class="tbl-wrap tm-wrap hidden" id="pnTeamWrap"><table class="data-table"><thead><tr><th>Employee ID</th><th>Employee Name</th><th>Role</th><th>Group</th><th class="th-act">Action</th></tr></thead><tbody id="pnTeamBody"></tbody></table></div>'
+    +'</div>'
+    +'<div><span class="field-title">Proposal Note</span>'
+      +'<div class="dropzone" id="pnDrop" tabindex="0" role="button" aria-label="Upload proposal note">'
+        +'<input type="file" id="pnFile" accept=".pdf,application/pdf" class="hidden">'
+        +'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4.5"/><path d="M7.5 9 12 4.5l4.5 4.5"/><path d="M4.5 16.5v2A1.5 1.5 0 0 0 6 20h12a1.5 1.5 0 0 0 1.5-1.5v-2"/></svg>'
+        +'<b>Choose file or drag and drop it here</b>'
+        +'<small>PDF format only &middot; Maximum file size 50 MB</small>'
+      +'</div>'
+      +'<div class="pn-file hidden" id="pnFileRow"><span class="pdf-ic">PDF</span><div><b id="pnFileName"></b><small id="pnFileSize"></small></div><button class="row-x" id="pnFileX" type="button" aria-label="Remove file"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>'
+    +'</div>'
+    +'<div class="ec-block" id="ecBlock">'
+      +'<div class="ec-head"><span class="ico-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M4.5 7.5l7.5 5.5 7.5-5.5"/></svg></span><b>Issuance of E-circular for the OG</b><span class="sw-state" id="ecState">No</span><span class="switch sw-solo"><input type="checkbox" id="ecSw"><span class="sw-track"></span></span></div>'
+      +'<div class="gate-msg hidden" id="ecGate"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5 3 19.5h18z"/><path d="M12 10v4M12 16.8h.01"/></svg><span>E-circular issuance requires at least one member ID against each team role. Please complete the Team details section and switch on this option again.</span></div>'
+      +'<div class="ec-sub hidden" id="ecSub"><div class="pn-grid">'
+        +'<div class="f-field"><span>Department ID</span><span id="ecDept"></span></div>'
+        +'<div class="f-field"><span>Confidential circular</span><div class="ec-conf" id="ecConfRow"><b id="ecConfState">No</b><span class="switch sw-solo"><input type="checkbox" id="ecConf"><span class="sw-track"></span></span></div></div>'
+        +'<label class="f-field full hidden" id="ecExtraWrap"><span>Additional Recipient IDs (outside Team details)</span><span class="f-wrap"><svg class="lead" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20c.8-3.6 3-5.5 5.5-5.5s4.7 1.9 5.5 5.5"/><circle cx="17" cy="9.4" r="2.5"/><path d="M16.4 14.6c2.3.4 3.8 2 4.3 4.4"/></svg><input id="ecExtra" type="text" maxlength="400" placeholder="e.g. E12564|E20981"></span><small class="pn-help">Add the employee IDs of the additional circular recipients separated by |</small></label>'
+      +'</div></div>'
+    +'</div>'
+    +'<div><span class="field-title">Approver details</span><div class="ap-sec">'
+      +'<div class="w420"><div class="f-field"><span>ORMG Approval</span><span id="apOrmg"></span></div></div>'
+      +'<div><div class="ap-lab">Through approver</div>'
+        +'<div class="ap-add"><label class="f-field"><span>Employee ID</span><span class="f-wrap"><input id="apThruIn" type="text" maxlength="12"></span></label><button class="btn-new" id="apThruAdd" type="button">Add member</button></div>'
+        +'<div class="tbl-wrap tm-wrap hidden" id="apThruWrap"><table class="data-table"><thead><tr><th>Employee ID</th><th>Employee Name</th><th>Designation</th><th class="th-act">Action</th></tr></thead><tbody id="apThruBody"></tbody></table></div>'
+      +'</div>'
+      +'<div><div class="ap-lab">To approver</div>'
+        +'<div class="ap-add"><label class="f-field"><span>Employee ID</span><span class="f-wrap"><input id="apToIn" type="text" maxlength="12"></span></label><button class="btn-new" id="apToAdd" type="button">Add member</button></div>'
+        +'<div class="tbl-wrap tm-wrap hidden" id="apToWrap"><table class="data-table"><thead><tr><th>Employee ID</th><th>Employee Name</th><th>Designation</th><th class="th-act">Action</th></tr></thead><tbody id="apToBody"></tbody></table></div>'
+      +'</div>'
+    +'</div></div>'
+    +'<div class="pn-actions"><button class="btn-ghost" id="pnDraft" type="button">Save as Draft</button><button class="btn-new" id="pnSubmit" type="button">Submit</button></div>'
+  +'</div>';
+  const nameIn=byId('ogName'),descTa=byId('pnDesc');
+  const keys=initKeys();
+  initDesc();
+  let gateT=null;
+  const tm=initTeam(()=>{if(tm&&tm.coverage())byId('ecGate').classList.add('hidden')});
+  const up=initUpload();
+  const groupDD=makeDD(byId('pnGroup'),'Select group',groups,{filter:true,onChange:()=>tm.sync(groupDD.value)});
+  const prodDD=makeDD(byId('pnProduct'),'Select product/process',products,{filter:true});
+  const deptDD=makeDD(byId('ecDept'),'Select department',deptOpts,{filter:true});
+  const ormgDD=makeDD(byId('apOrmg'),'Select ORMG approver',ormgOpts);
+  const thru=wireApprover('apThruIn','apThruAdd','apThruWrap','apThruBody');
+  const toAp=wireApprover('apToIn','apToAdd','apToWrap','apToBody');
+  const pm=initPm(false);
+  const dual=initDual();
+  [nameIn,descTa,byId('pnEmp'),byId('apThruIn'),byId('apToIn'),byId('ecExtra')].forEach(i=>i.addEventListener('input',()=>i.classList.remove('invalid')));
+  const ecSw=byId('ecSw'),ecConf=byId('ecConf');
+  const applyEc=on=>{
+    ecSw.checked=on;
+    byId('ecBlock').classList.toggle('on',on);
+    byId('ecState').textContent=on?'Yes':'No';
+    byId('ecSub').classList.toggle('hidden',!on);
+    if(on)byId('ecGate').classList.add('hidden');
+  };
+  const pulseTeam=()=>{
+    const sec=byId('ogTeamSec');
+    sec.classList.remove('sec-miss');void sec.offsetWidth;sec.classList.add('sec-miss');
+    if(gateT)clearTimeout(gateT);
+    gateT=setTimeout(()=>sec.classList.remove('sec-miss'),950);
+    sec.scrollIntoView({block:'nearest',behavior:'smooth'});
+  };
+  ecSw.addEventListener('change',()=>{
+    if(ecSw.checked&&!tm.coverage()){
+      ecSw.checked=false;
+      byId('ecGate').classList.remove('hidden');
+      pulseTeam();
+      return;
+    }
+    applyEc(ecSw.checked);
+    if(ecSw.checked)setTimeout(()=>byId('ecSub').scrollIntoView({block:'nearest',behavior:'smooth'}),80);
+  });
+  const applyConf=on=>{
+    ecConf.checked=on;
+    byId('ecConfState').textContent=on?'Yes':'No';
+    byId('ecConfRow').classList.toggle('on',on);
+    byId('ecExtraWrap').classList.toggle('hidden',!on);
+  };
+  ecConf.addEventListener('change',()=>applyConf(ecConf.checked));
+  byId('pnSubmit').addEventListener('click',()=>{
+    groupDD.invalidate(!groupDD.value);
+    prodDD.invalidate(!prodDD.value);
+    nameIn.classList.toggle('invalid',!nameIn.value.trim());
+    descTa.classList.toggle('invalid',!descTa.value.trim());
+    keys.invalid(!keys.chips.length);
+    byId('pmSrcWrap').classList.toggle('invalid',!pm.mapped.length);
+    if(!tm.coverage())tm.markInvalid();
+    up.miss(!up.file);
+    if(ecSw.checked){
+      deptDD.invalidate(!deptDD.value);
+      if(ecConf.checked&&!byId('ecExtra').value.trim())byId('ecExtra').classList.add('invalid');
+    }
+    ormgDD.invalidate(!ormgDD.value);
+    if(!toAp.list.length)toAp.markInvalid();
+    const first=document.querySelector('.pn-form .invalid,.pn-form .miss');
+    if(first){first.scrollIntoView({block:'center',behavior:'smooth'});return}
+    if(openDraftId!=null){drafts=drafts.filter(x=>x.id!==openDraftId);openDraftId=null}
+    if(pnFrom==='drafts'){renderDraftList();pnFrom='tabs'}else deFinish();
+  });
+  byId('pnDraft').addEventListener('click',()=>{
+    const snap={doc:nameIn.value.trim(),name:nameIn.value.trim(),group:groupDD.value||'',date:'',product:prodDD.value||'',
+      keys:keys.chips.slice(),desc:descTa.value,
+      team:tm.team.map(m=>({emp:m.emp,name:m.name,role:m.role,group:m.group})),
+      file:up.file?{name:up.file.name,size:up.file.size,obj:up.file}:null,
+      opt:dual.sel(),map:pm.mapped.map(p=>p.no),kind:'og-new',
+      ec:{on:ecSw.checked,dept:deptDD.value||'',conf:ecConf.checked,extra:byId('ecExtra').value},
+      ap:{ormg:ormgDD.value||'',thru:thru.list.map(m=>({emp:m.emp,name:m.name,desg:m.desg})),to:toAp.list.map(m=>({emp:m.emp,name:m.name,desg:m.desg}))}};
     if(openDraftId!=null){const d=drafts.find(x=>x.id===openDraftId);if(d){Object.assign(d,snap);d.savedOn=nowStamp()}}
     else drafts.unshift(Object.assign({id:++draftSeq,savedOn:nowStamp()},snap));
     openDraftId=null;
@@ -1834,15 +2374,21 @@ function renderPacNoteForm(draft){
     openDraftId=draft.id;pnFrom='drafts';
     nameIn.value=draft.name||'';descTa.value=draft.desc||'';
     descTa.dispatchEvent(new Event('input'));
-    chips=(draft.keys||[]).slice();renderChips();
-    if(draft.date)dateDD.pick(draft.date,true);
-    if(draft.group){groupDD.pick(draft.group,true);syncTeamGroup()}
+    keys.set(draft.keys||[]);
+    if(draft.group){groupDD.pick(draft.group,true);tm.sync(draft.group)}
     if(draft.product)prodDD.pick(draft.product,true);
-    (draft.opt||[]).forEach(nm=>{const it=[...optList.querySelectorAll('.lb-item')].find(x=>x.dataset.nm===nm);if(it){selList.appendChild(mkItem(nm,false));it.remove()}});
-    syncCnt();refreshArrows();
-    team=(draft.team||[]).slice();renderTeam();
-    if(draft.icofr){byId('pnIcofr').checked=true;byId('pnIcofrRow').classList.add('on')}
-    if(draft.file){pnFileSel=draft.file.obj;el('pnFileName').textContent=draft.file.name;el('pnFileSize').textContent=fmtSize(draft.file.size);el('pnFileRow').classList.remove('hidden')}
+    tm.set(draft.team||[]);
+    dual.set(draft.opt||[]);
+    pm.set(draft.map||[]);
+    const ec=draft.ec||{};
+    applyEc(!!ec.on);
+    if(ec.dept)deptDD.pick(ec.dept,true);
+    applyConf(!!ec.conf);
+    byId('ecExtra').value=ec.extra||'';
+    const ap=draft.ap||{};
+    if(ap.ormg)ormgDD.pick(ap.ormg,true);
+    thru.set(ap.thru||[]);toAp.set(ap.to||[]);
+    if(draft.file)up.restore(draft.file.obj,draft.file.name,draft.file.size);
   }else{openDraftId=null;pnFrom='tabs'}
 }
 const icofrOv=document.getElementById('icofrOv');
