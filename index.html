@@ -198,6 +198,16 @@ button{cursor:pointer}
 .crumbs{font-size:11.5px;font-weight:600;color:var(--muted);display:flex;gap:7px;align-items:center;margin-bottom:10px}
 .crumbs i{font-style:normal;color:#B9C2CB}
 .crumbs b{color:var(--rust);font-weight:800}
+.crumbs .crumb-lnk{background:none;border:0;padding:0;font:inherit;font-size:11.5px;font-weight:600;color:var(--muted);cursor:pointer;transition:.13s}
+.crumbs .crumb-lnk:hover{color:var(--orange);text-decoration:underline}
+.btn-back{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line);color:#43525F;font-weight:700;font-size:12px;border-radius:8px;padding:8px 15px 8px 12px;transition:.15s;margin-bottom:16px}
+.btn-back:hover{border-color:var(--orange);color:var(--maroon);background:var(--soft)}
+.btn-back svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.crumbs .crumb-lnk{background:none;border:0;padding:0;font:inherit;font-size:11.5px;font-weight:600;color:var(--muted);cursor:pointer;transition:.13s}
+.crumbs .crumb-lnk:hover{color:var(--orange);text-decoration:underline}
+.btn-back{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line);color:#43525F;font-weight:700;font-size:12px;border-radius:8px;padding:8px 15px 8px 12px;transition:.15s;margin-bottom:16px}
+.btn-back:hover{border-color:var(--orange);color:var(--maroon);background:var(--soft)}
+.btn-back svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 .masters-float{width:238px;flex:none;display:flex;flex-direction:column;gap:10px;position:sticky;top:18px}
 .rail-scroll{display:flex;flex-direction:column;gap:10px;max-height:calc(100vh - 120px);overflow-y:auto;padding:0 15px 16px 4px;margin:0 -15px 0 -4px;scrollbar-width:thin}
 .float-tab{display:flex;align-items:center;gap:11px;width:100%;padding:13px 15px;background:#fff;border:1px solid var(--line);border-radius:11px;box-shadow:0 5px 16px #2437460C;font-size:12px;font-weight:700;color:#4E5B66;text-align:left;transition:.15s}
@@ -414,8 +424,9 @@ tr.flash{animation:rowflash 1.5s ease-out}
 .ana-box{display:flex;flex-wrap:wrap;align-items:center;gap:6px;border:1px solid #D8DFE5;border-radius:7px;background:#F3F5F7;padding:5.5px 10px;min-height:41px}
 .ana-chip{display:inline-flex;align-items:center;background:#fff;border:1px solid #E8CBA6;color:var(--maroon);font-size:11px;font-weight:800;border-radius:13px;padding:4px 11px;animation:tokIn .18s ease-out}
 .pm-tbl .data-table td{font-size:12px}
-.dc-alert{display:flex;align-items:flex-start;gap:10px;border:1px solid #F0C4C2;background:#FDF1F0;color:#9E2B26;border-radius:10px;padding:11px 14px;font-size:12px;font-weight:700;line-height:1.55;animation:rise .25s ease-out}
-.dc-alert svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none;margin-top:1px}
+.dc-alert,.qm-alert{display:flex;align-items:flex-start;gap:10px;border:1px solid #F0C4C2;background:#FDF1F0;color:#9E2B26;border-radius:10px;padding:11px 14px;font-size:12px;font-weight:700;line-height:1.55;animation:rise .25s ease-out}
+.dc-alert svg,.qm-alert svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none;margin-top:1px}
+.qm-alert{margin-top:14px}
 .yn-pair{display:inline-flex;gap:6px}
 .ynb{border:1px solid #D8DFE5;background:#fff;color:#4E5B66;border-radius:7px;padding:5px 13px;font-size:10.5px;font-weight:800;transition:.13s;line-height:1.4}
 .ynb:hover:not(:disabled):not(.on){border-color:#E9B48F;color:var(--rust);background:var(--soft)}
@@ -428,8 +439,9 @@ tr.flash{animation:rowflash 1.5s ease-out}
 .f-wrap input[readonly]{background:#F3F5F7!important;color:#3D4A56;cursor:default}
 .f-wrap:has(input[readonly]):focus-within{border-color:#D8DFE5;box-shadow:none}
 .lb-item.flash{animation:rowflash 1.5s ease-out}
-.pn-team{display:grid;grid-template-columns:1.05fr 1.15fr 1.15fr auto;gap:12px;align-items:end}
+.pn-team{display:grid;grid-template-columns:1.05fr 1.15fr auto;gap:12px;align-items:end}
 .pn-team .btn-new{padding:10px 22px}
+.qn-row{grid-template-columns:1fr .9fr .9fr auto}
 .btn-new:disabled{opacity:.42;cursor:not-allowed}
 .btn-new:disabled:hover{filter:none}
 .row-x{width:28px;height:28px;border:1px solid var(--line);background:#fff;border-radius:7px;color:#8A959E;display:inline-grid;place-items:center;transition:.13s;padding:0}
@@ -565,7 +577,7 @@ tr.flash{animation:rowflash 1.5s ease-out}
   .pn-grid{grid-template-columns:1fr}
   .pn-dual{grid-template-columns:1fr}
   .pn-arrows{flex-direction:row;justify-content:center}
-  .pn-team{grid-template-columns:1fr 1fr}
+  .pn-team,.qn-row{grid-template-columns:1fr 1fr}
   .pn-team .btn-new{grid-column:1/-1;justify-self:end}
 }
 </style>
@@ -1385,7 +1397,7 @@ function selectMaster(ft){
   main.scrollTop=0;
   main.querySelectorAll('.float-tab').forEach(t=>t.classList.toggle('active',t===ft));
   const info=mastersInfo[ft.dataset.master];
-  document.getElementById('mCrumb').innerHTML='Masters <i>&#8250;</i> <b>'+info.label+'</b>';
+  document.getElementById('mCrumb').innerHTML='<button class="crumb-lnk" data-nav="masters" type="button">Masters</button><i>&#8250;</i> <b>'+info.label+'</b>';
   document.getElementById('mTitle').textContent=info.label;
   activeCrud=null;
   if(info.page){
@@ -1505,11 +1517,36 @@ function openSection(key){
   selectSub(rail.querySelector('.float-tab'));
   main.scrollTop=0;
 }
+function setCrumb(parts){
+  byId('sCrumb').innerHTML=parts.map((p,i)=>i<parts.length-1
+    ?'<button class="crumb-lnk" data-nav="'+p.nav+'" type="button">'+esc(p.t)+'</button><i>&#8250;</i>'
+    :'<b>'+esc(p.t)+'</b>').join(' ');
+}
+function openDataEntryPage(){
+  byId('sTitle').textContent='Data Entry';
+  setCrumb([{t:SECTIONS[currentSection].title,nav:'section'},{t:'Data Entry'}]);
+  renderDataEntry();
+  byId('appMain').scrollTop=0;
+}
+function openDraftListPage(){
+  byId('sTitle').textContent='Draft Proposal List';
+  setCrumb([{t:SECTIONS[currentSection].title,nav:'section'},{t:'Draft Proposal List'}]);
+  renderDraftList();
+  byId('appMain').scrollTop=0;
+}
+document.addEventListener('click',e=>{
+  const cb=e.target.closest('.crumb-lnk');if(!cb)return;
+  if(cb.dataset.nav==='masters'){openMasters();return}
+  if(!currentSection)return;
+  if(cb.dataset.nav==='section')openSection(currentSection);
+  else if(cb.dataset.nav==='de')openDataEntryPage();
+  else if(cb.dataset.nav==='drafts')openDraftListPage();
+});
 function selectSub(ft){
   const sec=SECTIONS[currentSection];
   const sub=sec.subs.find(s=>s.id===ft.dataset.sub);
   ft.parentElement.querySelectorAll('.float-tab').forEach(t=>t.classList.toggle('active',t===ft));
-  document.getElementById('sCrumb').innerHTML=sec.title+' <i>&#8250;</i> <b>'+sub.label+'</b>';
+  setCrumb([{t:sec.title,nav:'section'},{t:sub.label}]);
   document.getElementById('sTitle').textContent=sub.label;
   const nb=document.getElementById('sNew');
   nb.textContent=sub.action||'';nb.classList.toggle('hidden',!sub.action);
@@ -1517,7 +1554,7 @@ function selectSub(ft){
   if(currentSection==='transaction'&&sub.id==='draft-proposal-list'){renderDraftList();return}
   document.getElementById('sBody').innerHTML='<div class="m-empty empty-state"><span class="empty-ic"><svg viewBox="0 0 24 24" aria-hidden="true">'+ICONS[sub.icon]+'</svg></span><b>Design in progress</b><p>The detailed layout for the '+sub.label+' screen will be added in the next design cycle.</p></div>';
 }
-let deAns=null;
+let deAns=null,discAns=null;
 const DE_TABS={pacnote:'PAC Note',manual:'Manual',og:'Operating Guidelines (OG)',sop:'Standard Operating Procedure (SOP)'};
 const DE_OPTS=[
   {t:'New Process',ic:'fileplus'},
@@ -1572,17 +1609,19 @@ function showDeTab(t){
 }
 function dePick(t){
   byId('deTabs').classList.add('hidden');
-  byId('sCrumb').innerHTML=SECTIONS[currentSection].title+' <i>&#8250;</i> Data Entry <i>&#8250;</i> <b>'+t+'</b>';
+  setCrumb([{t:SECTIONS[currentSection].title,nav:'section'},{t:'Data Entry',nav:'de'},{t:t}]);
   if(t==='New Process'){renderPacNoteForm();return}
   if(t==='Review of Existing Process'){renderPacNoteForm(null,'review');return}
   if(t==='Addendum to Existing Process'){renderPacNoteForm(null,'addendum');return}
-  if(t==='Discontinuation of Existing Process'){renderDiscCheck();return}
+  if(t==='Discontinuation of Existing Process'){discAns=null;renderDiscCheck();return}
   if(t==='New Operating Guideline'){renderOgForm();return}
-  byId('deTabBody').innerHTML=dePlaceholder(t+' \u2014 Data Entry');
+  byId('deTabBody').innerHTML='<button class="btn-back" id="phBack" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5 8 12l6.5 6.5"/></svg>Back</button>'
+    +dePlaceholder(t+' \u2014 Data Entry');
+  byId('phBack').addEventListener('click',()=>deFinish());
 }
 function deFinish(){
   byId('sTitle').textContent='Data Entry';
-  byId('sCrumb').innerHTML=SECTIONS[currentSection].title+' <i>&#8250;</i> <b>Data Entry</b>';
+  setCrumb([{t:SECTIONS[currentSection].title,nav:'section'},{t:'Data Entry'}]);
   const body=byId('sBody');
   body.innerHTML='<div class="de-done">'
     +'<div class="de-tabs" id="deTabs">'
@@ -1619,7 +1658,7 @@ function renderDraftList(){
   byId('drBody').addEventListener('click',e=>{
     const tr=e.target.closest('tr.dr-row');if(!tr)return;
     const d=drafts.find(x=>x.id===+tr.dataset.id);if(!d)return;
-    byId('sCrumb').innerHTML=SECTIONS[currentSection].title+' <i>&#8250;</i> <b>Draft Proposal List</b>';
+    setCrumb([{t:SECTIONS[currentSection].title,nav:'section'},{t:'Draft Proposal List'}]);
     if(d.kind==='og-new')renderOgForm(d);else renderPacNoteForm(d);
     byId('appMain').scrollTop=0;
   });
@@ -1730,6 +1769,7 @@ function makeDD(mount,ph,opts,cfg){
     pick,
     setDisabled(d){trig.disabled=d;mount.classList.toggle('disabled',d)},
     setOpts(l){items=l.slice();val='';const s=phSpan();s.className='dd-ph';s.textContent=ph;renderList()},
+    clear(){val='';const s=phSpan();s.className='dd-ph';s.textContent=ph;mount.classList.remove('open','invalid');menu.classList.add('hidden');if(ddOpen===mount)ddOpen=null;renderList()},
     invalidate(b){mount.classList.toggle('invalid',b)}};
 }
 const PN_TITLES={new:'New PAC Note',review:'Review of Existing Process',addendum:'Addendum to Existing Process',disc:'Discontinuation of Existing Process'};
@@ -1740,9 +1780,10 @@ const DC_PARAMS=[
 ];
 function renderDiscCheck(){
   byId('sTitle').textContent=PN_TITLES.disc;
-  byId('sCrumb').innerHTML=SECTIONS[currentSection].title+' <i>&#8250;</i> Data Entry <i>&#8250;</i> <b>Discontinuation of Existing Process</b>';
-  const ans=[null,null,null];
-  byId('sBody').innerHTML='<div class="pn-form">'
+  setCrumb([{t:SECTIONS[currentSection].title,nav:'section'},{t:'Data Entry',nav:'de'},{t:PN_TITLES.disc}]);
+  const ans=discAns?discAns.slice():[null,null,null];
+  byId('sBody').innerHTML='<button class="btn-back" id="dcBack" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5 8 12l6.5 6.5"/></svg>Back</button>'
+    +'<div class="pn-form">'
     +'<div class="dc-alert hidden" id="dcAlert"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5 3 19.5h18z"/><path d="M12 10v4M12 16.8h.01"/></svg><span>The discontinuation proposal cannot be raised as the mandatory eligibility parameters are not met.</span></div>'
     +'<div class="tbl-wrap"><table class="data-table dc-table"><thead><tr><th class="sn">S.No</th><th>Parameters</th><th>Yes/No</th></tr></thead><tbody>'
     +DC_PARAMS.map((p,i)=>'<tr><td class="sn">'+(i+1)+'</td><td class="dc-param">'+esc(p)+'</td><td><span class="yn-pair" data-i="'+i+'"><button class="ynb" data-v="Yes" type="button">Yes</button><button class="ynb" data-v="No" type="button">No</button></span></td></tr>').join('')
@@ -1777,7 +1818,9 @@ function renderDiscCheck(){
     }
     sync();
   }));
-  go.addEventListener('click',()=>{if(!go.disabled)renderPacNoteForm(null,'disc')});
+  go.addEventListener('click',()=>{if(!go.disabled){discAns=ans.slice();renderPacNoteForm(null,'disc')}});
+  byId('dcBack').addEventListener('click',()=>{discAns=null;deFinish()});
+  document.querySelectorAll('#sBody .yn-pair').forEach(pr=>{const v=ans[+pr.dataset.i];if(v)pr.querySelectorAll('.ynb').forEach(b=>b.classList.toggle('on',b.dataset.v===v))});
   sync();
 }
 function pmBlockHTML(ana){
@@ -1827,162 +1870,6 @@ function initPm(ana){
   });
   st.render=render;
   st.set=nos=>{st.mapped=(nos||[]).map(no=>PM_PROPOSALS.find(p=>p.no===no)).filter(Boolean);render()};
-  return st;
-}
-function initKeys(){
-  const box=byId('pnKeys'),inp=byId('pnKeysIn');
-  let chips=[];
-  const render=()=>{
-    box.querySelectorAll('.tok').forEach(t=>t.remove());
-    chips.forEach((c,i)=>{
-      const t=document.createElement('span');t.className='tok';
-      t.innerHTML=esc(c)+'<button type="button" aria-label="Remove keyword"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>';
-      t.querySelector('button').addEventListener('click',()=>{chips.splice(i,1);render();inp.focus()});
-      box.insertBefore(t,inp);
-    });
-    if(chips.length)box.classList.remove('invalid');
-  };
-  const add=()=>{
-    const v=inp.value.replace(/,/g,'').trim();
-    if(v&&!chips.some(c=>c.toLowerCase()===v.toLowerCase())){chips.push(v);render()}
-    inp.value='';
-  };
-  box.addEventListener('click',e=>{if(e.target===box)inp.focus()});
-  inp.addEventListener('keydown',e=>{
-    if(e.key===','||e.key==='Enter'){e.preventDefault();add()}
-    else if(e.key==='Backspace'&&!inp.value&&chips.length){chips.pop();render()}
-  });
-  inp.addEventListener('blur',()=>{if(inp.value.trim())add()});
-  inp.addEventListener('input',()=>box.classList.remove('invalid'));
-  return {get chips(){return chips},render,set(a){chips=(a||[]).slice();render()},invalid(b){box.classList.toggle('invalid',b)}};
-}
-function initDesc(){
-  const ta=byId('pnDesc');
-  ta.addEventListener('input',()=>{
-    const n=ta.value.length,c=byId('pnCount');
-    c.textContent=n+' / 500';c.classList.toggle('max',n>=500);
-    const bar=byId('pnBar');bar.firstElementChild.style.width=n/500*100+'%';
-    bar.classList.toggle('warn',n>=400&&n<500);bar.classList.toggle('max',n>=500);
-  });
-}
-function initTeam(onChange){
-  const empIn=byId('pnEmp'),addBtn=byId('pnAddMember');
-  const roleDD=makeDD(byId('pnRole'),'Select role',PN_ROLES.map(r=>({v:r,m:r})));
-  const tGroupDD=makeDD(byId('pnTeamGroup'),'Select group',[],{disabled:true});
-  let team=[];
-  const sync=mainGroup=>{
-    if(mainGroup){
-      tGroupDD.setDisabled(false);
-      tGroupDD.setOpts([{v:mainGroup,m:mainGroup}]);
-      tGroupDD.pick(mainGroup,true);
-      tGroupDD.mount.classList.remove('invalid');
-    }else{tGroupDD.setDisabled(true);tGroupDD.setOpts([])}
-  };
-  const render=(flash,silent)=>{
-    byId('pnTeamBody').innerHTML=team.map((m,i)=>'<tr'+(i===flash?' class="flash"':'')+'><td><b>'+esc(m.emp)+'</b></td><td>'+esc(m.name)+'</td><td>'+esc(m.role)+'</td><td>'+esc(m.group)+'</td><td class="td-act"><button class="row-x" data-i="'+i+'" type="button" aria-label="Remove '+esc(m.emp)+'"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></td></tr>').join('');
-    byId('pnTeamWrap').classList.toggle('hidden',!team.length);
-    addBtn.disabled=team.length>=3;
-    if(onChange&&!silent)onChange();
-  };
-  render(undefined,true);
-  byId('pnTeamBody').addEventListener('click',e=>{const b=e.target.closest('.row-x');if(!b)return;team.splice(+b.dataset.i,1);render()});
-  addBtn.addEventListener('click',()=>{
-    let ok=true;
-    const v=empIn.value.trim();
-    if(!v||team.some(m=>m.emp.toLowerCase()===v.toLowerCase())){empIn.classList.add('invalid');ok=false}
-    if(!roleDD.value){roleDD.invalidate(true);ok=false}
-    if(!tGroupDD.value){tGroupDD.invalidate(true);ok=false}
-    if(!ok||team.length>=3)return;
-    team.push({emp:v,name:empNameOf(v),role:roleDD.value,group:tGroupDD.value});
-    empIn.value='';render(team.length-1);empIn.focus();
-  });
-  return {get team(){return team},roleDD,tGroupDD,render,sync,
-    set(list){team=(list||[]).slice();render()},
-    coverage:()=>PN_ROLES.every(r=>team.some(m=>m.role===r)),
-    markInvalid(){[empIn,roleDD.mount,tGroupDD.mount].forEach(s=>s.classList.add('invalid'))}};
-}
-function initUpload(){
-  const drop=byId('pnDrop'),fin=byId('pnFile');
-  let sel=null;
-  const show=f=>{byId('pnFileName').textContent=f.name;byId('pnFileSize').textContent=fmtSize(f.size);byId('pnFileRow').classList.remove('hidden')};
-  const setFile=f=>{
-    if(!f)return;
-    const okPdf=/\.pdf$/i.test(f.name)||f.type==='application/pdf';
-    if(!okPdf||f.size>50*1024*1024){drop.classList.add('miss');setTimeout(()=>drop.classList.remove('miss'),900);return}
-    sel=f;
-    show(f);
-    drop.classList.remove('miss');
-  };
-  drop.addEventListener('click',()=>fin.click());
-  drop.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();fin.click()}});
-  ['dragover','dragenter'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('over')}));
-  ['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('over')}));
-  drop.addEventListener('drop',e=>{const f=e.dataTransfer.files&&e.dataTransfer.files[0];if(f)setFile(f)});
-  fin.addEventListener('change',()=>{if(fin.files[0])setFile(fin.files[0])});
-  byId('pnFileX').addEventListener('click',()=>{sel=null;fin.value='';byId('pnFileRow').classList.add('hidden')});
-  return {get file(){return sel},set:f=>setFile(f),miss(b){drop.classList.toggle('miss',b)},
-    restore(f,name,size){sel=f;byId('pnFileName').textContent=name;byId('pnFileSize').textContent=fmtSize(size);byId('pnFileRow').classList.remove('hidden')}};
-}
-function initDual(){
-  const optList=byId('pnOptList'),selList=byId('pnSelList'),toR=byId('pnToRight'),toL=byId('pnToLeft');
-  const syncCnt=()=>{byId('pnOptCnt').textContent=optList.querySelectorAll('.lb-item').length;byId('pnSelCnt').textContent=selList.querySelectorAll('.lb-item').length};
-  const refreshArrows=()=>{toR.disabled=!optList.querySelector('.lb-item.on');toL.disabled=!selList.querySelector('.lb-item.on:not(.locked)')};
-  const mkItem=(name,locked)=>{const b=document.createElement('button');b.type='button';b.className='lb-item'+(locked?' locked':'');b.dataset.nm=name;b.innerHTML='<span>'+esc(name)+'</span>'+(locked?'<span class="lb-tag">Mandatory</span>':'');return b};
-  optList.addEventListener('click',e=>{const it=e.target.closest('.lb-item');if(!it)return;it.classList.toggle('on');refreshArrows()});
-  selList.addEventListener('click',e=>{const it=e.target.closest('.lb-item');if(!it||it.classList.contains('locked'))return;it.classList.toggle('on');refreshArrows()});
-  toR.addEventListener('click',()=>{let last=null;optList.querySelectorAll('.lb-item.on').forEach(it=>{const n=mkItem(it.dataset.nm,false);selList.appendChild(n);last=n;it.remove()});refreshArrows();syncCnt();if(last)last.scrollIntoView({block:'nearest',behavior:'smooth'})});
-  toL.addEventListener('click',()=>{let last=null;selList.querySelectorAll('.lb-item.on:not(.locked)').forEach(it=>{const n=mkItem(it.dataset.nm,false);optList.appendChild(n);last=n;it.remove()});refreshArrows();syncCnt();if(last)last.scrollIntoView({block:'nearest',behavior:'smooth'})});
-  syncCnt();refreshArrows();
-  return {sel:()=>[...selList.querySelectorAll('.lb-item:not(.locked)')].map(b=>b.dataset.nm),
-    set(names){(names||[]).forEach(nm=>{const it=[...optList.querySelectorAll('.lb-item')].find(x=>x.dataset.nm===nm);if(it){selList.appendChild(mkItem(nm,false));it.remove()}});syncCnt();refreshArrows()}};
-}
-function pmBlockHTML(ana){
-  return '<div class="f-field full" id="pmField"><span>Proposal Mapping</span>'
-    +'<div class="pn-listbox" id="pmSrcWrap"><div class="lb-head">Available proposals<span class="lb-cnt" id="pmSrcCnt">0</span></div><div class="lb-body" id="pmSrcList"></div></div>'
-    +'<div class="pm-btns"><button class="pm-btn" id="pmAdd" type="button" disabled>Add</button><button class="pm-btn" id="pmRemove" type="button" disabled>Remove</button></div>'
-    +'<div class="pm-sub hidden" id="pmSub"><div class="pn-listbox"><div class="lb-head">Mapped proposals<span class="lb-cnt" id="pmMapCnt">0</span></div><div class="lb-body" id="pmMapList"></div></div>'
-    +(ana?'<label class="f-field" id="pmAnaWrap"><span>RMG Analyst name</span><span class="ana-box" id="pmAna"></span></label>':'')
-    +'<div class="f-field full" id="pmDetWrap"><span>Proposal Details</span><div class="tbl-wrap pm-tbl"><table class="data-table"><thead><tr><th>PAC ID</th><th>Proposal Name</th><th>Group</th><th>E-circular number</th></tr></thead><tbody id="pmDetBody"></tbody></table></div></div>'
-    +'</div>'
-    +'</div>';
-}
-function initPm(ana){
-  let pmNew=[];
-  const st={mapped:[]};
-  const pmTxt=p=>'<b>'+esc(p.no)+'</b>'+(p.date?'<span class="pm-sep">|</span>'+fmtDate(p.date):'')+'<span class="pm-sep">|</span>'+esc(p.group)+'<span class="pm-sep">|</span>'+esc(p.ec);
-  const pmRow=p=>'<button class="lb-item'+(pmNew.includes(p.no)?' flash':'')+'" type="button" data-no="'+esc(p.no)+'"><span>'+pmTxt(p)+'</span></button>';
-  const render=()=>{
-    const avail=PM_PROPOSALS.filter(p=>!st.mapped.some(m=>m.no===p.no));
-    byId('pmSrcList').innerHTML=avail.length?avail.map(pmRow).join(''):'<div class="pm-none">No proposals available</div>';
-    byId('pmMapList').innerHTML=st.mapped.map(pmRow).join('');
-    byId('pmSrcCnt').textContent=avail.length;
-    byId('pmMapCnt').textContent=st.mapped.length;
-    byId('pmSub').classList.toggle('hidden',!st.mapped.length);
-    if(ana)byId('pmAna').innerHTML=[...new Set(st.mapped.map(p=>p.rmg))].map(n=>'<span class="ana-chip">'+esc(n)+'</span>').join('');
-    byId('pmDetBody').innerHTML=st.mapped.map(p=>'<tr'+(pmNew.includes(p.no)?' class="flash"':'')+'><td><b>'+esc(p.no)+'</b></td><td>'+esc(p.name)+'</td><td>'+esc(p.group)+'</td><td>'+esc(p.ec)+'</td></tr>').join('');
-    byId('pmAdd').disabled=!byId('pmSrcList').querySelector('.lb-item.on');
-    byId('pmRemove').disabled=!byId('pmMapList').querySelector('.lb-item.on');
-    pmNew=[];
-  };
-  byId('pmSrcList').addEventListener('click',e=>{const it=e.target.closest('.lb-item');if(!it)return;it.classList.toggle('on');byId('pmAdd').disabled=!byId('pmSrcList').querySelector('.lb-item.on')});
-  byId('pmMapList').addEventListener('click',e=>{const it=e.target.closest('.lb-item');if(!it)return;it.classList.toggle('on');byId('pmRemove').disabled=!byId('pmMapList').querySelector('.lb-item.on')});
-  byId('pmAdd').addEventListener('click',()=>{
-    const sel=[...byId('pmSrcList').querySelectorAll('.lb-item.on')].map(b=>PM_PROPOSALS.find(p=>p.no===b.dataset.no)).filter(Boolean);
-    if(!sel.length)return;
-    st.mapped=st.mapped.concat(sel);
-    pmNew=sel.map(p=>p.no);
-    byId('pmSrcWrap').classList.remove('invalid');
-    render();
-    setTimeout(()=>byId('pmSub').scrollIntoView({block:'nearest',behavior:'smooth'}),80);
-  });
-  byId('pmRemove').addEventListener('click',()=>{
-    const sel=[...byId('pmMapList').querySelectorAll('.lb-item.on')].map(b=>b.dataset.no);
-    if(!sel.length)return;
-    st.mapped=st.mapped.filter(p=>!sel.includes(p.no));
-    render();
-  });
-  st.render=render;
-  st.set=nos=>{st.mapped=(nos||[]).map(no=>PM_PROPOSALS.find(p=>p.no===no)).filter(Boolean);render()};
   render();
   return st;
 }
@@ -1999,18 +1886,26 @@ function initKeys(){
     });
     if(chips.length)box.classList.remove('invalid');
   };
-  const add=()=>{
-    const v=inp.value.replace(/,/g,'').trim();
-    if(v&&!chips.some(c=>c.toLowerCase()===v.toLowerCase())){chips.push(v);render()}
-    inp.value='';
+  const addTok=w=>{
+    w=(w||'').trim();
+    if(w&&!chips.some(c=>c.toLowerCase()===w.toLowerCase())){chips.push(w);render()}
   };
+  const commit=v=>{v.split(',').forEach(t=>addTok(t));inp.value=''};
+  const add=()=>commit(inp.value);
   box.addEventListener('click',e=>{if(e.target===box)inp.focus()});
   inp.addEventListener('keydown',e=>{
     if(e.key===','||e.key==='Enter'){e.preventDefault();add()}
     else if(e.key==='Backspace'&&!inp.value&&chips.length){chips.pop();render()}
   });
   inp.addEventListener('blur',()=>{if(inp.value.trim())add()});
-  inp.addEventListener('input',()=>box.classList.remove('invalid'));
+  inp.addEventListener('input',()=>{
+    if(inp.value.indexOf(',')>-1){
+      const parts=inp.value.split(',');
+      inp.value=parts.pop();
+      parts.forEach(t=>addTok(t));
+    }
+    box.classList.remove('invalid');
+  });
   return {get chips(){return chips},render,set(a){chips=(a||[]).slice();render()},invalid(b){box.classList.toggle('invalid',b)}};
 }
 function initDesc(){
@@ -2025,18 +1920,9 @@ function initDesc(){
 function initTeam(onChange){
   const empIn=byId('pnEmp'),addBtn=byId('pnAddMember');
   const roleDD=makeDD(byId('pnRole'),'Select role',PN_ROLES.map(r=>({v:r,m:r})));
-  const tGroupDD=makeDD(byId('pnTeamGroup'),'Select group',[],{disabled:true});
   let team=[];
-  const sync=mainGroup=>{
-    if(mainGroup){
-      tGroupDD.setDisabled(false);
-      tGroupDD.setOpts([{v:mainGroup,m:mainGroup}]);
-      tGroupDD.pick(mainGroup,true);
-      tGroupDD.mount.classList.remove('invalid');
-    }else{tGroupDD.setDisabled(true);tGroupDD.setOpts([])}
-  };
   const render=(flash,silent)=>{
-    byId('pnTeamBody').innerHTML=team.map((m,i)=>'<tr'+(i===flash?' class="flash"':'')+'><td><b>'+esc(m.emp)+'</b></td><td>'+esc(m.name)+'</td><td>'+esc(m.role)+'</td><td>'+esc(m.group)+'</td><td class="td-act"><button class="row-x" data-i="'+i+'" type="button" aria-label="Remove '+esc(m.emp)+'"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></td></tr>').join('');
+    byId('pnTeamBody').innerHTML=team.map((m,i)=>'<tr'+(i===flash?' class="flash"':'')+'><td><b>'+esc(m.emp)+'</b></td><td>'+esc(m.name)+'</td><td>'+esc(m.role)+'</td><td class="td-act"><button class="row-x" data-i="'+i+'" type="button" aria-label="Remove '+esc(m.emp)+'"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></td></tr>').join('');
     byId('pnTeamWrap').classList.toggle('hidden',!team.length);
     addBtn.disabled=team.length>=3;
     if(onChange&&!silent)onChange();
@@ -2048,15 +1934,51 @@ function initTeam(onChange){
     const v=empIn.value.trim();
     if(!v||team.some(m=>m.emp.toLowerCase()===v.toLowerCase())){empIn.classList.add('invalid');ok=false}
     if(!roleDD.value){roleDD.invalidate(true);ok=false}
-    if(!tGroupDD.value){tGroupDD.invalidate(true);ok=false}
     if(!ok||team.length>=3)return;
-    team.push({emp:v,name:empNameOf(v),role:roleDD.value,group:tGroupDD.value});
+    team.push({emp:v,name:empNameOf(v),role:roleDD.value});
+    roleDD.clear();
     empIn.value='';render(team.length-1);empIn.focus();
   });
-  return {get team(){return team},roleDD,tGroupDD,render,sync,
+  return {get team(){return team},roleDD,render,
     set(list){team=(list||[]).slice();render()},
     coverage:()=>PN_ROLES.every(r=>team.some(m=>m.role===r)),
-    markInvalid(){[empIn,roleDD.mount,tGroupDD.mount].forEach(s=>s.classList.add('invalid'))}};
+    markInvalid(){[empIn,roleDD.mount].forEach(s=>s.classList.add('invalid'))}};
+}
+const QN_TYPES=['Member','Chairperson'];
+const QN_GROUPS=['Group A','Group B','Group C'];
+function initQuorum(){
+  const empIn=byId('qnEmp'),addBtn=byId('qnAdd');
+  const typeDD=makeDD(byId('qnType'),'Select member type',QN_TYPES.map(t=>({v:t,m:t})),{onChange:()=>byId('qmAlert').classList.add('hidden')});
+  const grpDD=makeDD(byId('qnGroup'),'Select group',QN_GROUPS.map(g=>({v:g,m:g})));
+  let list=[];
+  const hasChair=()=>list.some(m=>m.type==='Chairperson');
+  const render=flash=>{
+    byId('qnBody').innerHTML=list.map((m,i)=>'<tr'+(i===flash?' class="flash"':'')+'><td><b>'+esc(m.emp)+'</b></td><td>'+esc(m.name)+'</td><td>'+esc(m.desg)+'</td><td>'+esc(m.type)+'</td><td>'+esc(m.grp)+'</td><td class="td-act"><button class="row-x" data-i="'+i+'" type="button" aria-label="Remove '+esc(m.emp)+'"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></td></tr>').join('');
+    byId('qnWrap').classList.toggle('hidden',!list.length);
+    if(!hasChair())byId('qmAlert').classList.add('hidden');
+  };
+  render();
+  byId('qnBody').addEventListener('click',e=>{const b=e.target.closest('.row-x');if(!b)return;list.splice(+b.dataset.i,1);render()});
+  empIn.addEventListener('input',()=>empIn.classList.remove('invalid'));
+  addBtn.addEventListener('click',()=>{
+    let ok=true;
+    const v=empIn.value.trim();
+    if(!v||list.some(m=>m.emp.toLowerCase()===v.toLowerCase())){empIn.classList.add('invalid');ok=false}
+    if(!typeDD.value){typeDD.invalidate(true);ok=false}
+    if(!grpDD.value){grpDD.invalidate(true);ok=false}
+    if(!ok)return;
+    if(typeDD.value==='Chairperson'&&hasChair()){
+      byId('qmAlert').classList.remove('hidden');
+      byId('qmAlert').scrollIntoView({block:'nearest',behavior:'smooth'});
+      return;
+    }
+    list.push({emp:v,name:empNameOf(v),desg:desgOf(v),type:typeDD.value,grp:grpDD.value});
+    byId('qmAlert').classList.add('hidden');
+    typeDD.clear();grpDD.clear();
+    empIn.value='';render(list.length-1);empIn.focus();
+  });
+  return {get list(){return list},set(a){list=(a||[]).slice();render()},
+    markInvalid(){[empIn,typeDD.mount,grpDD.mount].forEach(s=>s.classList.add('invalid'))}};
 }
 function initUpload(){
   const drop=byId('pnDrop'),fin=byId('pnFile');
@@ -2106,7 +2028,8 @@ function renderPacNoteForm(draft,mode){
   const optG=ldapAct.filter(r=>r.mandatory!=='Y').map(r=>r.display).sort();
   byId('sTitle').textContent=PN_TITLES[mode];
   const lb=(name,locked)=>'<button class="lb-item'+(locked?' locked':'')+'" type="button" data-nm="'+esc(name)+'"><span>'+esc(name)+'</span>'+(locked?'<span class="lb-tag">Mandatory</span>':'')+'</button>';
-  byId('sBody').innerHTML='<div class="pn-form">'
+  byId('sBody').innerHTML='<button class="btn-back" id="pnBack" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5 8 12l6.5 6.5"/></svg>Back</button>'
+    +'<div class="pn-form">'
     +'<div class="pn-grid">'
       +(docLab?'<label class="f-field full"><span>'+docLab+'</span><span class="f-wrap"><input id="pnDoc" type="text" maxlength="150"></span></label>':'')
       +'<div class="f-field"><span>Meeting date</span><span id="pnDate"></span></div>'
@@ -2130,11 +2053,20 @@ function renderPacNoteForm(draft,mode){
       +'<div class="pn-team">'
         +'<label class="f-field"><span>EMP ID</span><span class="f-wrap"><input id="pnEmp" type="text" maxlength="12"></span></label>'
         +'<div class="f-field"><span>Role</span><span id="pnRole"></span></div>'
-        +'<div class="f-field"><span>Group</span><span id="pnTeamGroup"></span></div>'
         +'<button class="btn-new" id="pnAddMember" type="button">Add</button>'
       +'</div>'
-      +'<div class="tbl-wrap tm-wrap hidden" id="pnTeamWrap"><table class="data-table"><thead><tr><th>Employee ID</th><th>Employee Name</th><th>Role</th><th>Group</th><th class="th-act">Action</th></tr></thead><tbody id="pnTeamBody"></tbody></table></div>'
+      +'<div class="tbl-wrap tm-wrap hidden" id="pnTeamWrap"><table class="data-table"><thead><tr><th>Employee ID</th><th>Employee Name</th><th>Role</th><th class="th-act">Action</th></tr></thead><tbody id="pnTeamBody"></tbody></table></div>'
     +'</div>'
+    +(mode==='addendum'?'<div id="qnSec"><span class="field-title">Quorum members details</span>'
+      +'<div class="pn-team qn-row">'
+        +'<label class="f-field"><span>Member ID</span><span class="f-wrap"><input id="qnEmp" type="text" maxlength="12"></span></label>'
+        +'<div class="f-field"><span>Member type</span><span id="qnType"></span></div>'
+        +'<div class="f-field"><span>Group</span><span id="qnGroup"></span></div>'
+        +'<button class="btn-new" id="qnAdd" type="button">Add member</button>'
+      +'</div>'
+      +'<div class="qm-alert hidden" id="qmAlert"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5 3 19.5h18z"/><path d="M12 10v4M12 16.8h.01"/></svg><span>Only one Chairperson can be included in the quorum, and a Chairperson has already been added.</span></div>'
+      +'<div class="tbl-wrap tm-wrap hidden" id="qnWrap"><table class="data-table"><thead><tr><th>Member ID</th><th>Member Name</th><th>Designation</th><th>Member Type</th><th>Group</th><th class="th-act">Action</th></tr></thead><tbody id="qnBody"></tbody></table></div>'
+    +'</div>':'')
     +'<div><span class="field-title">Proposal Note</span>'
       +'<div class="dropzone" id="pnDrop" tabindex="0" role="button" aria-label="Upload proposal note">'
         +'<input type="file" id="pnFile" accept=".pdf,application/pdf" class="hidden">'
@@ -2151,14 +2083,20 @@ function renderPacNoteForm(draft,mode){
   const keys=initKeys();
   initDesc();
   const tm=initTeam();
+  const qmn=mode==='addendum'?initQuorum():null;
   const up=initUpload();
   const dateDD=makeDD(byId('pnDate'),'Select meeting date',dates);
   const prodDD=makeDD(byId('pnProduct'),'Select product/process',products,{filter:true});
-  const groupDD=makeDD(byId('pnGroup'),'Select group',groups,{filter:true,onChange:()=>tm.sync(groupDD.value)});
+  const groupDD=makeDD(byId('pnGroup'),'Select group',groups,{filter:true});
   [nameIn,descTa,byId('pnEmp')].concat(docIn?[docIn]:[]).forEach(i=>i.addEventListener('input',()=>i.classList.remove('invalid')));
   byId('pnIcofr').addEventListener('change',e=>{byId('pnIcofrRow').classList.toggle('on',e.target.checked);if(e.target.checked)openIcofr()});
   const dual=initDual();
   const pm=rev?initPm(true):null;
+  byId('pnBack').addEventListener('click',()=>{
+    if(pnFrom==='drafts'){openDraftListPage();return}
+    if(mode==='disc'){renderDiscCheck();return}
+    deFinish();
+  });
   byId('pnSubmit').addEventListener('click',()=>{
     dateDD.invalidate(!dateDD.value);
     groupDD.invalidate(!groupDD.value);
@@ -2167,6 +2105,7 @@ function renderPacNoteForm(draft,mode){
     keys.invalid(!keys.chips.length);
     up.miss(!up.file);
     if(tm.team.length!==3)tm.markInvalid();
+    if(qmn&&!qmn.list.length)qmn.markInvalid();
     if(rev&&!pm.mapped.length)byId('pmSrcWrap').classList.add('invalid');
     const first=document.querySelector('.pn-form .invalid,.pn-form .miss');
     if(first){first.scrollIntoView({block:'center',behavior:'smooth'});return}
@@ -2176,7 +2115,8 @@ function renderPacNoteForm(draft,mode){
   byId('pnDraft').addEventListener('click',()=>{
     const snap={name:nameIn.value.trim(),doc:docIn?docIn.value.trim():'',group:groupDD.value||'',date:dateDD.value||'',product:prodDD.value||'',
       keys:keys.chips.slice(),desc:descTa.value,icofr:byId('pnIcofr').checked,
-      team:tm.team.map(m=>({emp:m.emp,name:m.name,role:m.role,group:m.group})),
+      team:tm.team.map(m=>({emp:m.emp,name:m.name,role:m.role})),
+      quorum:qmn?qmn.list.map(m=>({emp:m.emp,name:m.name,desg:m.desg,type:m.type,grp:m.grp})):[],
       file:up.file?{name:up.file.name,size:up.file.size,obj:up.file}:null,
       opt:dual.sel(),kind:mode};
     if(rev)snap.map=pm.mapped.map(p=>p.no);
@@ -2192,10 +2132,11 @@ function renderPacNoteForm(draft,mode){
     descTa.dispatchEvent(new Event('input'));
     keys.set(draft.keys||[]);
     if(draft.date)dateDD.pick(draft.date,true);
-    if(draft.group){groupDD.pick(draft.group,true);tm.sync(draft.group)}
+    if(draft.group)groupDD.pick(draft.group,true);
     if(draft.product)prodDD.pick(draft.product,true);
     dual.set(draft.opt||[]);
     tm.set(draft.team||[]);
+    if(qmn&&draft.quorum)qmn.set(draft.quorum);
     if(draft.icofr){byId('pnIcofr').checked=true;byId('pnIcofrRow').classList.add('on')}
     if(draft.file)up.restore(draft.file.obj,draft.file.name,draft.file.size);
     if(rev)pm.set(draft.map||[]);
@@ -2205,17 +2146,19 @@ const OG_DEPTS=['Corporate Human Resources','Information Technology','Corporate 
 const OG_DESG_DIR={'E12564':'Manager','E20981':'Deputy General Manager','E31207':'Chief Manager','E27654':'Senior Manager','E15890':'Senior Manager','E41033':'Assistant General Manager','E23478':'Manager','E36502':'General Manager'};
 const OG_DESG_POOL=['Manager','Senior Manager','Chief Manager','Assistant General Manager','Deputy General Manager'];
 const desgOf=id=>{const k=(id||'').trim().toUpperCase();if(OG_DESG_DIR[k])return OG_DESG_DIR[k];let h=0;for(let i=0;i<k.length;i++)h=(h*31+k.charCodeAt(i))>>>0;return OG_DESG_POOL[h%OG_DESG_POOL.length]};
-function wireApprover(inId,addId,wrapId,bodyId){
+function wireApprover(inId,addId,wrapId,bodyId,max){
   const inp=byId(inId),add=byId(addId);
   let list=[];
   const render=flash=>{
     byId(bodyId).innerHTML=list.map((m,i)=>'<tr'+(i===flash?' class="flash"':'')+'><td><b>'+esc(m.emp)+'</b></td><td>'+esc(m.name)+'</td><td>'+esc(m.desg)+'</td><td class="td-act"><button class="row-x" data-i="'+i+'" type="button" aria-label="Remove '+esc(m.emp)+'"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></td></tr>').join('');
     byId(wrapId).classList.toggle('hidden',!list.length);
+    if(max)add.disabled=list.length>=max;
   };
   render();
   byId(bodyId).addEventListener('click',e=>{const b=e.target.closest('.row-x');if(!b)return;list.splice(+b.dataset.i,1);render()});
   inp.addEventListener('input',()=>inp.classList.remove('invalid'));
   add.addEventListener('click',()=>{
+    if(max&&list.length>=max)return;
     const v=inp.value.trim();
     if(!v||list.some(m=>m.emp.toLowerCase()===v.toLowerCase())){inp.classList.add('invalid');return}
     list.push({emp:v,name:empNameOf(v),desg:desgOf(v)});
@@ -2230,9 +2173,10 @@ function renderOgForm(draft){
   const ormgOpts=[{v:'E31207',m:'Priya Nair (E31207)'},{v:'E27654',m:'Aditya Deshpande (E27654)'}];
   const ldapAll=ldapData.map(r=>r.display).sort((a,b)=>a.localeCompare(b));
   byId('sTitle').textContent='New Operating Guideline';
-  byId('sCrumb').innerHTML=SECTIONS[currentSection].title+' <i>&#8250;</i> Data Entry <i>&#8250;</i> <b>New Operating Guideline</b>';
+  setCrumb([{t:SECTIONS[currentSection].title,nav:'section'},{t:'Data Entry',nav:'de'},{t:'New Operating Guideline'}]);
   const lb=name=>'<button class="lb-item" type="button" data-nm="'+esc(name)+'"><span>'+esc(name)+'</span></button>';
-  byId('sBody').innerHTML='<div class="pn-form">'
+  byId('sBody').innerHTML='<button class="btn-back" id="pnBack" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5 8 12l6.5 6.5"/></svg>Back</button>'
+    +'<div class="pn-form">'
     +'<div class="pn-grid">'
       +'<label class="f-field full"><span>Name of the Operating Guideline</span><span class="f-wrap"><input id="ogName" type="text" maxlength="150"></span></label>'
       +'<div class="f-field"><span>Group</span><span id="pnGroup"></span></div>'
@@ -2253,10 +2197,9 @@ function renderOgForm(draft){
       +'<div class="pn-team">'
         +'<label class="f-field"><span>EMP ID</span><span class="f-wrap"><input id="pnEmp" type="text" maxlength="12"></span></label>'
         +'<div class="f-field"><span>Role</span><span id="pnRole"></span></div>'
-        +'<div class="f-field"><span>Group</span><span id="pnTeamGroup"></span></div>'
         +'<button class="btn-new" id="pnAddMember" type="button">Add</button>'
       +'</div>'
-      +'<div class="tbl-wrap tm-wrap hidden" id="pnTeamWrap"><table class="data-table"><thead><tr><th>Employee ID</th><th>Employee Name</th><th>Role</th><th>Group</th><th class="th-act">Action</th></tr></thead><tbody id="pnTeamBody"></tbody></table></div>'
+      +'<div class="tbl-wrap tm-wrap hidden" id="pnTeamWrap"><table class="data-table"><thead><tr><th>Employee ID</th><th>Employee Name</th><th>Role</th><th class="th-act">Action</th></tr></thead><tbody id="pnTeamBody"></tbody></table></div>'
     +'</div>'
     +'<div><span class="field-title">Proposal Note</span>'
       +'<div class="dropzone" id="pnDrop" tabindex="0" role="button" aria-label="Upload proposal note">'
@@ -2295,14 +2238,15 @@ function renderOgForm(draft){
   let gateT=null;
   const tm=initTeam(()=>{if(tm&&tm.coverage())byId('ecGate').classList.add('hidden')});
   const up=initUpload();
-  const groupDD=makeDD(byId('pnGroup'),'Select group',groups,{filter:true,onChange:()=>tm.sync(groupDD.value)});
+  const groupDD=makeDD(byId('pnGroup'),'Select group',groups,{filter:true});
   const prodDD=makeDD(byId('pnProduct'),'Select product/process',products,{filter:true});
   const deptDD=makeDD(byId('ecDept'),'Select department',deptOpts,{filter:true});
   const ormgDD=makeDD(byId('apOrmg'),'Select ORMG approver',ormgOpts);
   const thru=wireApprover('apThruIn','apThruAdd','apThruWrap','apThruBody');
-  const toAp=wireApprover('apToIn','apToAdd','apToWrap','apToBody');
+  const toAp=wireApprover('apToIn','apToAdd','apToWrap','apToBody',1);
   const pm=initPm(false);
   const dual=initDual();
+  byId('pnBack').addEventListener('click',()=>{if(pnFrom==='drafts')openDraftListPage();else deFinish()});
   [nameIn,descTa,byId('pnEmp'),byId('apThruIn'),byId('apToIn'),byId('ecExtra')].forEach(i=>i.addEventListener('input',()=>i.classList.remove('invalid')));
   const ecSw=byId('ecSw'),ecConf=byId('ecConf');
   const applyEc=on=>{
@@ -2359,7 +2303,7 @@ function renderOgForm(draft){
   byId('pnDraft').addEventListener('click',()=>{
     const snap={doc:nameIn.value.trim(),name:nameIn.value.trim(),group:groupDD.value||'',date:'',product:prodDD.value||'',
       keys:keys.chips.slice(),desc:descTa.value,
-      team:tm.team.map(m=>({emp:m.emp,name:m.name,role:m.role,group:m.group})),
+      team:tm.team.map(m=>({emp:m.emp,name:m.name,role:m.role})),
       file:up.file?{name:up.file.name,size:up.file.size,obj:up.file}:null,
       opt:dual.sel(),map:pm.mapped.map(p=>p.no),kind:'og-new',
       ec:{on:ecSw.checked,dept:deptDD.value||'',conf:ecConf.checked,extra:byId('ecExtra').value},
@@ -2375,7 +2319,7 @@ function renderOgForm(draft){
     nameIn.value=draft.name||'';descTa.value=draft.desc||'';
     descTa.dispatchEvent(new Event('input'));
     keys.set(draft.keys||[]);
-    if(draft.group){groupDD.pick(draft.group,true);tm.sync(draft.group)}
+    if(draft.group)groupDD.pick(draft.group,true);
     if(draft.product)prodDD.pick(draft.product,true);
     tm.set(draft.team||[]);
     dual.set(draft.opt||[]);
